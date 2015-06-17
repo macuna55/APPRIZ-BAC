@@ -60,7 +60,7 @@ $('#passwordChg .btnFull').tapend(function(){
 		password   			: encryPass
 	}, function(data){
 		showInfoD($.t('Change password'),$.t('The password was changed!'),function(){$('.moldHide, .dialogAlert').hide(); });
-		$('.icon-back').trigger('tapend');
+			$('[page-content=settingsPage]').trigger('tapend');
 	});
 	
 	}
@@ -81,7 +81,7 @@ $('#pinChg .btnFull').tapend(function(){
 		pin   			: $('#pinChg input[type="tel"]').eq(0).val()
 	}, function(data){
 		showInfoD($.t('Change pin'),$.t('The pin was changed!'),function(){$('.moldHide, .dialogAlert').hide(); pin = $('#pinChg input[type="tel"]').eq(0).val()});
-		$('.icon-back').trigger('tapend');
+		$('[page-content=settingsPage]').trigger('tapend');
 	});
 	}else{
 		showInfoD($.t('Wrong PIN'),$.t('PIN must be of fourth digits'),function(){$('.moldHide, .dialogAlert').hide();});

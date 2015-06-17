@@ -2748,7 +2748,7 @@ transition: .25s ease-in-out;
 
 input.toggleSetting:checked + label:before {
 width: 60px;
-background: #9E3F9A;
+background: #ED1A2D;
 }
 
 input.toggleSetting:checked + label:after {
