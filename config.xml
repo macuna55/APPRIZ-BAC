@@ -1,8 +1,8 @@
-<?xml version='1.7' encoding='utf-8'?>
+<?xml version='1.8' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-	<name>ApprizPG</name>
+	<name>APPRIZ CCSS</name>
     <description>
-       Alpha version of ApprizPG
+      APPRIZ CCSS Version
     </description>
     <author email="asegreda@smartsoftint.com" href="http://smartsoftint.com">
         Appriz Team

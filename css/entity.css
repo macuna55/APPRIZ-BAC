@@ -1,17 +1,17 @@
 nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
-	color : #ED1A2D;
+	color : #5F62E4;
 }
 
 
 .bankSection {
-	background: #ED1A2D;
+	background: white;
 	  border-bottom: 2px solid #	#5E5E5E;
 }
 
 
 
 .topHeader {
-  background: #ED1A2D;
+  background: #D8D9FF;;
 
 }
 
@@ -25,18 +25,18 @@ nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
 }
 
 .unread{
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 #categories li .icon-arrow .path1::before {
-	color : #ED1A2D;
+	color : #5F62E4;
 }
 
 #categories li .icon-myAlerts .path1::before, .icon-notifications, .icon-alerts, .icon-promotions, .icon-services {
-	color :#ED1A2D;
+	color :#5F62E4;
 }
 
 .contentMenu ul li button:hover .icon-myAlerts .path1:before {
-   color : #ED1A2D;
+   color : #5F62E4;
 }
 
 
@@ -46,32 +46,32 @@ nav.categoryNav {
 }
 
 #entities .newEntity {
-	background: none repeat scroll 0% 0% #ED1A2D;
+	background: none repeat scroll 0% 0% #5F62E4;
 }
 
 #categories .details h3, .details_ h3 {
-    color: #ED1A2D;
+    color: #5F62E4;
 }
 
 
 
 nav.categoryNav .icon-myAlerts.active .path1:before {
     content: "\e60b";
-    color: #ED1A2D;
+    color: #5F62E4;
 
 }
 
 nav.categoryNav span.active:before {
-    color: #ED1A2D;
+    color: #5F62E4;
 }
 
 
 .options .optionBtn {
-    background: #ED1A2D;
+    background: #5F62E4;
 }
 
 .options .btnBank2:hover {
-    background: #ED1A2D;
+    background: #5F62E4;
 }
 
 .dropdownOption ul li {
@@ -79,29 +79,29 @@ nav.categoryNav span.active:before {
 }
 
 .oneOption {
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 nav.navAppriz ul li.active a {
-    color: #ED1A2D;
+    color: #5F62E4;
 
 }
 
 nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
-    color: #ED1A2D;
+    color: #5F62E4;
 }
 
 .contentMenu ul li button:hover .icon1 {
-    color: #ED1A2D;
+    color: #5F62E4;
 
 }
 
 .products ul li button , .services ul li button{
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 .products h3 {
-    color: #ED1A2D;
+    color: #5F62E4;
 }
 
 nav.categoryNav span {
@@ -112,32 +112,32 @@ nav.categoryNav span {
 
 nav.categoryNav span.active{
     content: "\e60b";
-	color: #ED1A2D;
+	color: #5F62E4;
     /*color: rgb(85, 185, 73);*/
 }
 
 .editOption li input {
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 .editOption li select{
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 .products ul li button .icon-arrow .path1::before, .services ul li button .icon-arrow .path1::before {
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 .productNav li.active button{
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 .productNav .icon-myAlerts .path1::before {
-	color: #ED1A2D;
+	color: #5F62E4;
 }
 
 input.toggle:checked + label::before {
-	 background: #ED1A2D;
+	 background: #5F62E4;
 }
 
 .productNav li button{
@@ -152,7 +152,7 @@ input.toggle:checked + label::before {
 }
 
 .bankLogo img{
-	margin-top: 15px;
+	margin-top: 0px;
 }
 
 
