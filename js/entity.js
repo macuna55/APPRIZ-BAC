@@ -67,8 +67,8 @@ function loadEntityTemplate(frsTime){
 		
 		*/
 		
-		$('.bankLogo img').attr("src","img/headImage.png");
-		$('.bankBrand img').attr("src","img/headImage.png");
+		$('.bankLogo img').attr("src","img/overWhite.png");
+		$('.bankBrand img').attr("src","img/overColor.png");
 		$('#entityStyle').attr("href","css/entity.css");
 		
 	}else{

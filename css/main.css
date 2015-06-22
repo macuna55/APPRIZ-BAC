@@ -539,7 +539,7 @@ header {
 
 header .icon-back {
     display: block;
-    color: #FFFFFF;
+    color: #ED1A2D;
     font-size: 30px;
     width: 17%;
     float: left;
@@ -569,7 +569,7 @@ header .icon-menu {
 
 .bankSection .icon-menu {
   border: none;
-  color: #FFFFFF;
+  color: #ED1A2D;
   font-size: 32PX;
   background: none;
   line-height: 76px;
