@@ -660,7 +660,7 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 			$(this).addClass('deleted');
 		});
 		reportMsgState();
-		$('.entity'+currentEntityID).remove();
+		$('.entity'+currentEntityID).remove(); 
 		counterByMsg();
 	},function(){});
 });	
