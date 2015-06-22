@@ -103,11 +103,12 @@ function counterByMsg(){
 		}
 	}
 	
-function reportMsgState(){
-			var report = {};
-			
+	function reportMsgState(){
+			report ={};
 			$('.Message').each(function( index ) {
-				report["m"+$(this).attr("id")] = $(this).hasClass("unread") ? "unread" : "readed"; 
+				var readed = $(this).hasClass("deleted") ? "readedDeleted" : "readed";
+				var unread = $(this).hasClass("deleted") ? "unreadDeleted" : "unread"; 
+				report["m"+$(this).attr("id")] = $(this).hasClass("unread") ? unread : readed; 
 				
 			
 				
@@ -116,7 +117,7 @@ function reportMsgState(){
 			
 					var msgS = $(this).attr('read').split(',');
 					for(var i = 0 ; i < msgS.length ; i++){
-						report["m"+msgS[i]] =  "readed";
+						report["m"+msgS[i]] =  readed;
 					}
 				}
 				
@@ -124,18 +125,18 @@ function reportMsgState(){
 					
 					var msgS = $(this).attr('nread').split(',');
 					for(var i = 0 ; i < msgS.length ; i++){
-						report["m"+msgS[i]] =  "unread";
+						report["m"+msgS[i]] =  unread;
 					}
 				}
 			
 			});
 				
-			//console.log(JSON.stringify(report));
+			console.log(JSON.stringify(report));
 			$.post('http://'+IP+':8089/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
 				//console.log(JSON.stringify(data));
 			});
 }		
-
+	
 function syncronizeOffLineMsg(){
 	console.log("sincroOff");
 	if(stateChangeLst.length > 0){
@@ -517,16 +518,17 @@ $('#categories').html("<div class='MsG'></div>");
 				
 				
 				
-				
 		//Delete Btn
 		$( document ).on("tapend","#categories .deleteSwipe",function(){
 			stateChangeLst.push({msg : $(this).parent().parent().parent().attr("id") , state : "DELETED"});
-			$(this).parent().parent().parent().remove();
+			$(this).parent().parent().parent().addClass('deleted');
 			reportMsgState();
+			$(this).parent().parent().parent().remove();
 			$.jStorage.set('msg', btoa($('#categories').html()));
 			counterByMsg();
 				$("#deleteAllBtn").hide();
 		});
+			
 				
 		//Filter handle
 		$( document ).on("tapend",'nav.categoryNav li',function(){
@@ -652,9 +654,13 @@ StartXCategories = 0;
 
 $( document ).on("tapend","#deleteAllBtn",function(){
 	showAlert($.t("Delete All"),$.t("Do you want to delete all messages?"),function(){
-		$('.entity'+currentEntityID).remove();
+		
 		$("#deleteAllBtn").hide();
+		$('.entity'+currentEntityID).each(function( index ) {
+			$(this).addClass('deleted');
+		});
 		reportMsgState();
+		$('.entity'+currentEntityID).remove();
 		counterByMsg();
 	},function(){});
 });	
