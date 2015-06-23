@@ -72,9 +72,9 @@ function loadEntityTemplate(frsTime){
 		$('#entityStyle').attr("href","css/entity.css");
 		
 	}else{
-		getFileLocalURL(currentEntityID+".png", $('.bankLogo img'), "src",oIMG);
-		getFileLocalURL(currentEntityID+".png", $('.bankBrand img'), "src",oIMG);
-		getFileLocalURL(currentEntityID+".css", $('#entityStyle'), "href",oCSS);
+	//	getFileLocalURL(currentEntityID+".png", $('.bankLogo img'), "src",oIMG);
+	//	getFileLocalURL(currentEntityID+".png", $('.bankBrand img'), "src",oIMG);
+	//	getFileLocalURL(currentEntityID+".css", $('#entityStyle'), "href",oCSS);
 	
 	}
 	
