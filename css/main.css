@@ -525,7 +525,7 @@ header {
     background: -webkit-linear-gradient(left, #FFFFFF 17%, #FFFFFF 17%, #636466 17%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(left, #FFFFFF 17%, #FFFFFF 17%, #636466 17%); /* Opera 11.10+ */
     background: -ms-linear-gradient(left, #FFFFFF 17%, #FFFFFF 17%, #636466 17%); /* IE10+ */
-    background: linear-gradient(to right, #636466 17%, #FFFFFF 17%, #636466 17%); /* W3C */
+    background: linear-gradient(to right, #ED1A2D 17%, #FFFFFF 17%, #636466 17%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#636466', GradientType=1); /* IE6-9 */
     height: 92px;
     position: fixed;
