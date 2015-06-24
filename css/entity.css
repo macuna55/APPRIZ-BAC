@@ -105,7 +105,7 @@ nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
 }
 
 .products h3 {
-    color: #ED1A2D;
+    color: #4C4C4C;
 }
 
 nav.categoryNav span {
@@ -113,6 +113,11 @@ nav.categoryNav span {
 	color: #D5D4D3;
     /*color: rgb(85, 185, 73);*/
 }
+.services srv{
+    color: #4C4C4C;
+
+}
+
 
 nav.categoryNav span.active{
     content: "\e60b";
