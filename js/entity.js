@@ -67,14 +67,14 @@ function loadEntityTemplate(frsTime){
 		
 		*/
 		
-		$('.bankLogo img').attr("src","img/headImage.png");
-		$('.bankBrand img').attr("src","img/headImage.png");
+		$('.bankLogo img').attr("src","img/overWhite.png");
+		$('.bankBrand img').attr("src","img/overColor.png");
 		$('#entityStyle').attr("href","css/entity.css");
 		
 	}else{
-		getFileLocalURL(currentEntityID+".png", $('.bankLogo img'), "src",oIMG);
-		getFileLocalURL(currentEntityID+".png", $('.bankBrand img'), "src",oIMG);
-		getFileLocalURL(currentEntityID+".css", $('#entityStyle'), "href",oCSS);
+		//getFileLocalURL(currentEntityID+".png", $('.bankLogo img'), "src",oIMG);
+		//getFileLocalURL(currentEntityID+".png", $('.bankBrand img'), "src",oIMG);
+	//	getFileLocalURL(currentEntityID+".css", $('#entityStyle'), "href",oCSS);
 	
 	}
 	
