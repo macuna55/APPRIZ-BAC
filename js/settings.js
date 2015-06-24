@@ -90,6 +90,7 @@ $('#pinChg .btnFull').tapend(function(){
 });
 
 $( document ).on('tapend','[page-content=settingsPage]',function(){
+	
 	$('#pinPolicy').prop('checked', pinPolicy == 1 ? false : true);
 	$('#atWifi').prop('checked', atWifi == 1 ? true : false);
 	$("#settingsPage .weeksOption input").prop('checked', false);

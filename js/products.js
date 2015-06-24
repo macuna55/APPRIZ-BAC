@@ -11,6 +11,9 @@ function addProducts(products,view){
 
 }
 function getProducts(view){
+	
+
+	
 	$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Products </p>')
 	$('#products .products ul').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i> </div>");
 	if(pinPolicy==1){$('#pin').show();}
@@ -33,11 +36,13 @@ showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),fun
 
 
 $( document ).on("tapend","[products]",function(){
-		console.log("ddddddddddddd"+$(this).attr("products"));
+				$('header .icon-back').css("color", "#0077C0" );
+			$('header .icon-menu').css("color", "#0077C0" );
 	getProducts($(this).attr("products"));
 });
 
 $( document ).on('tapend','#products .products li',function(){
+
 	currentProduct = $(this).find("prd").html();
 });
 
