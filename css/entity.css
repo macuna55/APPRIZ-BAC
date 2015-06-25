@@ -161,4 +161,6 @@ input.toggle:checked + label::before {
 	margin-top:13px;
 }
 
-
+* {
+-webkit-tap-highlight-color: rgba(0,0,0,0); 
+}
