@@ -583,9 +583,11 @@ header .icon-menu {
 
 .imglogo{
 	max-height:80px !important;
+
 }
 
 img {
+  margin-left: 15px;
     display: block;
     max-width: 100%;
     height: auto;
@@ -2244,7 +2246,7 @@ top: 0px;
     .topHeader .bankBrand {
         float: left;
         width: 45%;
-        padding: 29px 0 0 0;
+        padding: 0 0 0 0;
     }
 
     .bankSection .icon-menu {
