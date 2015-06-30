@@ -69,15 +69,19 @@
 			$("#"+$("#"+$(this).attr("page-content")+".page-content").attr("header")).find('.headerText').html($.t($("#"+$(this).attr("page-content")+".page-content").attr("headerText")));
 			$('#menuAppriz').fadeOut(300);
 				$('.allMenu').velocity({"right" : "-80%"});
-				if( $(this).attr("page-content") == "settingsPage" ){
+			//	console.log($(this).attr("page-content"));
+			
+			
+	if( $(this).attr("page-content") == "settingsPage" ||  $(this).attr("page-content") == "demo"){
 					
 			$('header .icon-back').css("color", "white" )
 			$('header .icon-menu').css("color", "white" )
+				if( $(this).attr("page-content") == "settingsPage" ){
 					if(pinPolicy==1 ){
 					
 					$('#pin').show();
 					
-				}
+				}}
 				} 
 		}
 			
