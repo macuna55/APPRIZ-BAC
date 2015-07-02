@@ -29,6 +29,28 @@ function current_inbox(){
 	
 }
 
+function current_inbox_off(){
+	$('.Message').hide();
+	$('.gotcolors').animate({opacity: 1}, 200);
+	$('.entity'+currentEntityID).show();
+	$('nav.categoryNav li').find("span").css("color") == tabSelectedColor;	
+
+	$(".page-content.active").removeClass("active");
+	$("header.active").removeClass("active");
+	$("#inbox").addClass("active").show();
+	$("#headerMain").addClass("active").show();
+	Back = ["inbox"];
+	
+	$('#menuAppriz').fadeOut(300);
+	$('.allMenu').css({"right" : "-80%"});
+	$('.navAppriz li').eq(0).trigger("tapend");	
+
+		if($('.entity'+currentEntityID).length ==0){$('#noMessages').show();}
+		else{$('#noMessages').hide();}
+		
+}
+
+
 function counterByMsg(){
 
 	//pullDownEl = $('#pullDown');
@@ -245,7 +267,7 @@ function makeSwipe(id){
 //bring message for this client
 		function callNewMSG(){
 			
-		
+		//console.log("entitiid  : "+currentEntityID);
 			
 			$('.icon-menu').show();
 			$('.icon-back').show();
@@ -350,14 +372,20 @@ function makeSwipe(id){
 			
 			}).done(function(){ 
 		//$('.pullDown').toggleClass('fa fa-spinner fa-spin fa-3x',false);
+		
+		if(entityIDs.length==0 ){
+		entityIDs.push(currentEntityID);}
+		
 			setTimeout(function(){
 					$('.pullDownLabel Roll').fadeOut(function(){
+						
 						$(this).remove();
+						 myScroll3.scrollTo(0,-1);
 					},1000);
 					 spinnerOff=true;
 					 scrollInProgress=false;
 					
-					 myScroll3.scrollTo(0,-1);
+					
 						}, 1);
 					 $('.pullDownLabel').fadeIn(1,function(){
 									document.getElementById("pullDownLabel").innerHTML = 'Pull Down to refresh';

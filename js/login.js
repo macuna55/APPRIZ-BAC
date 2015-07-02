@@ -101,7 +101,7 @@ function offLineMode(){
 
 function checkPreviusLogin(){
 	
-	console.log($.jStorage.index().indexOf('currentEntityID'));
+	console.log("currententity: //"+$.jStorage.index().indexOf('currentEntityID'));
 	
 	
 	if($.jStorage.index().indexOf('msg') > -1){$('#categories').html(atob($.jStorage.get('msg')));}
