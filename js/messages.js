@@ -29,6 +29,31 @@ function current_inbox(){
 	
 }
 
+
+		
+function current_inbox_off(){
+	$('.Message').hide();
+	$('.gotcolors').animate({opacity: 1}, 200);
+	$('.entity'+currentEntityID).show();
+	$('nav.categoryNav li').find("span").css("color") == tabSelectedColor;	
+
+	$(".page-content.active").removeClass("active");
+	$("header.active").removeClass("active");
+	$("#inbox").addClass("active").show();
+	$("#headerMain").addClass("active").show();
+	Back = ["inbox"];
+	
+	$('#menuAppriz').fadeOut(300);
+	$('.allMenu').css({"right" : "-80%"});
+	$('.navAppriz li').eq(0).trigger("tapend");	
+
+		if($('.entity'+currentEntityID).length ==0){$('#noMessages').show();}
+		else{$('#noMessages').hide();}
+		
+}
+
+
+
 function counterByMsg(){
 
 	//pullDownEl = $('#pullDown');
@@ -75,7 +100,7 @@ function counterByMsg(){
 	
 		
 
-		
+
 		
 		
 		
