@@ -374,15 +374,21 @@ function makeSwipe(id){
 				
 			
 			}).done(function(){ 
-		//$('.pullDown').toggleClass('fa fa-spinner fa-spin fa-3x',false);
+		//$('.pullDown').toggleClass('fa fa-spinner fa-spin fa-3x',false);\\
+		
+				if(entityIDs.length==0 ){
+		entityIDs.push(currentEntityID);}
+		
+		
 			setTimeout(function(){
 					$('.pullDownLabel Roll').fadeOut(function(){
 						$(this).remove();
+								 myScroll3.scrollTo(0,-1);
 					},1000);
 					 spinnerOff=true;
 					 scrollInProgress=false;
 					
-					 myScroll3.scrollTo(0,-1);
+			
 						}, 1);
 					 $('.pullDownLabel').fadeIn(1,function(){
 									document.getElementById("pullDownLabel").innerHTML = 'Pull Down to refresh';
