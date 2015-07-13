@@ -79,7 +79,8 @@ $('#first-time .btnFull').tapend(function(){
 
 function checkWithOutEntity(){
 	
-				if(entityIDs.length==0 ){
+				//if(entityIDs.length==0 ){
+			if($.jStorage.get('currentEntityID')==null){	
 			$('.moldHide, .dialogAlert , .icon-back').hide();
 			$("#info .newEntity").trigger("tapend");
 			$('.icon-menu').hide();

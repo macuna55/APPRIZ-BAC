@@ -23,6 +23,9 @@ $('#suscribe .btnFull').tapend(function(){
 					$('.out').hide();
 				}
 			);
+		$('header .icon-back').css("color", "#ED1A2D" );
+		$('header .icon-menu').css("color", "#ED1A2D" );
+			
 		}else{
 			showInfoD($.t('Wrong subscription data'),$.t('No valid subscription data'),function(){$('.moldHide, .dialogAlert').hide();});
 		}

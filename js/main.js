@@ -159,6 +159,10 @@ androidBackBtn = 0;
 //Buttons
 function backKeyDown() { 
 		
+		
+		$('header .icon-back').css("color", "#ED1A2D" );
+		$('header .icon-menu').css("color", "#ED1A2D" );
+		
 		if($('.page-content.active').attr('id') == "inbox"){
 			navigator.app.exitApp();
 		}else{
