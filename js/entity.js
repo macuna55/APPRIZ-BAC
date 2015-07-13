@@ -47,7 +47,7 @@ function reloadEntities(){
 				console.log(JSON.stringify(data));
 				$.jStorage.set('entities', btoa($('#entities ul').html()));
 				
-			
+	if($.jStorage.get('currentEntityID')==null){checkWithOutEntity();}
 			});
 			
 		}

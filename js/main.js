@@ -176,8 +176,11 @@ $( document ).on("tapend",'.weeksOption li',function(e){
 androidBackBtn = 0;
 //Buttons
 function backKeyDown() { 
-		
-		if($('.page-content.active').attr('id') == "inbox"){
+
+	$('header .icon-back').css("color", "#0077C0" );
+	$('header .icon-menu').css("color", "#0077C0" );
+	
+	if($('.page-content.active').attr('id') == "inbox"){
 			navigator.app.exitApp();
 		}else{
 		androidBackBtn++;
