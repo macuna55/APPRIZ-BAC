@@ -1,22 +1,8 @@
 /* ==========================================================================
    Base styles: Appriz App
    ========================================================================== */
-#MenuDelete{
 
-display:none;
-font-size: 28px;
-background:#D8D8D8;
-
-}
    
-#spinBotton{
-  position: absolute;
-  margin-left: 45%;
-  font-size: 40px;
-  margin-top: 5%;
-
-}
-
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -663,7 +649,7 @@ input, .btnAction {
     color: #565758;
 }
 
-.btnAction {f
+.btnAction {
     text-align: left;
     position: relative;
 }
