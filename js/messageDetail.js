@@ -14,7 +14,24 @@ function matchColumnsHeight(){
 }
 
 function showMessage(id){
+			
+	if(false){
+		var msg = $("#"+id+".Message .centralLI");
 	
+			if(msg.css('backgroundColor')=='rgb(189, 189, 189)'){
+					msg.css({"background":""});
+					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
+					$("#"+id+".Message").toggleClass('deleted');
+				}
+			else{	
+					msg.css({"background":"#BDBDBD"});
+					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())+1));
+					$("#"+id+".Message").toggleClass('deleted');
+				}
+		
+		}
+
+	else{
 	scrollPosition = myScroll3.y;
 //console.log("scroll y "+myScroll3.y);
 //myScroll3.scrollTo(0, )
@@ -166,6 +183,8 @@ function showMessage(id){
 	//Sync heights of appends
 		matchColumnsHeight();
 		appendsScroller =  new IScroll('.appends', { probeType: 3, mouseWheel: true }); 
+		
+	}	
 }
 
 $( document ).on('tapend','#showOptions',function(e){

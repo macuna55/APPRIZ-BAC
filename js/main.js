@@ -7,9 +7,6 @@
 
 	// document.addEventListener("deviceready", function() {
 		$(".menu-main , .icon-menu").tapend(function(e){
-			
-		
-			
 			//e.stopPropagation();
 			$('.allMenu').css({"width" : "80%" });
 			$('#menuAppriz').fadeIn({"display" : "block"});

@@ -3,6 +3,97 @@
 */
 
 
+/*
+		Paginacion de mensajes
+*/
+
+function loadOldMessages(old){
+	
+				$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":0, "LAST":old},function(data){
+		
+				$.each(data,function(index, message){
+					
+					if($('#'+message['idMessage']).length > 0){ 
+						makeSwipe(message['idMessage']);
+						if(message['state'] == 3){
+							$('#'+message['idMessage']).removeClass('unread')
+						}
+							var bulb =  message['bulb'] == 1   ? 'img/ledlightgreen.png' : message['bulb'] == 2   ? 'img/ledlighyellow.png' : message['bulb'] == 3   ? 'img/ledlightred.png' :  'img/ledlighgray.png';
+						    $('#'+message['idMessage']).find('.bulb').attr('src',bulb);
+					}else{
+						
+					if( ( 'idParent' in message) && ($('#categories #'+message['idParent']).length>0)){
+						var postDate = new Date(message['postdate']);
+						var dateText = postDate.toLocaleString();
+						var dotState =  message['bulb'] == 1   ? 'dotDone' : message['bulb'] == 2   ? 'dotProgress' : message['bulb'] == 3   ? 'dotError' :  'dotNone';
+						$('#categories #'+message['idParent']).attr('bulb',message['bulb']);
+						$('#categories #'+message['idParent']+" .icon-primitive-dot").removeClass("dotDone").removeClass("dotProgress").removeClass("dotError").removeClass("dotNone").addClass(dotState);
+						
+						if(message['state'] == 3){
+							$('#categories #'+message['idParent']).attr('read',$('#categories #'+message['idParent']).hasAttr('read') ? $('#categories #'+message['idParent']).attr('read')+','+message['idMessage'] : message['idMessage']);
+						}else{
+							$('#categories #'+message['idParent']).attr('nread',$('#categories #'+message['idParent']).hasAttr('nread') ? $('#categories #'+message['idParent']).attr('nread')+','+message['idMessage'] : message['idMessage']);
+							$('#categories #'+message['idParent']).addClass('unread');
+						}
+						if($('#categories #'+message['idParent']).hasAttr('history')){
+							$('#categories #'+message['idParent']).attr('history',btoa(atob($('#categories #'+message['idParent']).attr('history'))+";"+message['shortMessage']+"^"+message['longMessage']+"^"+dateText));
+							
+						}else{
+							$('#categories #'+message['idParent']).attr('history',btoa(message['shortMessage']+"^"+message['longMessage']+"^"+dateText));
+						}
+					
+					}else{ 
+				
+						var Icon = message['type'] == 1 ? '<span class="icon-myAlerts"><span class="path1"></span><span class="path2"></span></span>'  : message['type'] == 2 ? '<span class="icon-alerts path1"></span>' : message['type'] == 3 ? '<span class="icon-notifications"></span>' :  message['type'] == 4 ?  '<span class="icon-promotions"></span>' : '<span class="icon-services"></span>';
+						var dotState =  message['bulb'] == 1   ? 'dotDone' : message['bulb'] == 2   ? 'dotProgress' : message['bulb'] == 3   ? 'dotError' :  'dotNone';
+						
+						var postDate = new Date(message['postdate']);
+						var postDateS = postDate.toLocaleDateString() + " " + postDate.getHours() +    ":" +  FormatInteger(postDate.getMinutes(),2) +    ":" + FormatInteger(postDate.getSeconds(),2) ;
+						
+					//	var postDateS = postDate.getFullYear() + "-"+FormatInteger(postDate.getMonth() + 1,2)+ "-"+FormatInteger(postDate.getDate(),2) +" "+postDate.getHours()+":"+postDate.getMinutes()+":"+postDate.getSeconds();
+						var LONG_MSG = message['longMessage'];
+						if(/^<html>/.test(LONG_MSG)){
+							LONG_MSG = $.t("This message contains rich content");
+						}
+						$('#categories .MsG').append( "<li class='Message "+( message['state'] < 3 ? "unread" : "" )+" typemsg"+message['type']+" entity"+message['idEntity']+"' id='"+message['idMessage']+"' bulb='"+message['bulb']+"' longMSG='"+btoa(message['longMessage'])+"' services='"+btoa(JSON.stringify(message['services']))+"' appends='"+btoa(JSON.stringify(message['appends']))+"' idEntity='"+message['idEntity']+"'><div class='moveContainer'><div class='details'><h3>"+LONG_MSG+"</h3></div><div class='centralLI'><div class='iconCat'>"+Icon+"</div><div class='infoBank'><h2>"+message['shortMessage']+"</h2><h6 class='dateBank'><span class='icon-primitive-dot "+dotState+"'></span><date>"+postDateS+"<date></h6></div><div class='magicalArrow'><i class='fa fa-angle-right'></i></div></div><div class='rightLI'><button class='deleteSwipe'>Delete</button></div ></div></li>");
+						$.jStorage.set('msg_div', btoa($('#categories').html()));
+
+					}
+					}
+					
+					$.jStorage.set('msg_div', btoa($('#categories').html()));
+				});
+				syncronizeOffLineMsg();
+			},'json') .fail(function(e) {
+					$('.refreshing_list').css({"background-color" : "#888"}).html('Conexion error!').fadeOut(3000,function(){$('.refreshing_list').css({"background-color" : "#F5F5Ff"}).html('Refreshing list');});
+			}).done(function(){ 
+				current_inbox();
+				counterByMsg();
+				makeSwipe();
+				fix_messages();
+				$.jStorage.set('msg', btoa($('#categories').html()));
+				$('.refreshing_list').fadeOut(1000); 	
+				$("nav.categoryNav li span").addClass("active");
+				setTimeout(function(){oneTimeSendAjax = true;},500);
+				checkWithOutEntity();
+				endLoad();				  
+			});
+	
+	
+}
+
+
+function endLoad(){
+	  loadingPage = false;
+	  $('#spinBotton').remove();
+	  console.log("total mensajes:"+$('.MsG').length);
+	
+}
+
+
+/*
+		Fin Paginacion de mensaje
+*/
 function current_inbox(){
 	$('.Message').hide();
 	$('.gotcolors').animate({opacity: 1}, 200);
@@ -76,7 +167,10 @@ function counterByMsg(){
 		  
 		   });
 		   
+		   
+		   
 	   myScroll3.on('scroll', function(){
+		
 		if (this.y >  50 &&  !scrollInProgress ) {
 			document.getElementById("pullDownLabel").innerHTML = $.t('Release to refresh...');
 			scrollInProgress = false;
@@ -92,7 +186,15 @@ function counterByMsg(){
 			if(this.y>0){
 				$('.pullDownLabel').show();
 			}
-		
+			
+		   if (this.y < (this.maxScrollY + 10) && !loadingPage){
+			    loadingPage = true;
+			//	$('.MsG').lastChild.getClass();
+				var idLastMessage = $(".MsG li:last-child").attr('id');
+				$('#categories').append('<div id="spinBotton"><i id="spinBotton" class="fa fa-spinner fa-spin"></i></div>');
+				loadOldMessages(idLastMessage);
+				
+				}
 }); 
 	
 		
@@ -103,15 +205,54 @@ function counterByMsg(){
 		
 		
 		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-
+		
+		
+/* 
+					**Old Method**
+				
 		$('.bubble').eq(0).html( $('.typemsg1.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg1.unread.entity'+currentEntityID).length).css($('.typemsg1.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(1).html( $('.typemsg2.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg2.unread.entity'+currentEntityID).length).css($('.typemsg2.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(2).html( $('.typemsg3.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg3.unread.entity'+currentEntityID).length).css($('.typemsg3.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(3).html( $('.typemsg4.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg4.unread.entity'+currentEntityID).length).css($('.typemsg4.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
-		$('.bubble').eq(4).html( $('.typemsg5.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg5.unread.entity'+currentEntityID).length).css($('.typemsg5.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
-	
+		$('.bubble').eq(4).html( $('.typemsg5.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg5.unread.entity'+currentEntityID).length).css($('.typemsg5.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"}); 
+*/		
 //	$('#leftMenu li').eq(0).find('div div').html($('.unread.entity'+currentEntityID).length);
 		//$('#leftMenu li').eq(4).find('div div').html($('.unread').length);
+			
+
+ 	var arregloBubble=[];
+	$.post('http://'+IP+':8089/appriz/getCountMessageByType_',{"idSecretClient": idScretClient, "entity":$.jStorage.get('currentEntityID')},function(data){
+		
+		
+				//Id tipo Mensaje 1  ->  Icono 2  -> Alerta
+				//Id tipo Mensaje 2  ->  Icono 3  -> Notificacion (this-request.length)
+				//Id tipo Mensaje 3  ->  Icono 4  -> Publicidad
+				//Id tipo Mensaje 4  ->  Icono 1  -> Mis Alertas
+				//Id tipo Mensaje 5  ->  Icono 5  -> Request
+		
+		
+		$.each(data['data'],function(index, item){
+		console.log(item['idTipoMensaje'] +"-*-"+item['count']);
+				arregloBubble[item['idTipoMensaje']] = item['count'];
+				
+		});
+				
+			},'json') .fail(function(e) {
+			}).done(function(){ 
+			console.log("--"+arregloBubble[4]);
+			
+		$('.bubble').eq(0).html(typeof arregloBubble[4] == 'undefined' ? "" : arregloBubble[4]);
+		$('.bubble').eq(1).html(typeof arregloBubble[1] == 'undefined' ? "" : arregloBubble[1]);	
+		$('.bubble').eq(2).html(typeof arregloBubble[2] == 'undefined' ? "" : arregloBubble[5] == 'undefined' ? arregloBubble[2] :arregloBubble[2]-arregloBubble[5]);
+		$('.bubble').eq(3).html(typeof arregloBubble[3] == 'undefined' ? "" : arregloBubble[3]);
+		$('.bubble').eq(4).html(typeof arregloBubble[5] == 'undefined' ? "" : arregloBubble[5]);
+		
+		console.log("25-"+$('.bubble').eq(2).innerHTML);
+		
+			}); 
+			
+		//end new count bubble method
+		
 		
 		
 		$("#entities li").each(function(index, entityI ){
@@ -152,8 +293,8 @@ function counterByMsg(){
 				}
 			
 			});
-				
-			console.log(JSON.stringify(report));
+		
+		//	console.log(JSON.stringify(report));
 			$.post('http://'+IP+':8089/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
 				//console.log(JSON.stringify(data));
 			});
@@ -283,7 +424,9 @@ function makeSwipe(id){
 			
 			
 				console.time("PostReq");
-			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+		//	$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
+			
 			console.timeEnd("PostReq");
 			console.time("MSGProc");
 			$('#categories').html("<div class='MsG'></div>");
@@ -456,7 +599,9 @@ function makeSwipe(id){
 			date = new Date();
 		if(oneTimeSendAjax){
 			oneTimeSendAjax = false;
-			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
+				
+			//$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"0", "LAST":"88767"},function(data){
 			
 $('#categories').html("<div class='MsG'></div>");
 			
@@ -548,6 +693,7 @@ $('#categories').html("<div class='MsG'></div>");
 				
 		//Delete Btn
 		$( document ).on("tapend","#categories .deleteSwipe",function(){
+			
 			stateChangeLst.push({msg : $(this).parent().parent().parent().attr("id") , state : "DELETED"});
 			$(this).parent().parent().parent().addClass('deleted');
 			reportMsgState();
@@ -560,6 +706,7 @@ $('#categories').html("<div class='MsG'></div>");
 				
 		//Filter handle
 		$( document ).on("tapend",'nav.categoryNav li',function(){
+		
 			if( $(this).find("span").hasClass("active")){
 				$(this).find("span").removeClass("active");
 				$('.typemsg'+$(this).attr("typemsg")).hide();
@@ -575,7 +722,7 @@ $('#categories').html("<div class='MsG'></div>");
 		});
 		
 		$( document ).on("taphold",'nav.categoryNav li',function(){
-			
+	
 			$('#categories li').not($('.typemsg'+$(this).attr("typemsg")+'[identity='+currentEntityID+']')).hide();
 			$('nav.categoryNav span').removeClass("active");
 			//$(this).css({content: "\e60b",color: tabSelectedColor});
@@ -677,9 +824,29 @@ StartXCategories = 0;
 	
 //	$('#appHolder').parent().parent().parent().on('scroll', scrollEvent);
 		
+		// Opciones para Menu borrar
 		
+	$( document ).on("taphold",".Message",function(){
+		
+		modeDeleteMenu = true;
+		
+		$('#MenuFilter').css({'display':'none'});
+		$('#MenuDelete').css({'display':'block'});
+		
+		});	
+
 		
 
+			$( document ).on("tapend","#btnBorrarSeleccion",function(){
+				showAlert($.t("Delete Selection"),$.t("Do you want to delete the selected messages?"),function(){
+				$('.entity'+currentEntityID).each(function( index ) {
+				reportMsgState();
+				$('.delete').remove(); 
+				counterByMsg();
+			},function(){});
+			});	
+			});
+			
 $( document ).on("tapend","#deleteAllBtn",function(){
 	showAlert($.t("Delete All"),$.t("Do you want to delete all messages?"),function(){
 		
