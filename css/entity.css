@@ -116,6 +116,12 @@ nav.categoryNav span {
     /*color: rgb(85, 185, 73);*/
 }
 
+ #MenuDelete span {
+    content: "\e60b";
+	color: #0077C0;
+    /*color: rgb(85, 185, 73);*/
+}
+
 nav.categoryNav span.active{
     content: "\e60b";
 	color: #0077C0;
