@@ -839,7 +839,13 @@ StartXCategories = 0;
 					modeDeleteMenu = false;
 					$('#MenuFilter').css({'display':'block'});
 					$('#MenuDelete').css({'display':'none'});	
-
+					$('#cuentaSeleccion').html(0);
+					$('.deleted').each(function( index ) {
+						idMsg=$(this).attr('id');
+						$("#"+idMsg+".Message .centralLI").css({"background":""});
+						$("#"+idMsg+".Message").toggleClass('deleted');
+					});
+					
 			});	
 			
 
