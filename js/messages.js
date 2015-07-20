@@ -8,7 +8,7 @@
 */
 
 function loadOldMessages(old){
-	
+	 $('#menuDelBack').trigger('tapend');
 				$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":0, "LAST":old},function(data){
 		
 				$.each(data,function(index, message){
@@ -407,7 +407,7 @@ function makeSwipe(id){
 				
 //bring message for this client
 		function callNewMSG(){
-			
+		 $('#menuDelBack').trigger('tapend'); //si esta en el menu delete sale de el.
 		//console.log("entitiid  : "+currentEntityID);
 			
 			$('.icon-menu').show();
