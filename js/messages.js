@@ -207,19 +207,19 @@ function counterByMsg(){
 		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 		
 		
-/* 
-					**Old Method**
+ 
+	
 				
 		$('.bubble').eq(0).html( $('.typemsg1.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg1.unread.entity'+currentEntityID).length).css($('.typemsg1.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(1).html( $('.typemsg2.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg2.unread.entity'+currentEntityID).length).css($('.typemsg2.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(2).html( $('.typemsg3.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg3.unread.entity'+currentEntityID).length).css($('.typemsg3.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(3).html( $('.typemsg4.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg4.unread.entity'+currentEntityID).length).css($('.typemsg4.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(4).html( $('.typemsg5.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg5.unread.entity'+currentEntityID).length).css($('.typemsg5.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"}); 
-*/		
+		
 //	$('#leftMenu li').eq(0).find('div div').html($('.unread.entity'+currentEntityID).length);
 		//$('#leftMenu li').eq(4).find('div div').html($('.unread').length);
 			
-
+/*
  	var arregloBubble=[];
 	$.post('http://'+IP+':8089/appriz/getCountMessageByType_',{"idSecretClient": idScretClient, "entity":$.jStorage.get('currentEntityID')},function(data){
 		
@@ -231,15 +231,15 @@ function counterByMsg(){
 				//Id tipo Mensaje 5  ->  Icono 5  -> Request
 		
 		
-		$.each(data['data'],function(index, item){
-		console.log(item['idTipoMensaje'] +"-*-"+item['count']);
+ 		$.each(data['data'],function(index, item){
+	
 				arregloBubble[item['idTipoMensaje']] = item['count'];
 				
 		});
 				
 			},'json') .fail(function(e) {
 			}).done(function(){ 
-			console.log("--"+arregloBubble[4]);
+		
 			
 		$('.bubble').eq(0).html(typeof arregloBubble[4] == 'undefined' ? "" : arregloBubble[4]);
 		$('.bubble').eq(1).html(typeof arregloBubble[1] == 'undefined' ? "" : arregloBubble[1]);	
@@ -247,9 +247,9 @@ function counterByMsg(){
 		$('.bubble').eq(3).html(typeof arregloBubble[3] == 'undefined' ? "" : arregloBubble[3]);
 		$('.bubble').eq(4).html(typeof arregloBubble[5] == 'undefined' ? "" : arregloBubble[5]);
 		
-		console.log("25-"+$('.bubble').eq(2).innerHTML);
+
 		
-			}); 
+			});  */
 			
 		//end new count bubble method
 		
@@ -266,7 +266,7 @@ function counterByMsg(){
 		}
 	}
 	
-	function reportMsgState(){
+	function reportMsgState(){	
 			report ={};
 			$('.Message').each(function( index ) {
 				var readed = $(this).hasClass("deleted") ? "readedDeleted" : "readed";
@@ -425,7 +425,7 @@ function makeSwipe(id){
 			
 				console.time("PostReq");
 		//	$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
-			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"1"},function(data){
 			
 			console.timeEnd("PostReq");
 			console.time("MSGProc");
@@ -599,11 +599,11 @@ function makeSwipe(id){
 			date = new Date();
 		if(oneTimeSendAjax){
 			oneTimeSendAjax = false;
-			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
+			//$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
 				
-			//$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"0", "LAST":"88767"},function(data){
+			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"1"},function(data){
 			
-$('#categories').html("<div class='MsG'></div>");
+			$('#categories').html("<div class='MsG'></div>");
 			
 				//console.log(JSON.stringify(data));
 				
@@ -835,17 +835,28 @@ StartXCategories = 0;
 		
 		});	
 
-		
+				$( document ).on("tapend","#menuDelBack",function(){
+					modeDeleteMenu = false;
+					$('#MenuFilter').css({'display':'block'});
+					$('#MenuDelete').css({'display':'none'});	
+
+			});	
+			
 
 			$( document ).on("tapend","#btnBorrarSeleccion",function(){
+									
 				showAlert($.t("Delete Selection"),$.t("Do you want to delete the selected messages?"),function(){
-				$('.entity'+currentEntityID).each(function( index ) {
+				
+				$('.deleted').each(function( index ) {
+					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
+				});
 				reportMsgState();
-				$('.delete').remove(); 
+				$('.deleted').remove(); 
 				counterByMsg();
-			},function(){});
+				
+				},function(){});
 			});	
-			});
+			
 			
 $( document ).on("tapend","#deleteAllBtn",function(){
 	showAlert($.t("Delete All"),$.t("Do you want to delete all messages?"),function(){
