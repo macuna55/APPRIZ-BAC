@@ -872,6 +872,8 @@ StartXCategories = 0;
 		idMsg=$(this).attr('id');
 		$("#"+idMsg+".Message .centralLI").css({"background":""});
 		$("#"+idMsg+".Message").toggleClass('deleted');
+		$("#"+idMsg+".Message .centralLI").find('.iconCat span').removeClass('fa fa-check-circle-o');
+		
 				});
 		});	
 		
