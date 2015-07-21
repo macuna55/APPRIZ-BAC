@@ -23,6 +23,7 @@ function showMessage(id){
 					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
 					$("#"+id+".Message").toggleClass('deleted');
 					msg.find('.iconCat span').removeClass('fa fa-check-circle-o');
+					if($('#cuentaSeleccion').html==0){$('#menuDelBack').trigger('tapend');}
 				} 
 			else{	
 					msg.css({"background":"#DFDFD0"});
