@@ -352,6 +352,24 @@ function makeSwipe(id){
 				},
 				
 				swipeStatus:function(event, phase, direction, distance , duration , fingerCount) {
+				 	
+				/* 
+					if(phase === $.fn.swipe.phases.PHASE_START && !modeDeleteMenu) {
+						
+							$(this).find('.centralLI').css({'background-color':'#E7E7FF'});
+					}  
+						if((phase === $.fn.swipe.phases.PHASE_END || phase === $.fn.swipe.phases.PHASE_CANCEL && !modeDeleteMenu ) ) {
+						
+						
+						
+						if(duration>1600){
+									modeDeleteMenu = true;
+									$('#MenuFilter').css({'display':'none'});
+									$('#MenuDelete').css({'display':'block'});
+						}
+					}   */
+					
+				 
 				 if((phase === $.fn.swipe.phases.PHASE_END || phase === $.fn.swipe.phases.PHASE_CANCEL )& distance < 15)  {
 						showMessage($(this).attr("id"));
 						$.jStorage.set('msg', btoa($('#categories').html()));
@@ -826,14 +844,16 @@ StartXCategories = 0;
 		
 		// Opciones para Menu borrar
 		
-	$( document ).on("taphold",".Message",function(){
+	 $( document ).on("taphold",".Message",function(){
 		
 		modeDeleteMenu = true;
 		
 		$('#MenuFilter').css({'display':'none'});
 		$('#MenuDelete').css({'display':'block'});
 		
-		});	
+		
+		
+		});	 
 
 				$( document ).on("tapend","#menuDelBack",function(){
 					modeDeleteMenu = false;
@@ -876,6 +896,7 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 		counterByMsg();
 	},function(){});
 });	
+
 
 /*
 $( document ).on("tapend","#categories .icon-arrow",function(){

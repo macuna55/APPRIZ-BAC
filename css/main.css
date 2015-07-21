@@ -1,8 +1,9 @@
 /* ==========================================================================
    Base styles: Appriz App
    ========================================================================== */
-#MenuDelete{
 
+ 
+#MenuDelete{
 display:none;
 font-size: 28px;
 background:#D8D8D8;
@@ -16,6 +17,7 @@ background:#D8D8D8;
   margin-top: 5%;
 
 }
+
 
 .noselect {
     -webkit-touch-callout: none;
@@ -2904,3 +2906,15 @@ div#login{
 div.products li span.arrow{
 	margin-top: -10px;
 }
+
+		
+		
+.MsG>.Message>.centralLI{
+/*  
+    background: linear-gradient(to left, white 50%, #E7E7FF 50%);
+   background-size: 200% 100%;
+	background-position:right bottom; */
+   transition:all 1.5s ease;
+
+}
+

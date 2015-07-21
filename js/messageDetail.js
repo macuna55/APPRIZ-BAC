@@ -18,15 +18,17 @@ function showMessage(id){
 	if(modeDeleteMenu){
 		var msg = $("#"+id+".Message .centralLI");
 	
-			if(msg.css('backgroundColor')=='rgb(189, 189, 189)'){
+			if(msg.css('backgroundColor')=='rgb(223, 223, 208)'){
 					msg.css({"background":""});
 					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
 					$("#"+id+".Message").toggleClass('deleted');
-				}
+					msg.find('.iconCat span').removeClass('fa fa-check-circle-o');
+				} 
 			else{	
-					msg.css({"background":"#BDBDBD"});
+					msg.css({"background":"#DFDFD0"});
 					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())+1));
 					$("#"+id+".Message").toggleClass('deleted');
+					msg.find('.iconCat span').addClass('fa fa-check-circle-o');
 				}
 		
 		}
