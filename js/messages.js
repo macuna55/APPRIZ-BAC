@@ -844,30 +844,35 @@ StartXCategories = 0;
 		
 		// Opciones para Menu borrar
 		
-	 $( document ).on("taphold",".Message",function(){
-		
+   $( document ).on("taphold",".Message",function(){
 		modeDeleteMenu = true;
-		
 		$('#MenuFilter').css({'display':'none'});
 		$('#MenuDelete').css({'display':'block'});
-		
-		
-		
-		});	 
+	});	 
 
-				$( document ).on("tapend","#menuDelBack",function(){
-					modeDeleteMenu = false;
-					$('#MenuFilter').css({'display':'block'});
-					$('#MenuDelete').css({'display':'none'});	
-					$('#cuentaSeleccion').html(0);
-					$('.deleted').each(function( index ) {
-						idMsg=$(this).attr('id');
-						$("#"+idMsg+".Message .centralLI").css({"background":""});
-						$("#"+idMsg+".Message").toggleClass('deleted');
-					});
-					
-			});	
-			
+	$( document ).on("touchstart",".Message",function(){
+			$(this).find('.centralLI').css({"background":"#BFCFFF"});
+	});	
+	
+	$( document ).on("touchend",".Message",function(){
+		
+		if(!modeDeleteMenu){
+			$(this).find('.centralLI').css({"background":""});
+			}
+	});	
+		
+	$( document ).on("tapend","#menuDelBack",function(){
+		modeDeleteMenu = false;
+		$('#MenuFilter').css({'display':'block'});
+		$('#MenuDelete').css({'display':'none'});	
+		$('#cuentaSeleccion').html(0);
+		$('.deleted').each(function( index ) {
+		idMsg=$(this).attr('id');
+		$("#"+idMsg+".Message .centralLI").css({"background":""});
+		$("#"+idMsg+".Message").toggleClass('deleted');
+				});
+		});	
+		
 
 			$( document ).on("tapend","#btnBorrarSeleccion",function(){
 									
