@@ -851,7 +851,9 @@ StartXCategories = 0;
 	});	 
 
 	$( document ).on("touchstart",".Message",function(){
+		if(!modeDeleteMenu){
 			$(this).find('.centralLI').css({"background":"#BFCFFF"});
+			}
 	});	
 	
 	$( document ).on("touchend",".Message",function(){
