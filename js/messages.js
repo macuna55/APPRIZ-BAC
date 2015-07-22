@@ -875,7 +875,8 @@ StartXCategories = 0;
 		$('.deleted').each(function( index ) {
 		idMsg=$(this).attr('id');
 		$("#"+idMsg+".Message .centralLI").css({"background":""});
-		$("#"+idMsg+".Message").toggleClass('deleted');
+		$("#"+idMsg+".Message").removeClass('deleted');
+		$("#"+idMsg+".Message").removeClass('readToUnread');
 		$("#"+idMsg+".Message .centralLI").find('.iconCat span').removeClass('fa fa-check-circle-o');
 		
 				});
@@ -916,7 +917,7 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 									
 				showAlert($.t("Delete Selection"),$.t("Do you want to change the messages state to unread?"),function(){
 				
-				$('.deleted').each(function( index ) {
+					$('.deleted').each(function( index ) {
 					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
 					$(this).addClass('readToUnread');
 					$(this).removeClass('deleted');
