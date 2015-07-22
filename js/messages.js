@@ -873,7 +873,7 @@ StartXCategories = 0;
 		$('#MenuFilter').css({'display':'block'});
 		$('#MenuDelete').css({'display':'none'});	
 		$('#cuentaSeleccion').html(0);
-		$('.deleted').each(function( index ) {
+		$('.deleted, .readToUnread').each(function( index ) {
 		idMsg=$(this).attr('id');
 		$("#"+idMsg+".Message .centralLI").css({"background":""});
 		$("#"+idMsg+".Message").removeClass('deleted');
@@ -927,8 +927,8 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 				reportMsgState();
 	
 				counterByMsg();
+			 $('#menuDelBack').trigger('tapend');
 				
-					 $('#menuDelBack').trigger('tapend');
 				},function(){});
 			});	
 /*
