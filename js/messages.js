@@ -271,7 +271,10 @@ function counterByMsg(){
 			$('.Message').each(function( index ) {
 				var readed = $(this).hasClass("deleted") ? "readedDeleted" : "readed";
 				var unread = $(this).hasClass("deleted") ? "unreadDeleted" : "unread"; 
-				report["m"+$(this).attr("id")] = $(this).hasClass("unread") ? unread : readed; 
+				var readToUnread = $(this).hasClass("readToUnread") ? "readToUnread" : "unread";
+				
+				report["m"+$(this).attr("id")] = $(this).hasClass("unread") ? unread :
+												 $(this).hasClass("readToUnread")	? readToUnread : readed; 
 				
 			
 				
@@ -293,7 +296,7 @@ function counterByMsg(){
 				}
 			
 			});
-		
+		console.log(report);
 		//	console.log(JSON.stringify(report));
 			$.post('http://'+IP+':8089/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
 				//console.log(JSON.stringify(data));
@@ -853,6 +856,7 @@ StartXCategories = 0;
 	$( document ).on("touchstart",".Message",function(){
 		if(!modeDeleteMenu){
 			$(this).find('.centralLI').css({"background":"#BFCFFF"});
+			
 			}
 	});	
 	
@@ -907,6 +911,23 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 });	
 
 
+
+	$( document ).on("tapend","#btnNoLeido",function(){
+									
+				showAlert($.t("Delete Selection"),$.t("Do you want to change the messages state to unread?"),function(){
+				
+				$('.deleted').each(function( index ) {
+					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
+					$(this).addClass('readToUnread');
+					$(this).removeClass('deleted');
+					
+				});
+				reportMsgState();
+	
+				counterByMsg();
+				
+				},function(){});
+			});	
 /*
 $( document ).on("tapend","#categories .icon-arrow",function(){
 	showMessage($(this).parent().parent().parent().attr("id"));

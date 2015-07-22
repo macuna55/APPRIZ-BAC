@@ -15,7 +15,7 @@ function matchColumnsHeight(){
 
 function showMessage(id){
 			
-	if(modeDeleteMenu){
+	if(true){
 		var msg = $("#"+id+".Message .centralLI");
 	
 			if(msg.css('backgroundColor')=='rgb(223, 223, 208)'){
