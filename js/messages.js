@@ -928,6 +928,7 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 	
 				counterByMsg();
 				
+					 $('#menuDelBack').trigger('tapend');
 				},function(){});
 			});	
 /*
