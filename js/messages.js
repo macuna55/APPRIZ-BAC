@@ -300,7 +300,7 @@ function counterByMsg(){
 			
 			});
 		
-	
+			console.log(report);
 			$.post('http://'+IP+':8089/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
 
 			}); 
@@ -904,10 +904,10 @@ StartXCategories = 0;
 						$('.deleted').each(function( index ) {
 						$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
 						});
-						
+							reportMsgState();
 						$('.deleted').remove(); 
 						counterByMsg(); 
-						reportMsgState();
+					
 					},
 				  function()  //No
 						{console.log("-Respuesta NO-");}); 
