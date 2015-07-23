@@ -909,8 +909,7 @@ StartXCategories = 0;
 						counterByMsg(); 
 					
 					},
-				  function()  //No
-						{console.log("-Respuesta NO-");}); 
+				  function(){}); 
 			});	
 			
 			
