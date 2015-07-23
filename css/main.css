@@ -1,7 +1,25 @@
 /* ==========================================================================
    Base styles: Appriz App
    ========================================================================== */
+   #subMenuDelete{
+    position: absolute;
+    bottom: -120px;
+    right: 0px;
+    text-align: center;
+	z-index:-1;
+	}
+	
+	#subMenuDelete>ul>li{
 
+    border-bottom: 1px solid #005B99 !important;
+    border-bottom: 1px solid #005b99 !important;
+    height: 50px !important;
+    line-height: 45px;
+    width: 100% !important;
+    margin: 0 auto;
+	background-color:#EBEBEB;
+}
+	
  
 #MenuDelete{
 display:none;

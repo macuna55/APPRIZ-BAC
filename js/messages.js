@@ -376,8 +376,10 @@ function makeSwipe(id){
 				 
 				 if((phase === $.fn.swipe.phases.PHASE_END || phase === $.fn.swipe.phases.PHASE_CANCEL )& distance < 15)  {
 						showMessage($(this).attr("id"));
+						if(!modeDeleteMenu){
 						$.jStorage.set('msg', btoa($('#categories').html()));
 						stateChangeLst.push({msg : $(this).parent().parent().parent().attr("id") , state : "READED"});
+						}
 				 }else{
 					var msg = $(this).find(".moveContainer");
 					var actualMargin = parseInt(msg.css("margin-left").replace(/[^-\d\.]/g, '') );
@@ -852,6 +854,7 @@ StartXCategories = 0;
 		modeDeleteMenu = true;
 		$('#MenuFilter').css({'display':'none'});
 		$('#MenuDelete').css({'display':'block'});
+		console.log("Modo Delete ON");
 	});	 
 
 	$( document ).on("touchstart",".Message",function(){
@@ -869,16 +872,20 @@ StartXCategories = 0;
 	});	
 		
 	$( document ).on("tapend","#menuDelBack",function(){
+		
 		modeDeleteMenu = false;
+		
 		$('#MenuFilter').css({'display':'block'});
 		$('#MenuDelete').css({'display':'none'});	
 		$('#cuentaSeleccion').html(0);
+		$('#subMenuDelete').velocity({'bottom' : '-120px'});
 		$('.deleted, .readToUnread').each(function( index ) {
 		idMsg=$(this).attr('id');
 		$("#"+idMsg+".Message .centralLI").css({"background":""});
 		$("#"+idMsg+".Message").removeClass('deleted');
 		$("#"+idMsg+".Message").removeClass('readToUnread');
 		$("#"+idMsg+".Message .centralLI").find('.iconCat span').removeClass('fa fa-check-circle-o');
+		 
 		
 				});
 		});	
@@ -900,6 +907,7 @@ StartXCategories = 0;
 			
 			
 $( document ).on("tapend","#deleteAllBtn",function(){
+	
 	showAlert($.t("Delete All"),$.t("Do you want to delete all messages?"),function(){
 		
 		$("#deleteAllBtn").hide();
@@ -915,9 +923,9 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 
 
 	$( document ).on("tapend","#btnNoLeido",function(){
-									
+							console.log("afiera");		
 				showAlert($.t("Delete Selection"),$.t("Do you want to change the messages state to unread?"),function(){
-				
+				console.log("adentr");
 					$('.deleted').each(function( index ) {
 					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
 					$(this).addClass('readToUnread');
@@ -927,10 +935,32 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 				reportMsgState();
 	
 				counterByMsg();
+			
 			 $('#menuDelBack').trigger('tapend');
 				
-				},function(){});
+				},function(){console.log("deletebtn");});
 			});	
+			
+			
+			$( document ).on("tapend","#btnMasOpciones",function(){
+	
+		if($('#subMenuDelete').css("bottom") == "38px"){
+			
+		  // $('#subMenuDelete').velocity({'bottom': (-$('.dropdownOption').height()-120)+"px"});
+		  $('#subMenuDelete').velocity({'bottom' : '-120px'});
+			}
+	else{
+		
+	
+		$('#subMenuDelete').velocity({'bottom' : '38px'});
+	}
+	});	
+	
+	$( document ).on("tapend","#limpiezaTotal",function(){console.log("en limpieza total")});
+	$( document ).on("tapend","#EliminarLeidos",function(){console.log("en EliminarLeidos")});	
+	$( document ).on("tapend","#MostrarNoLeidos",function(){console.log("en lMostrarNoLeidos")});	
+			
+			
 /*
 $( document ).on("tapend","#categories .icon-arrow",function(){
 	showMessage($(this).parent().parent().parent().attr("id"));

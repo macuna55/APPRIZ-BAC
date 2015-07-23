@@ -22,6 +22,7 @@ function getServices(productName){
 
 function requestService(serviceObj){
 	showAlert($.t("Confirm Request "),serviceObj["description"],function(){
+		console.log("demoTT");
 		$('.moldHide, .dialogAlert').hide();
 		$.post('http://'+IP+':8089/appriz/sendServiceRequest',$.extend({"idSecretClient": idScretClient},serviceObj),function(data){
 			if (data["status"]== 200){
