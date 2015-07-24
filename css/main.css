@@ -1,7 +1,6 @@
 /* ==========================================================================
    Base styles: Appriz App
    ========================================================================== */
-<<<<<<< HEAD
    
    
    #subMenuDelete{
@@ -40,10 +39,6 @@ background:#D8D8D8;
 }
 
 
-=======
-
-   
->>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -690,7 +685,7 @@ input, .btnAction {
     color: #565758;
 }
 
-.btnAction {
+.btnAction {f
     text-align: left;
     position: relative;
 }

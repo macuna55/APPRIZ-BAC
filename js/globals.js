@@ -31,4 +31,5 @@
 	entityCount = 0;
 	pass = {y : 0};
 	umbral= 0;
-	
+	var loadingPage = false;
+	var modeDeleteMenu = false;
