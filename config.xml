@@ -26,9 +26,10 @@
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="EnableViewportScale" value="true" />
 	
+	
 
 
-<gap:plugin name="org.apache.cordova.Notification" version="0.2.12" />
+
 <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
 
 <gap:plugin name="nl.x-services.plugins.toast" version="2.0.2" />
