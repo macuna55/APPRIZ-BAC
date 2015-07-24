@@ -855,6 +855,7 @@ StartXCategories = 0;
 		// Opciones para Menu borrar
 		
    $( document ).on("taphold",".Message",function(){
+	   navigator.notification.vibrate(700);
 		modeDeleteMenu = true;
 		$('#MenuFilter').css({'display':'none'});
 		$('#MenuDelete').css({'display':'block'});
@@ -897,9 +898,9 @@ StartXCategories = 0;
 
 			$( document ).on("tapend","#btnBorrarSeleccion",function(){
 									
-				showAlert($.t("Delete Selection"),$.t("Do you want to delete the selected messages?"),
+			/* 	showAlert($.t("Delete Selection"),$.t("Do you want to delete the selected messages?"),
 					function() //Si
-					{
+					{ */
 						console.log("-Respuesta SI-");
 						$('.deleted').each(function( index ) {
 						$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
@@ -907,9 +908,10 @@ StartXCategories = 0;
 							reportMsgState();
 						$('.deleted').remove(); 
 						counterByMsg(); 
+						$('#menuDelBack').trigger('tapend');
 					
-					},
-				  function(){}); 
+					/* },
+				  function(){});  */
 			});	
 			
 			
@@ -930,7 +932,7 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 
 	$( document ).on("tapend","#btnNoLeido",function(){
 								
-				showAlert($.t("Delete Selection"),$.t("Do you want to change the messages state to unread?"),function(){
+			//	showAlert($.t("Delete Selection"),$.t("Do you want to change the messages state to unread?"),function(){
 				
 					$('.deleted').each(function( index ) {
 					$('#cuentaSeleccion').html(	( parseInt($('#cuentaSeleccion').text())-1));
@@ -938,13 +940,12 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 					$(this).removeClass('deleted');
 					
 				});
-				reportMsgState();
-	
-				counterByMsg();
-			
+					reportMsgState();
+					counterByMsg();
+					$('#menuDelBack').trigger('tapend');
 			 //$('#menuDelBack').trigger('tapend');
 				
-				},function(){});
+		//		},function(){});
 			});	
 			
 			
