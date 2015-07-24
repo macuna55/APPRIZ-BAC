@@ -855,7 +855,7 @@ StartXCategories = 0;
 		// Opciones para Menu borrar
 		
    $( document ).on("taphold",".Message",function(){
-	   navigator.notification.vibrate(500);
+	  //7 navigator.notification.vibrate(500);
 		modeDeleteMenu = true;
 		$('#MenuFilter').css({'display':'none'});
 		$('#MenuDelete').css({'display':'block'});

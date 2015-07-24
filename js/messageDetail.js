@@ -35,7 +35,7 @@ function matchColumnsHeight(){
 	
 //
 function showMessage(id){
-			 showConfirm();
+			// showConfirm();
 	if(modeDeleteMenu){
 		
 		var msg = $("#"+id+".Message .centralLI");
