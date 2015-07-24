@@ -3,6 +3,7 @@
 */
 
 
+<<<<<<< HEAD
 /*
 		Paginacion de mensajes
 */
@@ -95,6 +96,8 @@ function endLoad(){
 /*
 		Fin Paginacion de mensaje
 */
+=======
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 function current_inbox(){
 	$('.Message').hide();
 	$('.gotcolors').animate({opacity: 1}, 200);
@@ -168,10 +171,7 @@ function counterByMsg(){
 		  
 		   });
 		   
-		   
-		   
 	   myScroll3.on('scroll', function(){
-		
 		if (this.y >  50 &&  !scrollInProgress ) {
 			document.getElementById("pullDownLabel").innerHTML = $.t('Release to refresh...');
 			scrollInProgress = false;
@@ -187,6 +187,7 @@ function counterByMsg(){
 			if(this.y>0){
 				$('.pullDownLabel').show();
 			}
+<<<<<<< HEAD
 			
 		   if (this.y < (this.maxScrollY + 40) && !loadingPage){
 			   console.log("sdsdsd");
@@ -198,6 +199,9 @@ function counterByMsg(){
 				console.log("ultimo mensaje "+idLastMessage);
 				
 				}
+=======
+		
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 }); 
 	
 		
@@ -208,15 +212,20 @@ function counterByMsg(){
 		
 		
 		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+<<<<<<< HEAD
 		
 		
  
 	
 				
+=======
+
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 		$('.bubble').eq(0).html( $('.typemsg1.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg1.unread.entity'+currentEntityID).length).css($('.typemsg1.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(1).html( $('.typemsg2.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg2.unread.entity'+currentEntityID).length).css($('.typemsg2.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(2).html( $('.typemsg3.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg3.unread.entity'+currentEntityID).length).css($('.typemsg3.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
 		$('.bubble').eq(3).html( $('.typemsg4.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg4.unread.entity'+currentEntityID).length).css($('.typemsg4.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
+<<<<<<< HEAD
 		$('.bubble').eq(4).html( $('.typemsg5.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg5.unread.entity'+currentEntityID).length).css($('.typemsg5.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"}); 
 		
 //	$('#leftMenu li').eq(0).find('div div').html($('.unread.entity'+currentEntityID).length);
@@ -256,6 +265,12 @@ function counterByMsg(){
 			
 		//end new count bubble method
 		
+=======
+		$('.bubble').eq(4).html( $('.typemsg5.unread.entity'+currentEntityID).length == 0 ? "" : $('.typemsg5.unread.entity'+currentEntityID).length).css($('.typemsg5.unread.entity'+currentEntityID).length == 0 ? {"display" : "none" } : {"display" : "block"});
+	
+//	$('#leftMenu li').eq(0).find('div div').html($('.unread.entity'+currentEntityID).length);
+		//$('#leftMenu li').eq(4).find('div div').html($('.unread').length);
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 		
 		
 		$("#entities li").each(function(index, entityI ){
@@ -300,8 +315,13 @@ function counterByMsg(){
 				}
 			
 			});
+<<<<<<< HEAD
 		
 			console.log(report);
+=======
+				
+			console.log(JSON.stringify(report));
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 			$.post('http://'+IP+':8089/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
 
 			}); 
@@ -452,9 +472,7 @@ function makeSwipe(id){
 			
 			
 				console.time("PostReq");
-		//	$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
-			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
-			
+			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
 			console.timeEnd("PostReq");
 			console.time("MSGProc");
 			$('#categories').html("<div class='MsG'></div>");
@@ -628,9 +646,13 @@ function makeSwipe(id){
 			date = new Date();
 		if(oneTimeSendAjax){
 			oneTimeSendAjax = false;
+<<<<<<< HEAD
 		//	$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
 				
 			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"1"},function(data){
+=======
+			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 			
 			$('#categories').html("<div class='MsG'></div>");
 			
@@ -722,7 +744,6 @@ function makeSwipe(id){
 				
 		//Delete Btn
 		$( document ).on("tapend","#categories .deleteSwipe",function(){
-			
 			stateChangeLst.push({msg : $(this).parent().parent().parent().attr("id") , state : "DELETED"});
 			$(this).parent().parent().parent().addClass('deleted');
 			reportMsgState();
@@ -735,7 +756,6 @@ function makeSwipe(id){
 				
 		//Filter handle
 		$( document ).on("tapend",'nav.categoryNav li',function(){
-		
 			if( $(this).find("span").hasClass("active")){
 				$(this).find("span").removeClass("active");
 				$('.typemsg'+$(this).attr("typemsg")).hide();
@@ -751,7 +771,7 @@ function makeSwipe(id){
 		});
 		
 		$( document ).on("taphold",'nav.categoryNav li',function(){
-	
+			
 			$('#categories li').not($('.typemsg'+$(this).attr("typemsg")+'[identity='+currentEntityID+']')).hide();
 			$('nav.categoryNav span').removeClass("active");
 			//$(this).css({content: "\e60b",color: tabSelectedColor});
@@ -853,8 +873,8 @@ StartXCategories = 0;
 	
 //	$('#appHolder').parent().parent().parent().on('scroll', scrollEvent);
 		
-		// Opciones para Menu borrar
 		
+<<<<<<< HEAD
    $( document ).on("taphold",".Message",function(){
 	  //7 navigator.notification.vibrate(500);
 		modeDeleteMenu = true;
@@ -916,6 +936,10 @@ StartXCategories = 0;
 			});	
 			
 			
+=======
+		
+
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 $( document ).on("tapend","#deleteAllBtn",function(){
 	
 	showAlert($.t("Delete All"),$.t("Do you want to delete all messages?"),function(){

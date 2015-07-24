@@ -35,6 +35,7 @@ function matchColumnsHeight(){
 	
 //
 function showMessage(id){
+<<<<<<< HEAD
 			// showConfirm();
 	if(modeDeleteMenu){
 		
@@ -57,6 +58,9 @@ function showMessage(id){
 		}
 
 	else{
+=======
+	
+>>>>>>> parent of c3ef62f... Revert "Revert "Paginacion -""
 	scrollPosition = myScroll3.y;
 //console.log("scroll y "+myScroll3.y);
 //myScroll3.scrollTo(0, )
@@ -208,8 +212,6 @@ function showMessage(id){
 	//Sync heights of appends
 		matchColumnsHeight();
 		appendsScroller =  new IScroll('.appends', { probeType: 3, mouseWheel: true }); 
-		
-	}	
 }
 
 $( document ).on('tapend','#showOptions',function(e){
