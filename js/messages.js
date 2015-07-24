@@ -55,6 +55,7 @@ function loadOldMessages(old){
 						if(/^<html>/.test(LONG_MSG)){
 							LONG_MSG = $.t("This message contains rich content");
 						}
+						console.log("ss"+message['idMessage']); // QUITAR
 						$('#categories .MsG').append( "<li class='Message "+( message['state'] < 3 ? "unread" : "" )+" typemsg"+message['type']+" entity"+message['idEntity']+"' id='"+message['idMessage']+"' bulb='"+message['bulb']+"' longMSG='"+btoa(message['longMessage'])+"' services='"+btoa(JSON.stringify(message['services']))+"' appends='"+btoa(JSON.stringify(message['appends']))+"' idEntity='"+message['idEntity']+"'><div class='moveContainer'><div class='details'><h3>"+LONG_MSG+"</h3></div><div class='centralLI'><div class='iconCat'>"+Icon+"</div><div class='infoBank'><h2>"+message['shortMessage']+"</h2><h6 class='dateBank'><span class='icon-primitive-dot "+dotState+"'></span><date>"+postDateS+"<date></h6></div><div class='magicalArrow'><i class='fa fa-angle-right'></i></div></div><div class='rightLI'><button class='deleteSwipe'>Delete</button></div ></div></li>");
 						$.jStorage.set('msg_div', btoa($('#categories').html()));
 
@@ -67,15 +68,15 @@ function loadOldMessages(old){
 			},'json') .fail(function(e) {
 					$('.refreshing_list').css({"background-color" : "#888"}).html('Conexion error!').fadeOut(3000,function(){$('.refreshing_list').css({"background-color" : "#F5F5Ff"}).html('Refreshing list');});
 			}).done(function(){ 
-				current_inbox();
-				counterByMsg();
+			//	current_inbox();
+			//	counterByMsg();
 				makeSwipe();
 				fix_messages();
 				$.jStorage.set('msg', btoa($('#categories').html()));
-				$('.refreshing_list').fadeOut(1000); 	
-				$("nav.categoryNav li span").addClass("active");
-				setTimeout(function(){oneTimeSendAjax = true;},500);
-				checkWithOutEntity();
+			//	$('.refreshing_list').fadeOut(1000); 	
+			//	$("nav.categoryNav li span").addClass("active");
+			//	setTimeout(function(){oneTimeSendAjax = true;},500);
+			//	checkWithOutEntity();
 				endLoad();				  
 			});
 	
@@ -436,14 +437,13 @@ function makeSwipe(id){
 //bring message for this client
 		function callNewMSG(){
 		 $('#menuDelBack').trigger('tapend'); //si esta en el menu delete sale de el.
-		//console.log("entitiid  : "+currentEntityID);
+		
 			
 			$('.icon-menu').show();
 			$('.icon-back').show();
-	
 			$("#deleteAllBtn").hide();
 			date = new Date();
-		if(oneTimeSendAjax){
+			if(oneTimeSendAjax){
 			oneTimeSendAjax = false;
 			console.time("MSGProcFull");
 				//	$('.pullDownIcon').
@@ -452,8 +452,8 @@ function makeSwipe(id){
 			
 			
 				console.time("PostReq");
-			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
-			//$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
+		//	$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient},function(data){
 			
 			console.timeEnd("PostReq");
 			console.time("MSGProc");
@@ -621,15 +621,16 @@ function makeSwipe(id){
 				
 		//bring message for this client
 		function callMSGback(){
+	
 			$('.icon-menu').show();
 					$('.icon-back').show();
 			$("#deleteAllBtn").hide();
 			date = new Date();
 		if(oneTimeSendAjax){
 			oneTimeSendAjax = false;
-			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+		//	$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
 				
-			//$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"1"},function(data){
+			$.post('http://'+IP+':8089/appriz/getIndexedMsg_',{"idSecretClient": idScretClient, "refresh":"1"},function(data){
 			
 			$('#categories').html("<div class='MsG'></div>");
 			
@@ -945,7 +946,8 @@ $( document ).on("tapend","#deleteAllBtn",function(){
 					$('#menuDelBack').trigger('tapend');
 			 //$('#menuDelBack').trigger('tapend');
 				
-		//		},function(){});
+		//		},function
+		callNewMSG();
 			});	
 			
 			
