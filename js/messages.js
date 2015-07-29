@@ -77,7 +77,8 @@ function loadOldMessages(old){
 			//	$("nav.categoryNav li span").addClass("active");
 			//	setTimeout(function(){oneTimeSendAjax = true;},500);
 			//	checkWithOutEntity();
-				endLoad();				  
+				endLoad();		
+			 myScroll3.refresh();
 			});
 	
 	

@@ -2,7 +2,7 @@
 var stringSett;
 function guardarCambios(){
 		var ret =  parseInt($('input:radio[name=checkboxG1]:checked').val());
-		if(ret == 1 || ret == 2 || ret == 3 || ret == 4){
+		if(ret == 5 || ret == 10 || ret == 15 || ret == 20){
 			$.post('http://'+IP+':8089/appriz/setAprzCustomerSettings',{
 				idSecretClient			:  idScretClient,
 				retention   			:  parseInt(ret),
