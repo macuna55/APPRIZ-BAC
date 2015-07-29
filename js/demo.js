@@ -2,7 +2,7 @@ $("#demo[header=headerGeneral] button").tapend(function(){
 	var product;
 	console.log("Sending Demo Request");
 	
-			$.post('http://'+IP+':8089/appriz/getProductsByClient',{"idSecretClient": idScretClient,"entityName": $('#entities li[entityId='+currentEntityID+']').find('img').attr("alt"),"view":view,},function(data){
+			$.post('http://'+IP+':8090/appriz/getProductsByClient',{"idSecretClient": idScretClient,"entityName": $('#entities li[entityId='+currentEntityID+']').find('img').attr("alt"),"view":view,},function(data){
 			if (data["status"]== 200){
 				product=data["products"];
 			}

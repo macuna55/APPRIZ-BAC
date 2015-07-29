@@ -157,7 +157,7 @@ function counterByMsg(){
 			});
 				
 			console.log(JSON.stringify(report));
-			$.post('http://'+IP+':8089/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
+			$.post('http://'+IP+':8090/appriz/setMessageStatus', {"idSecretClient": idScretClient, msgStatus:report }, function(data){
 				//console.log(JSON.stringify(data));
 			});
 }		
@@ -286,7 +286,7 @@ function makeSwipe(id){
 			
 			
 				console.time("PostReq");
-			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8090/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
 			console.timeEnd("PostReq");
 			console.time("MSGProc");
 			$('#categories').html("<div class='MsG'></div>");
@@ -459,7 +459,7 @@ function makeSwipe(id){
 			date = new Date();
 		if(oneTimeSendAjax){
 			oneTimeSendAjax = false;
-			$.post('http://'+IP+':8089/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8090/appriz/getMessagesByClient',{"idSecretClient": idScretClient},function(data){
 			
 $('#categories').html("<div class='MsG'></div>");
 			

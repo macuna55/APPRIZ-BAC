@@ -15,7 +15,7 @@ function getProducts(view){
 	$('#products .products ul').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i> </div>");
 	if(pinPolicy==1){$('#pin').show();}
 	$()
-				$.post('http://'+IP+':8089/appriz/getProductsByClient',{"idSecretClient": idScretClient},function(data){
+				$.post('http://'+IP+':8090/appriz/getProductsByClient',{"idSecretClient": idScretClient},function(data){
 			console.log(JSON.stringify(data));
 			
 			if (data["status"]== 200){

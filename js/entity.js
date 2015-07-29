@@ -6,7 +6,7 @@ var entityIDs=[];
 function reloadEntities(){
 	
 	console.log("Metodo reloadEntities");
-			$.post('http://'+IP+':8089/appriz/getCustomerEntities',{"idSecretClient": idScretClient},function(data){
+			$.post('http://'+IP+':8090/appriz/getCustomerEntities',{"idSecretClient": idScretClient},function(data){
 				
 					console.dir(data.length);
 					
