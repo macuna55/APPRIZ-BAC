@@ -2,6 +2,7 @@ var PINpos = 0;
 var vPIN = "";
 
 $( document ).on( "tapend", ".numKey", function() {
+	
 	$('.passkey').eq(PINpos).html('<i class="fa fa-circle"></i>');
 	vPIN = vPIN+$(this).html().trim(); 
 	PINpos++;

@@ -1209,7 +1209,7 @@ margin-top: 69px;
     width: 100%;
 }
 
-nav.categoryNav {
+nav.categoryNav, .navDelete {
     background: #A4A4A5;
     width: 100%;
     padding: 1%;
@@ -1220,13 +1220,13 @@ nav.categoryNav {
     user-select: none;
 }
 
-nav.categoryNav ul {
+nav.categoryNav ul, .navDelete ul {
     padding: 0 0 0 10%;
     overflow: hidden;
     margin: 0;
 }
 
-nav.categoryNav ul li {
+nav.categoryNav ul li , .navDelete ul li{
     position: relative;
     border-bottom: none;
     float: left;

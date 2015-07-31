@@ -10,6 +10,7 @@
 
 
 function login(){
+	
 	  //event.preventDefault();
 	  var patFemail = /(\S+)@/;
 	   var whirPass= HexWhirlpool($('.loginBox input').eq(1).val());
@@ -100,7 +101,7 @@ function offLineMode(){
 
 
 function checkPreviusLogin(){
-	
+
 	//console.log("currententity: //"+$.jStorage.index().indexOf('currentEntityID'));
 	if($.jStorage.index().indexOf('msg') > -1){$('#categories').html(atob($.jStorage.get('msg')));}
 	setTimeout(function(){$('#Waiting p').show();},3000);
