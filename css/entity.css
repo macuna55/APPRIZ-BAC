@@ -162,8 +162,8 @@ input.toggle:checked + label::before {
 }
 
 .bankLogo img{
-    margin-top: -12px;
-    margin-left: 15px;
+margin-top: -3px;
+
 }
 
 * {

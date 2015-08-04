@@ -1425,6 +1425,14 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
     top: 9px;
 	margin-left: 22px;
 }
+
+#headLogoC{
+    height: 76px;
+    width: 241px;
+    margin-left: 67px;
+    position: absolute;
+}
+
 .topHeader .userInfo {
     float: right;
     width: 50%;
@@ -2461,7 +2469,7 @@ img.bankLogo {
     max-width: calc(100% - 100px) !important;
 }
 .bankLogo img{
-	max-height:80px;
+	    max-height: 70px;
 }
 
 .menu-main {
