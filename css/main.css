@@ -569,7 +569,7 @@ header .icon-menu {
 
 .bankSection .icon-menu {
   border: none;
-         color: #003885 !important;
+         color: white !important;
   font-size: 32PX;
   background: none;
   line-height: 76px;
@@ -1419,18 +1419,19 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
 }
 
 #iContainer{
-    height: 60px;
+        height: 60px;
     position: absolute;
-    width: 74px;
-    top: 9px;
-	margin-left: 22px;
+    width: 113px;
+    top: 16px;
+    margin-left: 6px;
 }
 
 #headLogoC{
     height: 76px;
-    width: 241px;
-    margin-left: 67px;
+    width: 432px;
+    margin-left: -7px;
     position: absolute;
+    margin-top: -8px;
 }
 
 .topHeader .userInfo {
@@ -2819,6 +2820,7 @@ right: 0px;
 	background:url(../img/logo.png) no-repeat center center;
 	background-size: 90%;
 	z-index: 9999999999;
+	    background-color: #C2CC24;
 	
 	
 }
