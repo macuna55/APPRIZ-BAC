@@ -23,6 +23,7 @@ $( document ).on( "tapend", ".numKey", function() {
 			$('.passkey').html('');
 			PINpos = 0; vPIN= "";
 	}
+	myScroll3.refresh();
  });
  
 $( document ).on( "tapend", ".delKey", function() { 
