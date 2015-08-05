@@ -41,7 +41,7 @@ function addRules(objs){
 
 function getRules(productName){
 	console.log(productName);
-	$.post('http://'+IP+':8090/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
+	$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
 			if (data["status"]== 200){
 				addRules(data["rules"]);
 			}
@@ -66,7 +66,7 @@ function addRuleChange(idRule,field,value){
 
 function getValidTimePeriods(prd){
 	
-		$.post('http://'+IP+':8090/appriz/getTimePeriods',{"secretKey" : secretKey},function(data){
+		$.post('http://'+IP+':8089/appriz/getTimePeriods',{"secretKey" : secretKey},function(data){
 		if (data["status"]== 200){
 			SPickerString = timePicker(data["periods"]);
 		}
@@ -87,7 +87,7 @@ function processRuleChange(){
 	rulesChanges = {};
 	console.log(JSON.stringify(tmp_ruleChange));
 	
-$.post('http://'+IP+':8090/appriz/setRulesByProduct',{"idSecretClient": idScretClient,"productName": currentProduct, "rules":tmp_ruleChange},function(data){
+$.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretClient,"productName": currentProduct, "rules":tmp_ruleChange},function(data){
 	console.log(JSON.stringify(data));
 			if (data["status"]== 200){
 				SPickerString = timePicker(data["periods"]);

@@ -1,7 +1,7 @@
 function getAds(){
-	//$.post('http://'+IP+':8090/appriz/getAdsByClient',{"idSecretClient" : idScretClient,"entityId" : parseInt(currentEntityID)},function(data){
+	//$.post('http://'+IP+':8089/appriz/getAdsByClient',{"idSecretClient" : idScretClient,"entityId" : parseInt(currentEntityID)},function(data){
 	//	$("#ads").html('<img src="'+data["Content"]+'" alt=""/>');
-	$("#ads").html('<img src="http://www.urbaniza.com/promociones/fotos/grandes/15/131/131_136_1.jpg" alt=""/>').fadeIn(4000);
+	$("#ads").html('<img src="img/1.png" alt=""/>').fadeIn(4000);
 
 		swipeDelete();
 	}

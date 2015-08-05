@@ -1,5 +1,5 @@
 $('#suscribe .btnFull').tapend(function(){
-	$.post('http://'+IP+':8090/appriz/subscribeCustomer', {
+	$.post('http://'+IP+':8089/appriz/subscribeCustomer', {
 		identification 	        :  $('#suscribe input').eq(0).val(),
 		subscriptionNumber      :  $('#suscribe input').eq(1).val(),
 		idSecretClient			:  idScretClient,
