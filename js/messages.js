@@ -22,7 +22,7 @@ function current_inbox(){
 	checkWithOutEntity();
 	if(currentEntityID>0)
 	{
-	//getAds();
+	getAds();
 	} //----> ERROR
 	
 			if($('.Message:visible').length===0){$('#noMessage').show();} else{$('#noMessage').hide();}
