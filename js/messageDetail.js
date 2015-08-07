@@ -36,6 +36,17 @@ function matchColumnsHeight(){
 //
 function showMessage(id){
 			// showConfirm();
+			
+	
+			               /*Demo App*/
+		if(onDemo && $('#demo15').css("visibility") == "visible")
+			{
+				//$('#demo15 .NextBtn').css('visibility','visible');
+					$('#demo15 .NextBtn').trigger('tapend');
+			}
+						   /*Demo App*/
+						   
+						   
 	if(modeDeleteMenu){
 		
 		var msg = $("#"+id+".Message .centralLI");

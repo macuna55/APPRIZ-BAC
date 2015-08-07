@@ -15,7 +15,13 @@ function guardarCambios(){
 				retention =  parseInt(ret);
 			});
 		}else{
+			if(onDemo && $('#demo28').css("visibility") == "visible"){
+				$('.demoAprrizApp').css('background','black');
+				$('#demo28 .NextBtn').trigger("tapend");
+				}
+			else{
 			showInfoD($.t('Error'),$.t('You need to select a retention policy'),function(){$('.moldHide, .dialogAlert').hide();});
+			}
 		}
 	
 }

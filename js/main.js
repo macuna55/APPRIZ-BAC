@@ -8,9 +8,18 @@
 	// document.addEventListener("deviceready", function() {
 		$(".menu-main , .icon-menu").tapend(function(e){
 			//e.stopPropagation();
+		
+			if(onDemo && $('#demo27').css("visibility") == "visible"){
+				$('.demoAprrizApp').css('background','none');	
+				$('a.icon-back').trigger('tapend');
+				$('#demo27 .NextBtn').trigger("tapend");
+				}
+			else{
+			if(onDemo && $('#demo21').css("visibility") == "visible"){$('#demo21 .NextBtn').trigger("tapend");}
 			$('.allMenu').css({"width" : "80%" });
 			$('#menuAppriz').fadeIn({"display" : "block"});
 			$('.allMenu').velocity({"right" : "0px" },{ duration: 500 });
+			}
 		});
 		
 		$('.bgModal').tapend(function(e){
@@ -100,6 +109,8 @@
 				showAlert($.t("Rule Changed"), $.t("Do you want to save changes?") , function(){
 					processRuleChange();
 				},function(){
+			
+				
 					rulesChanges = {};
 				});
 				

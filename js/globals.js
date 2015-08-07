@@ -33,3 +33,4 @@
 	umbral= 0;
 	var loadingPage = false;
 	var modeDeleteMenu = false;
+		onDemo=false;

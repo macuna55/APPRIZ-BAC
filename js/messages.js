@@ -173,6 +173,8 @@ function counterByMsg(){
 		   
 	   myScroll3.on('scroll', function(){
 		
+		if(onDemo && $('#demo11').css("visibility") == "visible"){$('#demo11 .NextBtn').trigger("tapend");}
+		
 		if (this.y >  50 &&  !scrollInProgress ) {
 			document.getElementById("pullDownLabel").innerHTML = $.t('Release to refresh...');
 			scrollInProgress = false;
@@ -339,6 +341,17 @@ function makeSwipe(id){
 					if(direction=='left' & distance > (150) & actualMargin < 0){
 							mContainer.css({"margin-left" : "-150px"}); //show delete button
 							mContainer.addClass("deleteOptionActivate");
+							
+													/*Demo App*/
+							if(onDemo && $('#demo13').css("visibility") == "visible")
+							{
+							//	$('#demo13 .NextBtn').css('visibility','visible');
+								$('#demo14 .NextBtn').trigger('tapend');
+											$('#demo13 .NextBtn').css('visibility','hidden');
+							$('#demo13').css("visibility","hidden");
+							}
+						   /*Demo App*/
+							
 							$("#deleteAllBtn").show();
 					}else if(direction=='left' & distance < (150) & actualMargin < 0){
 							mContainer.animate({"margin-left" : "0px"}).removeClass("deleteOptionActivate").removeClass("detailOptionActivate");; //no show the delete button		
@@ -347,6 +360,15 @@ function makeSwipe(id){
 					}else if(direction=='right' & distance > (window.innerWidth*0.3) & actualMargin > window.innerWidth*0.3){
 							mContainer.animate({"margin-left" : window.innerWidth+"px"});
 							mContainer.addClass("detailOptionActivate");
+							
+										/*Demo App*/
+							if(onDemo && $('#demo12').css("visibility") == "visible")
+							{
+								//$('#demo12 .NextBtn').css('visibility','visible');
+								$('#demo12 .NextBtn').trigger('tapend');
+								
+							}
+						   /*Demo App*/
 						
 					}else if(direction=='right'  & actualMargin >-150){
 							mContainer.animate({"margin-left" : "0px"}).removeClass("deleteOptionActivate").removeClass("detailOptionActivate"); ;

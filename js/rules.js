@@ -41,6 +41,12 @@ function addRules(objs){
 
 function getRules(productName){
 	console.log(productName);
+	
+	if(onDemo && $('#demo24').css("visibility") == "visible"){
+		$('#demo24 .NextBtn').trigger("tapend");
+		
+		}
+	
 	$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
 			if (data["status"]== 200){
 				addRules(data["rules"]);
@@ -80,6 +86,8 @@ function getValidTimePeriods(prd){
 }
 
 function processRuleChange(){
+			if(onDemo && $('#demo28').css("visibility") == "visible"){console.log("sds223");}
+			else{
 	var tmp_ruleChange = [];
 	for ( ruleChange in rulesChanges){
 		tmp_ruleChange.push(rulesChanges[ruleChange]);
@@ -97,7 +105,8 @@ $.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretC
 		showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),function(){back=["inbox","inbox"];$(".imglogo").trigger("tapend")});
 	}).done(function(){});
 	
-	return tmp_ruleChange;
+			return tmp_ruleChange;
+			}
 }
 		
 
@@ -162,6 +171,9 @@ $( document ).on("tapend",'input.toggle + label',function(e){
 		e.stopPropagation();
 		var rId = $(this).parent().parent().attr('id').replace(/rule_(\S+)/,"$1");
 		console.log(rId);
+			if(onDemo && $('#demo25').css("visibility") == "visible"){
+		$('#demo25 .NextBtn').trigger("tapend");
+		}
 		if($(this).prev().is(":checked")){
 			console.log('checked');
 			$('.dropdownBox').not($(this).parent().parent().find(".dropdownBox")).hide();
