@@ -192,7 +192,7 @@ function counterByMsg(){
 			}
 			
 		   if (this.y < (this.maxScrollY + 40) && !loadingPage){
-			   console.log("sdsdsd");
+			   console.log("sdsdsd"+loadingPage);
 			    loadingPage = true;
 			//	$('.MsG').lastChild.getClass();
 				var idLastMessage = $(".MsG li:last-child").attr('id');
