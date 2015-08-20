@@ -1,8 +1,44 @@
 /* ==========================================================================
    Base styles: Appriz App
    ========================================================================== */
-
    
+   
+   #subMenuDelete{
+    position: absolute;
+    bottom: -120px;
+    right: 0px;
+    text-align: center;
+	z-index:-1;
+	}
+	
+	#subMenuDelete>ul>li{
+
+    border-bottom: 1px solid #005B99 !important;
+    border-bottom: 1px solid #005b99 !important;
+    height: 50px !important;
+    line-height: 45px;
+    width: 100% !important;
+    margin: 0 auto;
+	background-color:#EBEBEB;
+}
+	
+ 
+#MenuDelete{
+display:none;
+font-size: 28px;
+background:#D8D8D8;
+
+}
+   
+#spinBotton{
+  position: absolute;
+  margin-left: 45%;
+  font-size: 40px;
+  margin-top: 5%;
+
+}
+
+
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -507,14 +543,14 @@ a {
 
 
 header.loginHead {
-    background: #1A6BA3; /* Old browsers */
-    background: -moz-linear-gradient(left, #1A6BA3 17%, #1A6BA3 17%, #636466 17%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(17%, #1A6BA3), color-stop(17%, #1A6BA3), color-stop(17%, #636466)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left, #1A6BA3 17%, #1A6BA3 17%, #636466 17%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left, #1A6BA3 17%, #1A6BA3 17%, #636466 17%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left, #1A6BA3 17%, #1A6BA3 17%, #636466 17%); /* IE10+ */
-    background: linear-gradient(to right, #1A6BA3 17%, #1A6BA3 17%, #636466 17%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1A6BA3', endColorstr='#636466', GradientType=1); /* IE6-9 */
+    background: #0077C0; /* Old browsers */
+    background: -moz-linear-gradient(left, #0077C0 17%, #0077C0 17%, #636466 17%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(17%, #0077C0), color-stop(17%, #0077C0), color-stop(17%, #636466)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #0077C0 17%, #0077C0 17%, #636466 17%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #0077C0 17%, #0077C0 17%, #636466 17%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #0077C0 17%, #0077C0 17%, #636466 17%); /* IE10+ */
+    background: linear-gradient(to right, #0077C0 17%, #0077C0 17%, #636466 17%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0077C0', endColorstr='#636466', GradientType=1); /* IE6-9 */
     height: 92px;
 }
 
@@ -525,7 +561,7 @@ header {
     background: -webkit-linear-gradient(left, #FFFFFF 17%, #FFFFFF 17%, #636466 17%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(left, #FFFFFF 17%, #FFFFFF 17%, #636466 17%); /* Opera 11.10+ */
     background: -ms-linear-gradient(left, #FFFFFF 17%, #FFFFFF 17%, #636466 17%); /* IE10+ */
-    background: linear-gradient(to right, #1A6BA3 17%, #FFFFFF 17%, #636466 17%); /* W3C */
+    background: linear-gradient(to right, #0077C0 17%, #FFFFFF 17%, #636466 17%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#636466', GradientType=1); /* IE6-9 */
     height: 92px;
     position: fixed;
@@ -534,12 +570,12 @@ header {
     top: 0;
     left: 0;
     right: 0;
-	  border-bottom: 2px solid #5E5E5E;;
+	  border-bottom: 2px solid #0077C0;
 }
 
 header .icon-back {
     display: block;
-       color: #003885 !important;
+    color: #0077C0;
     font-size: 30px;
     width: 17%;
     float: left;
@@ -559,7 +595,7 @@ header h2 {
 
 header .icon-menu {
     border: none;
-    color: #FFFFFF;
+    color: #0077C0;
     font-size: 51px;
     background: none;
     line-height: 76px;
@@ -569,7 +605,7 @@ header .icon-menu {
 
 .bankSection .icon-menu {
   border: none;
-         color: #003885 !important;
+  color: #0077C0;
   font-size: 32PX;
   background: none;
   line-height: 76px;
@@ -583,9 +619,11 @@ header .icon-menu {
 
 .imglogo{
 	max-height:80px !important;
+
 }
 
 img {
+  
     display: block;
     max-width: 100%;
     height: auto;
@@ -647,7 +685,7 @@ input, .btnAction {
     color: #565758;
 }
 
-.btnAction {
+.btnAction {f
     text-align: left;
     position: relative;
 }
@@ -661,12 +699,12 @@ input, .btnAction {
 }
 
 .btnAction .icon-arrow .path1 {
-    color: #1A6BA3;
+    color: #0077C0;
 }
 
 .btnAction .icon-arrow .path1:before {
     content: "\e614";
-    color: #1A6BA3;
+    color: #0077C0;
 }
 
 
@@ -692,7 +730,7 @@ input, .btnAction {
 }
 
 .btnFull {
-    background: #1A6BA3;
+    background: #0077C0;
     color: #FFFFFF;
     width: 100%;
     text-transform: uppercase;
@@ -849,9 +887,9 @@ label.css-label {
 
 .numberCode li input {
     background: none;
-    border-bottom: 5px solid #1A6BA3;
+    border-bottom: 5px solid #0077C0;
     font-size: 30px;
-    color: #1A6BA3;
+    color: #0077C0;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -866,7 +904,7 @@ label.css-label {
 }
 
 #keyboardAppriz .numKey, #keyboardAppriz .numKeyC {
-       color: #1A6BA3;
+       color: #0077C0;
     font-size: 3em;
     border: 1px solid #9C9D9E;
     width: 32% !important;
@@ -881,7 +919,7 @@ label.css-label {
 }
 
 #keyboardAppriz .icon-delete {
-     color: #1A6BA3;
+     color: #0077C0;
     font-size: 50px;
     display: block;
 }
@@ -911,7 +949,7 @@ label.css-label {
     width: 58%;
 }
 #wrapper_message{
-margin-top: 69px;
+    margin-top: 52px;
 }
 
 
@@ -1171,7 +1209,7 @@ margin-top: 69px;
     width: 100%;
 }
 
-nav.categoryNav {
+nav.categoryNav, .navDelete {
     background: #A4A4A5;
     width: 100%;
     padding: 1%;
@@ -1182,13 +1220,13 @@ nav.categoryNav {
     user-select: none;
 }
 
-nav.categoryNav ul {
+nav.categoryNav ul, .navDelete ul {
     padding: 0 0 0 10%;
     overflow: hidden;
     margin: 0;
 }
 
-nav.categoryNav ul li {
+nav.categoryNav ul li , .navDelete ul li{
     position: relative;
     border-bottom: none;
     float: left;
@@ -1409,7 +1447,7 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
     overflow: hidden;
     padding: 1% 3% 1% 3%;
     height: 80px;
-		border-bottom: 2px solid #5E5E5E;	
+		border-bottom: 2px solid #0077C0;	
 }
 
 .topHeader .bankBrand {
@@ -1418,30 +1456,15 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
     padding: 4% 0 0 0;
 }
 
-#iContainer{
-    height: 60px;
-    position: absolute;
-    width: 74px;
-    top: 9px;
-	margin-left: 22px;
-}
-
-#headLogoC{
-    height: 76px;
-    width: 241px;
-    margin-left: 67px;
-    position: absolute;
-}
-
 .topHeader .userInfo {
     float: right;
     width: 50%;
     text-align: center;
-    color: #005b99;
+    color: #0077C0;
 }
 
 .topHeader .userInfo .welcome {
-  color:#005b99;
+  color: #0077C0;
     font-weight: 100;
     font-size: 18px;
     margin: 0;
@@ -1455,7 +1478,7 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
 }
 
 .topHeader .userInfo .icon-user {
- color: #005b99;
+ color: #0077C0;
     font-size: 35px;
     display: inline-block;
     padding: 6px 0 0 0;
@@ -1719,12 +1742,12 @@ nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
 }
 
 .boxModal .okBtn {
-    background: #1A6BA3;
+    background: #0077C0;
     margin: 0 auto;
 }
 
 .boxModal .yesBtn {
-    background: #1A6BA3;
+    background: #0077C0;
     margin: 0 auto;
 }
 
@@ -2006,7 +2029,7 @@ nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
     }
 
     .settings {
-        width: 88%;
+         width: 88%;%;
 /* overflow: hidden; */
 padding: 3%;
 margin-top: 100px;
@@ -2259,12 +2282,12 @@ top: 0px;
     .topHeader .bankBrand {
         float: left;
         width: 45%;
-        padding: 29px 0 0 0;
+        padding: 0 0 0 0;
     }
 
     .bankSection .icon-menu {
         font-size: 32px;
-           line-height: 69px;
+        line-height: 91px;
 
     }
 
@@ -2469,7 +2492,7 @@ img.bankLogo {
     max-width: calc(100% - 100px) !important;
 }
 .bankLogo img{
-	    max-height: 70px;
+	max-height:80px;
 }
 
 .menu-main {
@@ -2591,7 +2614,7 @@ color: #636466;
     right: 0px;
     bottom: 0px;
 
-    background: hsl(204, 100%, 95%)
+    background: #efeffd;
 }
 
 #divPIN h2 {
@@ -2763,7 +2786,7 @@ transition: .25s ease-in-out;
 
 input.toggleSetting:checked + label:before {
 width: 60px;
-background: #1A6BA3;
+background: #0077C0;
 }
 
 input.toggleSetting:checked + label:after {
@@ -2829,7 +2852,7 @@ bottom: 35px;
 text-align: center;
 left: 10px;
 right: 10px;
-color: #1A6BA3;
+color: #0077C0;
 font-size: 16px;
 
 }
@@ -2903,3 +2926,16 @@ div#login{
 div.products li span.arrow{
 	margin-top: -10px;
 }
+
+		
+		
+.MsG>.Message>.centralLI{
+/*  
+    background: linear-gradient(to left, white 50%, #E7E7FF 50%);
+   background-size: 200% 100%;
+	background-position:right bottom; */
+   transition:all 1.5s ease;
+   
+
+}
+

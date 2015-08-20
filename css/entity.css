@@ -1,18 +1,17 @@
 nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
-	color : #1A6BA3;
+	color : #0077C0;
 }
 
 
 .bankSection {
-background: white;
-	  border-bottom: 2px solid 	#1A6BA3;
+	   background: #FAFAFA;
+	  border-bottom: 2px solid #	#5E5E5E;
 }
 
 
 
 .topHeader {
-     background: white;
-
+  background: #FAFAFA;
 }
 
 
@@ -22,61 +21,56 @@ background: white;
 
 #categories li .infoBank h2 {
 	color : #444444;
-	    
 }
 
 .unread{
-	color: #1A6BA3;
+	color: #0077C0;
 }
 #categories li .icon-arrow .path1::before {
-	color : #1A6BA3;
+	color : #0077C0;
 }
 
 #categories li .icon-myAlerts .path1::before, .icon-notifications, .icon-alerts, .icon-promotions, .icon-services {
-	color :#1A6BA3;
+	color :#0077C0;
 }
 
 .contentMenu ul li button:hover .icon-myAlerts .path1:before {
-   color : #1A6BA3;
+   color : #0077C0;
 }
 
 
 
 nav.categoryNav {
-      background: none repeat scroll 0% #A4A4A5;
-  border-top: 1px solid black;
-  /* height: 35px; */
-  padding-top: 10px;
-  padding-bottom: 10px;
+    background: none repeat scroll 0% 0% #484142;
 }
 
 #entities .newEntity {
-	background: none repeat scroll 0% 0% #1A6BA3;
+	background: none repeat scroll 0% 0% #0077C0;
 }
 
 #categories .details h3, .details_ h3 {
-    color: #1A6BA3;
+    color: #0077C0;
 }
 
 
 
 nav.categoryNav .icon-myAlerts.active .path1:before {
     content: "\e60b";
-    color: #1A6BA3;
+    color: #0077C0;
 
 }
 
 nav.categoryNav span.active:before {
-    color: #1A6BA3;
+    color: #0077C0;
 }
 
 
 .options .optionBtn {
-    background: #1A6BA3;
+    background: #0077C0;
 }
 
 .options .btnBank2:hover {
-    background: #1A6BA3;
+    background: #0077C0;
 }
 
 .dropdownOption ul li {
@@ -84,70 +78,78 @@ nav.categoryNav span.active:before {
 }
 
 .oneOption {
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 nav.navAppriz ul li.active a {
-    color: #1A6BA3;
+    color: #0077C0;
 
 }
 
 nav.navAppriz ul li.active a, nav.navAppriz ul li a:hover {
-    color: #1A6BA3;
+    color: #0077C0;
 }
 
 .contentMenu ul li button:hover .icon1 {
-    color: #1A6BA3;
+    color: #0077C0;
 
 }
 
 .products ul li button , .services ul li button{
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 .products h3 {
     color: #4C4C4C;
 }
 
-nav.categoryNav span {
-    content: "\e60b";
-	color: #D5D4D3;
-    /*color: rgb(85, 185, 73);*/
-}
 .services srv{
     color: #4C4C4C;
 
 }
 
 
+
+nav.categoryNav span {
+    content: "\e60b";
+	color: #D5D4D3;
+    /*color: rgb(85, 185, 73);*/
+}
+
+ #MenuDelete span {
+    content: "\e60b";
+	color: #0077C0;
+    /*color: rgb(85, 185, 73);*/
+}
+
 nav.categoryNav span.active{
     content: "\e60b";
-	color: #1A6BA3;
+	color: #0077C0;
     /*color: rgb(85, 185, 73);*/
 }
 
 .editOption li input {
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 .editOption li select{
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 .products ul li button .icon-arrow .path1::before, .services ul li button .icon-arrow .path1::before {
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 .productNav li.active button{
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 .productNav .icon-myAlerts .path1::before {
-	color: #1A6BA3;
+	color: #0077C0;
 }
 
 input.toggle:checked + label::before {
-	 background: #1A6BA3;
+	 background: #0077C0;
 }
 
 .productNav li button{
@@ -162,12 +164,9 @@ input.toggle:checked + label::before {
 }
 
 .bankLogo img{
-margin-top: -3px;
-
+	margin-top:13px;
 }
 
 * {
-
 -webkit-tap-highlight-color: rgba(0,0,0,0); 
-
 }
