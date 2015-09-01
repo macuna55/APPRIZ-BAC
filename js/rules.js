@@ -17,7 +17,7 @@ function addRules(objs){
 		for(field in obj["fields"]){
 			switch(obj["fields"][field].type){
 				case "integer":
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='number' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "number":
@@ -88,20 +88,6 @@ function addRules(objs){
 function getRules(productName){
 	console.log(productName);
 	addRules([{
-    idRule: 000,
-	ruleName: "NAME",
-	active: true,
-	description: "DESCRIPTION",		
-	fields: {
-		"index"  : {type: "number" , placeholder: 34.3},
-		"num"  : {type: "integer" , placeholder: 34},
-		"gusa"   : {type: "string" , placeholder: "34.3"},
-		"potosky" : {type: "cadence" , placeholder: 34.3},
-		"hulak"  : {type: "date" , placeholder: 34.3},
-		"timo"   : {type: "time" , placeholder: 34.3},
-		"check"  : {type: "selector" , items: {key1 : "value1", key2: "value2"}},
-	}
-},{
     idRule: 54,
     ruleName: "Birthday",
     active: true,
@@ -114,9 +100,51 @@ function getRules(productName){
     idRule: 55,
     ruleName: "Idle Cash",
     active: true,
-	description: "Send me notifications of my clients Clients with cash/money market holdings > X%",	
+	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
 	fields: {
 		"Percentage "   : {type: "number" , placeholder: 34.3},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+},{
+    idRule: 56,
+    ruleName: "Surrender expiration",
+    active: true,
+	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
+	fields: {
+		"Days "   : {type: "integer" , placeholder: 34},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+},{
+    idRule: 57,
+    ruleName: "Birthday",
+    active: true,
+	description: "Send me notifications when one of my clients birthday is coming",	
+	fields: {
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+},{
+    idRule: 58,
+    ruleName: "Idle Cash",
+    active: true,
+	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
+	fields: {
+		"Percentage "   : {type: "number" , placeholder: 34.3},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+},{
+    idRule: 59,
+    ruleName: "Surrender expiration",
+    active: true,
+	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
+	fields: {
+		"Days "   : {type: "integer" , placeholder: 34},
 		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
 		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
 	}
