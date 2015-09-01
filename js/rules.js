@@ -41,7 +41,7 @@ function addRules(objs){
 				break;
 				
 				case "boolean":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='checkbox' maxlength='12'  checked='"+obj.fields[field].placeholder+"'></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='checkbox' maxlength='12'  checked='"+obj.fields[field].placeholder+"' style='margin-top:20px;'></li>";
 				break;
 				
 				case "selector":
