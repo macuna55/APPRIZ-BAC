@@ -2771,8 +2771,16 @@ right: 0px;
 
 }
 
-
-
+.aweCheck{
+	float: right;
+	font-size: 42px;
+	padding-right: 8px;
+	color: #1A6BA3;
+	line-height: 59px !important;
+}
+.aweSquare{
+	padding-right: 14px !important;
+}
 .dotDone{
 	color: #95C807;
 }

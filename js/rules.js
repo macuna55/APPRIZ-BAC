@@ -40,8 +40,14 @@ function addRules(objs){
 					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].placeholder+"'></li>";
 				break;
 				
-				case "boolean":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='checkbox' maxlength='12'  checked='"+obj.fields[field].placeholder+"' style='margin-top:20px;'></li>";
+				case "boolean":
+					if(obj.fields[field].check){
+						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-check-square-o aweCheck'></i></li>";
+					}
+					else
+					{						
+						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-square-o aweCheck aweSquare'></i></li>";
+					}
 				break;
 				
 				case "selector":
@@ -90,52 +96,20 @@ function addRules(objs){
 
 function getRules(productName){
 	console.log(productName);
-	addRules([{
-    idRule: 54,
-    ruleName: "Birthday",
-    active: true,
-	description: "Send me notifications when one of my clients birthday is coming",	
-	fields: {
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-		"potosky" : {type: "cadence" , placeholder: 34.3},
-		"hulak"  : {type: "date" , placeholder: 34.3},
-		"timo"   : {type: "time" , placeholder: 34.3},
+	switch(productName)
+	{
+		case "Sales Promotion":
+			addRules(SalesProData);
+		break;
+		case "Client Service":
+			addRules(ClientServData);
+		break;
+		case "Compliance":
+			addRules(ComplianceData);
+		break;
 	}
-},{
-    idRule: 55,
-    ruleName: "Idle Cash",
-    active: true,
-	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
-	fields: {
-		"Percentage "   : {type: "number" , placeholder: 34.3},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
+		addRules(SalesProData);
 	
-},{
-    idRule: 56,
-    ruleName: "Surrender expiration",
-    active: true,
-	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
-	fields: {
-		"Days "   : {type: "integer" , placeholder: 34},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-},{
-    idRule: 57,
-    ruleName: "Client Change",
-    active: true,
-	description: "Send me notifications if one of my clients marital, status, address, name or date of death is change",
-	fields: {
-		"Name "  : {type: "boolean" ,  placeholder: true},
-		"Address "   : {type: "boolean" , placeholder: true},
-		"Marital status "  : {type: "boolean" ,  placeholder: true},
-		"Date of death "   : {type: "boolean" , placeholder: true},
-	}
-}])
 	
 }
 
@@ -205,15 +179,24 @@ $( document ).on("tapend","[page-content=rules]",function(ev){
 		getValidTimePeriods($(this).find("prd").html());
 	}else{
 		ev.stopPropagation();
-	}
-		
-		
+	}	
 });
 
 
-$( document ).on('tapend','.rule',function(ev){
-		
-			
+$( document ).on("tapend",".aweCheck",function(ev){
+	//var x = target;
+	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
+	if($(this).hasClass(aweSquare)) < 10){
+		$('#rules .products').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i></div>");
+		$("#rules .productNav li").eq(1).find("button").html($(this).find("prd").html());
+		getValidTimePeriods($(this).find("prd").html());
+	}else{
+		ev.stopPropagation();
+	}	
+});
+
+
+$( document ).on('tapend','.rule',function(ev){			
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
 	if(Math.abs(startTap.Y - endY) < 10){
 		$('.rule.active').not($(this)).removeClass('active');
