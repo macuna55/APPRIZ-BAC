@@ -41,6 +41,10 @@ function addRules(objs){
 					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
+				case "boolean":					
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='checkbox' maxlength='12'  checked='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				break;
+				
 				case "selector":
 					var items = "";
 					for (item in obj["fields"][field].items){
@@ -120,100 +124,16 @@ function getRules(productName){
 	
 },{
     idRule: 57,
-    ruleName: "Birthday",
+    ruleName: "Client Change",
     active: true,
-	description: "Send me notifications when one of my clients birthday is coming",	
+	description: "Send me notifications if one of my clients marital, status, address, name or date of death is change",
 	fields: {
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+		"Name "  : {type: "boolean" ,  placeholder: true},
+		"Address "   : {type: "boolean" , placeholder: true},
+		"Marital status "  : {type: "boolean" ,  placeholder: true},
+		"Date of death "   : {type: "boolean" , placeholder: true},
 	}
-},{
-    idRule: 58,
-    ruleName: "Idle Cash",
-    active: true,
-	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
-	fields: {
-		"Percentage "   : {type: "number" , placeholder: 34.3},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-},{
-    idRule: 59,
-    ruleName: "Surrender expiration",
-    active: true,
-	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
-	fields: {
-		"Days "   : {type: "integer" , placeholder: 34},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-},
-{
-    idRule: 60,
-    ruleName: "Birthday",
-    active: true,
-	description: "Send me notifications when one of my clients birthday is coming",	
-	fields: {
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-},{
-    idRule: 65,
-    ruleName: "Idle Cash",
-    active: true,
-	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
-	fields: {
-		"Percentage "   : {type: "number" , placeholder: 34.3},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-},{
-    idRule: 66,
-    ruleName: "Surrender expiration",
-    active: true,
-	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
-	fields: {
-		"Days "   : {type: "integer" , placeholder: 34},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-},{
-    idRule: 67,
-    ruleName: "Birthday",
-    active: true,
-	description: "Send me notifications when one of my clients birthday is coming",	
-	fields: {
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-},{
-    idRule: 68,
-    ruleName: "Idle Cash",
-    active: true,
-	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
-	fields: {
-		"Percentage "   : {type: "number" , placeholder: 34.3},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-},{
-    idRule: 69,
-    ruleName: "Surrender expiration",
-    active: true,
-	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
-	fields: {
-		"Days "   : {type: "integer" , placeholder: 34},
-		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
-	}
-	
-}
-])
+}])
 	
 }
 

@@ -132,6 +132,7 @@ nav.categoryNav span.active{
 
 .editOption li select{
 	color: #1A6BA3;
+	height: 44px;
 }
 
 .products ul li button .icon-arrow .path1::before, .services ul li button .icon-arrow .path1::before {
