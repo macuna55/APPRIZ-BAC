@@ -70,7 +70,7 @@ function addRules(objs){
 		//if("idTime" in obj ) {
 		   // $('#rule_'+obj["idRule"]+' select option[value="'+obj["idTime"]+'"]').prop('selected', true); $('idTime:last').html($('select:last option[value="'+obj["idTime"]+'"]').html());}
 	});
-	$('#rules .products').html("<ul>"+toAppend+"</ul>");
+	$('#rules .products').html("<div id='listProducts'><ul>"+toAppend+"</ul></div>");
 	$('#rules .products select').each(function(){
 		var idTime = $(this).parent().parent().parent().parent().find('idTime').html();
 		$(this).find('option[value="'+idTime+'"]').prop('selected', true);
@@ -81,8 +81,8 @@ function addRules(objs){
 	
 	$('#rules_div').append("<div style='width: 100%; height: 150px;'></div>");
 	$(".refreshing_list").hide();
-	myScrolll = new IScroll('#listProducts', {preventDefault: false, useTransition: true });
-
+	ruleScroll = new IScroll('#rules .products', {useTransition: false,   mouseWheel: false}); 
+	
 }
 
 function getRules(productName){
@@ -149,7 +149,71 @@ function getRules(productName){
 		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
 	}
 	
-}])
+},
+{
+    idRule: 60,
+    ruleName: "Birthday",
+    active: true,
+	description: "Send me notifications when one of my clients birthday is coming",	
+	fields: {
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+},{
+    idRule: 65,
+    ruleName: "Idle Cash",
+    active: true,
+	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
+	fields: {
+		"Percentage "   : {type: "number" , placeholder: 34.3},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+},{
+    idRule: 66,
+    ruleName: "Surrender expiration",
+    active: true,
+	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
+	fields: {
+		"Days "   : {type: "integer" , placeholder: 34},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+},{
+    idRule: 67,
+    ruleName: "Birthday",
+    active: true,
+	description: "Send me notifications when one of my clients birthday is coming",	
+	fields: {
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+},{
+    idRule: 68,
+    ruleName: "Idle Cash",
+    active: true,
+	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
+	fields: {
+		"Percentage "   : {type: "number" , placeholder: 34.3},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+},{
+    idRule: 69,
+    ruleName: "Surrender expiration",
+    active: true,
+	description: "Send me notifications of my Clients when they have positions coming out of surrender in X Days",	
+	fields: {
+		"Days "   : {type: "integer" , placeholder: 34},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+	
+}
+])
 	
 }
 
@@ -227,6 +291,7 @@ $( document ).on("tapend","[page-content=rules]",function(ev){
 
 $( document ).on('tapend','.rule',function(ev){
 		
+			
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
 	if(Math.abs(startTap.Y - endY) < 10){
 		$('.rule.active').not($(this)).removeClass('active');
