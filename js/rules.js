@@ -14,6 +14,13 @@ function addRules(objs){
 		toAppend +=  "<div class='dropdownBox'>";
 		toAppend +=  "<p>"+obj["description"].replace(/<\[singleAmount\]>/g,"<singleAmount>"+obj['singleAmount']+"</singleAmount>").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><div class='editOption'><ul>";
 	//	toAppend += "<div class='rule_body'><p align='justify' style='100%'>"+obj["description"].replace(/<\[singleAmount\]>/g,"<singleAmount>"+obj['singleAmount']+"</singleAmount>").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><table>";
+	if("fields" in obj){
+		for(field in obj["fields"]){
+			
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' field='trxNo' maxlength='10'  placeholder='"+obj["trxNo"]+"'> <span class='icon-pencil'></span></li>";
+		};
+	}
+		
 		if("trxNo" in obj ) toAppend = toAppend + "<li><h4>"+$.t("Trx No.")+"</h4><input type='tel' field='trxNo' maxlength='10'  placeholder='"+obj["trxNo"]+"'> <span class='icon-pencil'></span></li>";
 		if("singleAmount" in obj ) toAppend = toAppend + "<li><h4>"+$.t("Amount")+"</h4><input type='tel' field='singleAmount' maxlength='10'  placeholder='"+obj["singleAmount"]+"'/><span class='icon-pencil'></span></li>";
 		if("totalAmount" in obj ) toAppend = toAppend + "<li><h4>"+$.t("Total Amount")+"</h4><input type='tel' field='totalAmount' maxlength='10'  placeholder='"+obj["totalAmount"]+"'/><span class='icon-pencil'></span></li>";
@@ -41,7 +48,23 @@ function addRules(objs){
 
 function getRules(productName){
 	console.log(productName);
-	$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
+	addRules([{
+    idRule: 54,
+	ruleName: "Birthday",
+	active: true,
+	description: "Send me notifications bird",
+		
+	fields: {
+		"index"  : "float",
+		"check"  : "integer",
+		"gusa"   : "string",
+		"potosky" : "cadence",
+		"hulak"  : "date",
+		"timo"   : "time",
+	}
+	
+}])
+	/*$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
 			if (data["status"]== 200){
 				addRules(data["rules"]);
 			}
@@ -50,6 +73,7 @@ function getRules(productName){
 		//	alert("conexion error!");
 		//alert( JSON.stringify(e));
 	}).done(function(){$('.refreshing_list').hide(); });
+	*/
 	
 }
 
@@ -102,6 +126,8 @@ $.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretC
 		
 
 $( document ).on("tapend","[page-content=rules]",function(ev){
+	console.log("e");
+	alert("dd");
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
 	if(Math.abs(startTap.Y - endY) < 10){
 		$('#rules .products').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i></div>");

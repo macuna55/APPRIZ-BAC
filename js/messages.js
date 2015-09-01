@@ -517,7 +517,7 @@ $('#categories').html("<div class='MsG'></div>");
 						
 						$.jStorage.set('msg_div', btoa($('#categories').html()));
 						}catch(e){
-							console.error(e);
+						//	console.error(e);
 						}
 						//console.log(JSON.stringify(data));
 					}
