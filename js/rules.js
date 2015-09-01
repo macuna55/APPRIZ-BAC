@@ -9,17 +9,56 @@ function addRules(objs){
 	var toAppend = '';				
 	$.each(objs,function(index,obj){
 		toAppend +=  "<li class='rule' id='rule_"+obj["idRule"]+"'><h3>"+obj["ruleName"]+"</h3>";
-	//	toAppend +=  " <div class='onoffswitch'><input type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='switchRule"+obj["idRule"]+"' "+(obj["active"] ? "checked" : "")+">";
 		toAppend +=   "<div class='onoffswitch'><input type='checkbox' name='toggle_"+obj["idRule"]+"' id='toggle_"+obj["idRule"]+"' class='toggle' "+(obj["active"] ? "checked" : "")+"><label for='toggle_"+obj["idRule"]+"'></label></div>";
 		toAppend +=  "<div class='dropdownBox'>";
 		toAppend +=  "<p>"+obj["description"].replace(/<\[singleAmount\]>/g,"<singleAmount>"+obj['singleAmount']+"</singleAmount>").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><div class='editOption'><ul>";
-	//	toAppend += "<div class='rule_body'><p align='justify' style='100%'>"+obj["description"].replace(/<\[singleAmount\]>/g,"<singleAmount>"+obj['singleAmount']+"</singleAmount>").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><table>";
+	
 	if("fields" in obj){
 		for(field in obj["fields"]){
-			
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' field='trxNo' maxlength='10'  placeholder='"+obj["trxNo"]+"'> <span class='icon-pencil'></span></li>";
+			switch(obj["fields"][field].type){
+				case "integer":
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='number' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				break;
+				
+				case "number":
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='number' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				break;
+				
+				case "string":
+					
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				break;
+				
+				case "cadence":
+					toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+SPickerString+"</select></li>";
+				break;
+				
+				case "date":
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				break;
+				
+				case "time":					
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				break;
+				
+				case "selector":
+					var items = "";
+					for (item in obj["fields"][field].items){
+						items += "<option value='"+ obj["fields"][field].items[item]+"'>"+item+"</option>";
+					}
+					toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+items+"</select></li>";
+					
+				break;
+				
+				default:
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' field='trxNo' maxlength='100'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+			}
+				//if( == "time" ){toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+SPickerString+"</select></li>";} 
+			//	if(obj["fields"][field]. == "time" )
+				//else{	toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' field='trxNo' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+			}
 		};
-	}
+	
 		
 		if("trxNo" in obj ) toAppend = toAppend + "<li><h4>"+$.t("Trx No.")+"</h4><input type='tel' field='trxNo' maxlength='10'  placeholder='"+obj["trxNo"]+"'> <span class='icon-pencil'></span></li>";
 		if("singleAmount" in obj ) toAppend = toAppend + "<li><h4>"+$.t("Amount")+"</h4><input type='tel' field='singleAmount' maxlength='10'  placeholder='"+obj["singleAmount"]+"'/><span class='icon-pencil'></span></li>";
@@ -49,31 +88,40 @@ function addRules(objs){
 function getRules(productName){
 	console.log(productName);
 	addRules([{
-    idRule: 54,
-	ruleName: "Birthday",
+    idRule: 000,
+	ruleName: "NAME",
 	active: true,
-	description: "Send me notifications bird",
-		
+	description: "DESCRIPTION",		
 	fields: {
-		"index"  : "float",
-		"check"  : "integer",
-		"gusa"   : "string",
-		"potosky" : "cadence",
-		"hulak"  : "date",
-		"timo"   : "time",
+		"index"  : {type: "number" , placeholder: 34.3},
+		"num"  : {type: "integer" , placeholder: 34},
+		"gusa"   : {type: "string" , placeholder: "34.3"},
+		"potosky" : {type: "cadence" , placeholder: 34.3},
+		"hulak"  : {type: "date" , placeholder: 34.3},
+		"timo"   : {type: "time" , placeholder: 34.3},
+		"check"  : {type: "selector" , items: {key1 : "value1", key2: "value2"}},
+	}
+},{
+    idRule: 54,
+    ruleName: "Birthday",
+    active: true,
+	description: "Send me notifications when one of my clients birthday is coming",	
+	fields: {
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+	}
+},{
+    idRule: 55,
+    ruleName: "Idle Cash",
+    active: true,
+	description: "Send me notifications of my clients Clients with cash/money market holdings > X%",	
+	fields: {
+		"Percentage "   : {type: "number" , placeholder: 34.3},
+		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
 	}
 	
 }])
-	/*$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
-			if (data["status"]== 200){
-				addRules(data["rules"]);
-			}
-		
-	},'json') .fail(function(e) {
-		//	alert("conexion error!");
-		//alert( JSON.stringify(e));
-	}).done(function(){$('.refreshing_list').hide(); });
-	*/
 	
 }
 
@@ -88,19 +136,29 @@ function addRuleChange(idRule,field,value){
 }
 		
 
-function getValidTimePeriods(prd){
-	
-		$.post('http://'+IP+':8089/appriz/getTimePeriods',{"secretKey" : secretKey},function(data){
-		if (data["status"]== 200){
-			SPickerString = timePicker(data["periods"]);
-		}
-		
-	},'json') .fail(function(e) {
-			showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),function(){back=["inbox","inbox"];$(".imglogo").trigger("tapend")});
-	}).done(function(){
+function getValidTimePeriods(prd){	
+	SPickerString = timePicker([{
+		amount: 20,
+		idTime: 1,
+		unit: "Minute(s)",
+	},{
+		amount: 40,
+		idTime: 2,
+		unit: "Minute(s)",
+	},{
+		amount: 1,
+		idTime: 3,
+		unit: "Hour(s)",
+	},{
+		amount: 12,
+		idTime: 4,
+		unit: "Hour(s)",
+	},{
+		amount: 1,
+		idTime: 5,
+		unit: "Day(s)",
+	}]);
 		getRules(prd);
-	});
-	
 }
 
 function processRuleChange(){
@@ -126,8 +184,6 @@ $.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretC
 		
 
 $( document ).on("tapend","[page-content=rules]",function(ev){
-	console.log("e");
-	alert("dd");
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
 	if(Math.abs(startTap.Y - endY) < 10){
 		$('#rules .products').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i></div>");
