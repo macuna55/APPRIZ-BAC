@@ -99,6 +99,9 @@ function getRules(productName){
 	fields: {
 		"By "  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
 		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+		"potosky" : {type: "cadence" , placeholder: 34.3},
+		"hulak"  : {type: "date" , placeholder: 34.3},
+		"timo"   : {type: "time" , placeholder: 34.3},
 	}
 },{
     idRule: 55,
