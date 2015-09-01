@@ -299,6 +299,7 @@ $( document ).on('tapend','.rule',function(ev){
 		$(this).find('.dropdownBox').toggle();
 		$(this).toggleClass('active');
 	}
+	ruleScroll.refresh();
 });
 
 $( document ).on('tapend','.dropdownBox',function(event){
