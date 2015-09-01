@@ -24,8 +24,7 @@ function addRules(objs){
 				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='number' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
-				case "string":
-					
+				case "string":					
 					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
@@ -34,15 +33,15 @@ function addRules(objs){
 				break;
 				
 				case "date":
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'></li>";
 				break;
 				
 				case "time":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].placeholder+"'></li>";
 				break;
 				
 				case "boolean":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='checkbox' maxlength='12'  checked='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='checkbox' maxlength='12'  checked='"+obj.fields[field].placeholder+"'></li>";
 				break;
 				
 				case "selector":
