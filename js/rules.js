@@ -186,12 +186,11 @@ $( document ).on("tapend","[page-content=rules]",function(ev){
 $( document ).on("tapend",".aweCheck",function(ev){
 	//var x = target;
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
-	if($(this).hasClass(aweSquare)) < 10){
-		$('#rules .products').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i></div>");
-		$("#rules .productNav li").eq(1).find("button").html($(this).find("prd").html());
-		getValidTimePeriods($(this).find("prd").html());
+	if($(this).hasClass("aweSquare"))
+	{
+		$(this).removeClass("aweSquare").removeClass("fa-square-o").addClass("fa-check-square-o");
 	}else{
-		ev.stopPropagation();
+		$(this).addClass("aweSquare").addClass("fa-square-o").removeClass("fa-check-square-o");
 	}	
 });
 
