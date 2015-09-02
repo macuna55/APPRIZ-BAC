@@ -11,7 +11,16 @@ function addRules(objs){
 		toAppend +=  "<li class='rule' id='rule_"+obj["idRule"]+"'><h3>"+obj["ruleName"]+"</h3>";
 		toAppend +=   "<div class='onoffswitch'><input type='checkbox' name='toggle_"+obj["idRule"]+"' id='toggle_"+obj["idRule"]+"' class='toggle' "+(obj["active"] ? "checked" : "")+"><label for='toggle_"+obj["idRule"]+"'></label></div>";
 		toAppend +=  "<div class='dropdownBox'>";
-		toAppend +=  "<p>"+obj["description"].replace(/<\[singleAmount\]>/g,"<singleAmount>"+obj['singleAmount']+"</singleAmount>").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><div class='editOption'><ul>";
+		var toChange = obj["description"].match(/\<\[(.*?)\]\>/g);
+		if(toChange)
+		{
+			var toChangeTag = toChange[0].substr(2,toChange[0].length-4);
+			var val = obj.fields[toChangeTag].placeholder;
+			toAppend +=  "<p>"+obj["description"].replace(toChange,"<"+toChangeTag+">"+obj.fields[toChangeTag].placeholder+"</"+toChangeTag+">").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><div class='editOption'><ul>";
+		}else{
+			toAppend +=  "<p>"+obj["description"]+"</p><div class='editOption'><ul>";
+		}
+		
 	
 	if("fields" in obj){
 		for(field in obj["fields"]){
@@ -21,7 +30,7 @@ function addRules(objs){
 				break;
 				
 				case "number":
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='number' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "string":					
@@ -119,6 +128,7 @@ function addRuleChange(idRule,field,value){
 		rulesChanges[idRule] = {"idRule" : idRule}
 	}
 		rulesChanges[idRule][field] = parseInt(value);
+		//lesChanges[idRule].fields[field] = parseInt(value);
 		
 		console.log(JSON.stringify(rulesChanges));
 }
@@ -215,8 +225,11 @@ $(document).on('keyup','.rule input[type=tel]',function(){
 		
 		$(this).parent().parent().parent().parent().parent().find($(this).attr('field')).html($(this).val());
 		$(this).parent().parent().find('input[type=tel]').each(function(){
-			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).attr('field'),$(this).val() == null || $(this).val() == "" ? $(this).attr("placeholder")  : $(this).val() );	
+			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).siblings('h4').text(),$(this).val() == null || $(this).val() == "" ? $(this).attr("placeholder")  : $(this).val() );
+			var change = $(this).siblings('h4').text().toLowerCase();
+			$(this).parent().parent().parent().siblings("p").children(change).text($(this).val());
 		});
+		
 		$(this).parent().parent().find('.SelectStyle').each(function(){
 		
 			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
