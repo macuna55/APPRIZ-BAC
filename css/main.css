@@ -2911,3 +2911,9 @@ div#login{
 div.products li span.arrow{
 	margin-top: -10px;
 }
+
+.editOption li select {
+	text-align: right;
+	width: 40%;
+}
+	
