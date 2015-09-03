@@ -35,9 +35,9 @@ var ComplianceData = [{
     active: true,
 	description: "Send me notifications if one of my clients marital status, address, name or date of death is change",
 	fields: {
-		"Name"  : {type: "boolean" ,  check: true},
-		"Address"   : {type: "boolean" , check: true},
-		"Marital status"  : {type: "boolean" ,  check: true},
-		"Date of death"   : {type: "boolean" , check: false},
+		"Name"  : {type: "boolean" ,  check: true, group: "Name"},
+		"Address"   : {type: "boolean" , check: true, group: "Name"},
+		"Marital status"  : {type: "boolean" ,  check: true, group: "Name"},
+		"Date of death"   : {type: "boolean" , check: false, group: "Name"},
 	}
 }];

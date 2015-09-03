@@ -160,7 +160,6 @@ function getRules(productName){
 			addRules(ComplianceData);
 		break;
 	}
-		addRules(SalesProData);
 	
 	
 }

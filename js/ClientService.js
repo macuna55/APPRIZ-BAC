@@ -1,43 +1,45 @@
 var ClientServData = [{
-    idRule: 54,
-    ruleName: "Birthday",
+    idRule: 64,
+    ruleName: "Portfolio Loss",
     active: true,
-	description: "Send me notifications when one of my clients birthday is coming",	
+	description: "Send me a <[By]> <[Notify]> message with client's with portfolio value reduction greather than <[Percentage]>% over the prior <[Days]> days and risk tolerance of <[Tolerance]>.",	
 	fields: {
-		"By"  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+		"By"  : {type: "selector" , items: {individual : "1", consolidate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "2", weekly: "1", daily : "0"}},
+		"Percentage"   : {type: "number" , placeholder: 34.3},
+		"Days"   : {type: "integer" , placeholder: 34},
+		"Tolerance"   : {type: "integer" , placeholder: 34},
 	}
 },{
-    idRule: 55,
-    ruleName: "Idle Cash",
+    idRule: 65,
+    ruleName: "Portfolio Drift",
     active: true,
-	description: "Send me notifications of my clients Clients with cash/money market holdings > <[Percentage]> %",	
+	description: "Send me a <[By]> <[Notify]>  message with client's with portfolio drift greather than <[Percentage]>%.",	
 	fields: {
 		"Percentage"   : {type: "number" , placeholder: 34.3},
-		"By"  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+		"By"  : {type: "selector" , items: {individual : "1", consolidate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "2", weekly: "1", daily : "0"}},
 	}
 	
 },{
-    idRule: 56,
-    ruleName: "Surrender expiration",
+    idRule: 66,
+    ruleName: "RMD",
     active: true,
-	description: "Send me notifications of my Clients when they have positions coming out of surrender in <[Days]> Days",	
+	description: "Send me a <[By]> <[Notify]> message with client's holding qualified accounts reaching Required Minimum Distribution age (71.5) within <[Days]> days.",	
 	fields: {
 		"Days"   : {type: "integer" , placeholder: 34},
-		"By"  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
-		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
+		"By"  : {type: "selector" , items: {individual : "1", consolidate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "2", weekly: "1", daily : "0"}},
 	}
 	
 },{
-    idRule: 57,
-    ruleName: "Client Change",
+    idRule: 67,
+    ruleName: "Account Review",
     active: true,
-	description: "Send me notifications if one of my clients marital status, address, name or date of death is change",
+	description: "Send me a <[By]> <[Notify]> message with managed accounts with last account review greather than <[Days]> days.",
 	fields: {
-		"Name"  : {type: "boolean" ,  check: true},
-		"Address"   : {type: "boolean" , check: true},
-		"Marital status"  : {type: "boolean" ,  check: true},
-		"Date of death"   : {type: "boolean" , check: false},
+		"Days"   : {type: "integer" , placeholder: 34},
+		"By"  : {type: "selector" , items: {individual : "1", consolidate: "0"}},
+		"Notify"  : {type: "selector" , items: {monthly : "2", weekly: "1", daily : "0"}},
 	}
 }];
