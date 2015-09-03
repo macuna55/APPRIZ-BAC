@@ -240,21 +240,28 @@ $( document ).on("tapend",".aweCheck",function(ev){
 	//var x = target;
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
 	var change = $(this).attr("name").toLowerCase();
-	var valChange = $(this).siblings('h4').attr("name").toLowerCase();
+	var valChange = $(this).siblings('h4').text();
 	var descChange = $(this).parent().parent().parent().siblings("p").children(change).text();
 	if($(this).hasClass("aweSquare"))
 	{
 		$(this).removeClass("aweSquare").removeClass("fa-square-o").addClass("fa-check-square-o");
-		descChange = descChange + ", "+valChange;
+		if(descChange.length < 3)
+		{
+			descChange = valChange;
+		}else{
+			descChange = descChange + ", "+valChange;
+		}
 	}else{
 		$(this).addClass("aweSquare").addClass("fa-square-o").removeClass("fa-check-square-o");
-		if(descChange.find(", "+valChange))
+		if(descChange.search(", "+valChange)>-1)
 		{
 			descChange = descChange.replace(", "+valChange,"")
-		}else{if(descChange.find(valChange+","))
+		}else{
+		if(descChange.search(valChange+",")>-1)
 		{
 			descChange = descChange.replace(valChange+",","")			
-		}else
+		}
+		else//(descChange.search(valChange))
 		{
 			descChange = descChange.replace(valChange,"")			
 		}}
