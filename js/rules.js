@@ -14,9 +14,52 @@ function addRules(objs){
 		var toChange = obj["description"].match(/\<\[(.*?)\]\>/g);
 		if(toChange)
 		{
-			var toChangeTag = toChange[0].substr(2,toChange[0].length-4);
-			var val = obj.fields[toChangeTag].placeholder;
-			toAppend +=  "<p>"+obj["description"].replace(toChange,"<"+toChangeTag+">"+obj.fields[toChangeTag].placeholder+"</"+toChangeTag+">").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><div class='editOption'><ul>";
+			var desc = obj["description"];
+			for(i=0;i<toChange.length;i++)
+			{
+				var toChangeTag = toChange[i].substr(2,toChange[i].length-4);
+				switch(obj.fields[toChangeTag].type)
+				{
+					case "selector":
+					for (it in obj.fields[toChangeTag].items)
+					{
+						var selVal = obj.fields[toChangeTag].items[it];
+						if(selVal == "1")
+						{
+							desc = desc.replace(toChange[i],"<"+toChangeTag+">"+it+"</"+toChangeTag+">");
+						}
+					}	
+					break;
+					case "boolean":
+					var grb = obj.fields[toChangeTag].group;
+					var grbChk = "";
+					for(chk in obj.fields)
+					{
+						if(obj["fields"][chk].type == "boolean")
+						{
+							if(obj["fields"][chk].group == grb)
+							{
+								if(obj["fields"][chk].check)
+								{
+									if(grbChk.length>0)
+									{
+										grbChk = grbChk+", "+chk;
+									}else
+									{
+										grbChk = chk;
+									}									
+								}								
+							}							
+						}
+					}
+					desc = desc.replace(toChange[i],"<"+toChangeTag+">"+grbChk+"</"+toChangeTag+">");
+					break;
+					default:
+					desc = desc.replace(toChange[i],"<"+toChangeTag+">"+obj.fields[toChangeTag].placeholder+"</"+toChangeTag+">");
+				}				
+			}
+			toAppend +=  "<p>"+desc+"</p><div class='editOption'><ul>";
+			//toAppend +=  "<p>"+obj["description"].replace(toChange,"<"+toChangeTag+">"+obj.fields[toChangeTag].placeholder+"</"+toChangeTag+">").replace(/<\[trxNo\]>/g,"<trxNo>"+obj['trxNo']+"</trxNo>").replace(/<\[idTime\]>/g,"<idTime>"+obj['idTime']+"</idTime>").replace(/<\[totalAmount\]>/g,"<totalAmount>"+obj['totalAmount']+"</totalAmount>").replace(/<\[varation\]>/g,"<varation>"+obj['varation']+"</varation>") +"</p><div class='editOption'><ul>";
 		}else{
 			toAppend +=  "<p>"+obj["description"]+"</p><div class='editOption'><ul>";
 		}
@@ -51,11 +94,11 @@ function addRules(objs){
 				
 				case "boolean":
 					if(obj.fields[field].check){
-						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-check-square-o aweCheck'></i></li>";
+						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-check-square-o aweCheck' name='"+obj.fields[field].group+"'></i></li>";
 					}
 					else
 					{						
-						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-square-o aweCheck aweSquare'></i></li>";
+						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+obj.fields[field].group+"'></i></li>";
 					}
 				break;
 				
@@ -196,12 +239,27 @@ $( document ).on("tapend","[page-content=rules]",function(ev){
 $( document ).on("tapend",".aweCheck",function(ev){
 	//var x = target;
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
+	var change = $(this).attr("name").toLowerCase();
+	var valChange = $(this).siblings('h4').attr("name").toLowerCase();
+	var descChange = $(this).parent().parent().parent().siblings("p").children(change).text();
 	if($(this).hasClass("aweSquare"))
 	{
 		$(this).removeClass("aweSquare").removeClass("fa-square-o").addClass("fa-check-square-o");
+		descChange = descChange + ", "+valChange;
 	}else{
 		$(this).addClass("aweSquare").addClass("fa-square-o").removeClass("fa-check-square-o");
-	}	
+		if(descChange.find(", "+valChange))
+		{
+			descChange = descChange.replace(", "+valChange,"")
+		}else{if(descChange.find(valChange+","))
+		{
+			descChange = descChange.replace(valChange+",","")			
+		}else
+		{
+			descChange = descChange.replace(valChange,"")			
+		}}
+	}		
+	$(this).parent().parent().parent().siblings("p").children(change).text(descChange);
 });
 
 
@@ -231,7 +289,6 @@ $(document).on('keyup','.rule input[type=tel]',function(){
 		});
 		
 		$(this).parent().parent().find('.SelectStyle').each(function(){
-		
 			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
 		});
 		
@@ -242,9 +299,13 @@ $(document).on('change','.SelectStyle',function(){
 		$(this).parent().parent().parent().parent().parent().parent().find('idTime').html($(this).find('option:selected').html());
 		$(this).css({"color" : "#1A73B6"});
 		$(this).parent().parent().find('input[type=tel]').each(function(){
-			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).attr('field'),$(this).val() == null || $(this).val() == "" ?    $(this).attr("placeholder") : $(this).val());	
+			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).attr('field'),$(this).val() == null || $(this).val() == "" ?    $(this).attr("placeholder") : $(this).val());				
+			var change = $(this).siblings('h4').text().toLowerCase();
+			$(this).parent().parent().parent().siblings("p").children(change).text($(this).val());
 		});
 		addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
+			var change = $(this).siblings('h4').text().toLowerCase();
+			$(this).parent().parent().parent().siblings("p").children(change).text($(this).find('option:selected').text());
 		$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked','true');
 		
 	});

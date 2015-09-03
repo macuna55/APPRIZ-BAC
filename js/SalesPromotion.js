@@ -2,7 +2,7 @@ var SalesProData = [{
     idRule: 54,
     ruleName: "Birthday",
     active: true,
-	description: "Send me notifications when one of my clients birthday is coming",	
+	description: "Send me a  <[By]> <[Notify]> message with my clients' birthday.",	
 	fields: {
 		"By"  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
 		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
@@ -33,11 +33,11 @@ var SalesProData = [{
     idRule: 57,
     ruleName: "Client Change",
     active: true,
-	description: "Send me notifications if one of my clients marital status, address, name or date of death is change",
+	description: "Send me notifications if one of my clients <[Name]> is change",
 	fields: {
-		"Name"  : {type: "boolean" ,  check: true},
-		"Address"   : {type: "boolean" , check: true},
-		"Marital status"  : {type: "boolean" ,  check: true},
-		"Date of death"   : {type: "boolean" , check: false},
+		"Name"  : {type: "boolean" ,  check: true, group: "Name"},
+		"Address"   : {type: "boolean" , check: true, group: "Name"},
+		"Marital status"  : {type: "boolean" ,  check: true, group: "Name"},
+		"Date of death"   : {type: "boolean" , check: false, group: "Name"},
 	}
 }];
