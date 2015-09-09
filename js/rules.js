@@ -55,7 +55,7 @@ function addRules(objs){
 					desc = desc.replace(toChange[i],"<"+toChangeTag+">"+grbChk+"</"+toChangeTag+">");
 					break;
 					default:
-					desc = desc.replace(toChange[i],"<"+toChangeTag+">"+obj.fields[toChangeTag].placeholder+"</"+toChangeTag+">");
+					desc = desc.replace(toChange[i],"<"+toChangeTag+">"+obj.fields[toChangeTag].value+"</"+toChangeTag+">");
 				}				
 			}
 			toAppend +=  "<p>"+desc+"</p><div class='editOption'><ul>";
@@ -69,15 +69,15 @@ function addRules(objs){
 		for(field in obj["fields"]){
 			switch(obj["fields"][field].type){
 				case "integer":
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "number":
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "string":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' maxlength='10'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "cadence":
@@ -85,11 +85,11 @@ function addRules(objs){
 				break;
 				
 				case "date":
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].placeholder+"'></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].value+"'></li>";
 				break;
 				
 				case "time":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].placeholder+"'></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].value+"'></li>";
 				break;
 				
 				case "boolean":
@@ -112,7 +112,7 @@ function addRules(objs){
 				break;
 				
 				default:
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' field='trxNo' maxlength='100'  placeholder='"+obj.fields[field].placeholder+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' field='trxNo' maxlength='100'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 			}
 				//if( == "time" ){toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+SPickerString+"</select></li>";} 
 			//	if(obj["fields"][field]. == "time" )

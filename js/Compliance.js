@@ -4,7 +4,13 @@ var ComplianceData = [{
     active: true,
 	description: "Send me notifications when one of my clients birthday is coming",	
 	fields: {
-		"By"  : {type: "selector" , items: {individually : "1", conglomerate: "0"}},
+		"By"  : {
+			type: "selector" ,
+			items: {
+				individually : "1", 
+				conglomerate: "0"
+			}
+		},
 		"Notify"  : {type: "selector" , items: {monthly : "1", weekly: "0"}},
 	}
 },{
