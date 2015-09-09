@@ -6,7 +6,7 @@ var SalesProData = [
       "description": "Send me a  <[By]> <[Notify]> message with my clients' birthday.",
       "fields": {
         "By": {
-          "value": null,
+          "value": "2",
           "type": "selector",
           "items": {
             "individual": "1",

@@ -92,7 +92,7 @@ function addRules(objs){
 					var items = "";
 					for (item in obj["fields"][field].items){
 						if(obj.fields[field].items[item]=="1"){
-						toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
+							toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
 						}
 						else
 						{						
@@ -104,9 +104,14 @@ function addRules(objs){
 				case "selector":
 					var items = "";
 					for (item in obj["fields"][field].items){
-						items += "<option value='"+ obj["fields"][field].items[item]+"'>"+item+"</option>";
+						if(obj["fields"][field].value == obj["fields"][field].items[item])
+						{
+							items += "<option value='"+ obj["fields"][field].items[item]+"' selected>"+item+"</option>";
+						}else{
+							items += "<option value='"+ obj["fields"][field].items[item]+"'>"+item+"</option>";
+						}
 					}
-					toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+items+"</select></li>";
+					toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle' >"+items+"</select></li>";
 					
 				break;
 				
