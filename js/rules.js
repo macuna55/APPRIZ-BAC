@@ -31,26 +31,21 @@ function addRules(objs){
 					}	
 					break;
 					case "boolean":
-					var grb = obj.fields[toChangeTag].group;
 					var grbChk = "";
-					for(chk in obj.fields)
+					var chk;
+					for(chk in obj.fields[toChangeTag].items)
 					{
-						if(obj["fields"][chk].type == "boolean")
+						var val = obj.fields[toChangeTag].items[chk];
+						if(val == "1")
 						{
-							if(obj["fields"][chk].group == grb)
+							if(grbChk.length>0)
 							{
-								if(obj["fields"][chk].check)
-								{
-									if(grbChk.length>0)
-									{
-										grbChk = grbChk+", "+chk;
-									}else
-									{
-										grbChk = chk;
-									}									
-								}								
-							}							
-						}
+								grbChk = grbChk+", "+chk;
+							}else
+							{
+								grbChk = chk;
+							}									
+						}	
 					}
 					desc = desc.replace(toChange[i],"<"+toChangeTag+">"+grbChk+"</"+toChangeTag+">");
 					break;
@@ -93,12 +88,16 @@ function addRules(objs){
 				break;
 				
 				case "boolean":
-					if(obj.fields[field].check){
-						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-check-square-o aweCheck' name='"+obj.fields[field].group+"'></i></li>";
-					}
-					else
-					{						
-						toAppend = toAppend + "<li><h4>"+field+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+obj.fields[field].group+"'></i></li>";
+				
+					var items = "";
+					for (item in obj["fields"][field].items){
+						if(obj.fields[field].items[item]=="1"){
+						toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
+						}
+						else
+						{						
+							toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+field+"'></i></li>";
+						}
 					}
 				break;
 				
