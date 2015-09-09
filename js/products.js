@@ -29,8 +29,14 @@ showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),fun
 	}).done(function(){$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Products </p>')});
 	*/
 		CAT = {
-				"Sales Promotion" : "C1",
-				"Client Service" : "C2",
+				 "Sales Promotion": {
+				  "id": 1,
+				  "icon": null
+				},
+				"Client Service": {
+				  "id": 2,
+				  "icon": null
+				},
 				"Compliance" : "C3"
 		}
 	
