@@ -13,7 +13,7 @@ function addRules(objs){
 		toAppend +=  "<div class='dropdownBox'>";
 		var toChange = obj["description"].match(/\<\[(.*?)\]\>/g);
 		if(toChange)
-		{
+		{ 
 			var desc = obj["description"];
 			for(i=0;i<toChange.length;i++)
 			{
@@ -88,7 +88,7 @@ function addRules(objs){
 				break;
 				
 				case "boolean":
-				
+					toAppend = toAppend + "<div group="+field+">";
 					var items = "";
 					for (item in obj["fields"][field].items){
 						if(obj.fields[field].items[item]=="1"){
@@ -99,6 +99,7 @@ function addRules(objs){
 							toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+field+"'></i></li>";
 						}
 					}
+					toAppend = toAppend + "</div>";
 				break;
 				
 				case "selector":
@@ -149,7 +150,7 @@ function addRules(objs){
 	ruleScroll = new IScroll('#rules .products', {useTransition: false,   mouseWheel: false}); 
 	
 }
-
+/*
 function getRules(productName){
 	console.log(productName);
 	switch(productName)
@@ -166,14 +167,27 @@ function getRules(productName){
 	}
 	
 	
+}*/
+function getRules(productName){
+	console.log(productName);
+		$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
+		if (data["status"]== 200){
+				addRules(data["rules"]);
+			}
+		
+	},'json') .fail(function(e) {
+		//	alert("conexion error!");
+		//alert( JSON.stringify(e));
+	}).done(function(){$('.refreshing_list').hide(); });		
 }
+
 
 
 function addRuleChange(idRule,field,value){
 	if (!(idRule in  rulesChanges)){
 		rulesChanges[idRule] = {"idRule" : idRule}
 	}
-		rulesChanges[idRule][field] = parseInt(value);
+		rulesChanges[idRule]["value"] = value;
 		//lesChanges[idRule].fields[field] = parseInt(value);
 		
 		console.log(JSON.stringify(rulesChanges));
@@ -213,7 +227,7 @@ function processRuleChange(){
 	rulesChanges = {};
 	console.log(JSON.stringify(tmp_ruleChange));
 	
-$.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretClient,"productName": currentProduct, "rules":tmp_ruleChange},function(data){
+$.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretClient, "rules":tmp_ruleChange},function(data){
 	console.log(JSON.stringify(data));
 			if (data["status"]== 200){
 				SPickerString = timePicker(data["periods"]);
@@ -270,6 +284,13 @@ $( document ).on("tapend",".aweCheck",function(ev){
 		}}
 	}		
 	$(this).parent().parent().parent().siblings("p").children(change).text(descChange);
+	/*
+	$('div[group]').each(function(element){
+    var howAre = "";
+    $('div[group='+$(this).attr("group")+'] input[type=checkbox]').each(function(element){
+           howAre += $(this).prop("checked") ? "1" : "0";
+    });
+    console.log(howAre);*/
 });
 
 

@@ -11,7 +11,7 @@
 
 function login(){
 	  //event.preventDefault();
-	  var patFemail = /(\S+)@/;
+	  var patFemail = /.*/;
 	   var whirPass= HexWhirlpool($('.loginBox input').eq(1).val());
 	   
 	  //var whirPass= $('.loginBox input').eq(1).val();
@@ -19,8 +19,7 @@ function login(){
 	  
 	  try{
 	  var logAs = $('.loginBox input').eq(0).val().match(patFemail)[1];
-	
-		$.post('http://'+IP+':8089/appriz/login_',{
+		$.post('http://'+IP+':8089/appriz/login',{
 			"email" : $('.loginBox input').eq(0).val(),
 			"password": whirPass,
 			"phone": typeof device !== 'undefined' ? device.model : "Browser",
@@ -28,6 +27,7 @@ function login(){
 			"uuid":  typeof device !== 'undefined' ? device.uuid : "Browser",
 			"pushKey":  typeof device !== 'undefined' ? PN : "Browser"
 		},function(data){
+		console.log(data);
 			if(data["status"] == 200){
 				console.log("sambuka    " + JSON.stringify(data));
 				$("div#login").hide();
@@ -35,9 +35,9 @@ function login(){
 				$('.wConteiner div').hide();
 				idScretClient = data["idSecretClient"];
 				logId = data["idSession"]; // cambio de segreda
+				console.log("LogID: " +data["idSession"]);
 				console.log("LogID: " +logId);
 				$.jStorage.set('idSecretClient', data['idSecretClient']);
-				$.jStorage.set('pin', data['pin']);
 				$.jStorage.set('logAs', logAs);
 				$('.user div').html($.jStorage.get('logAs'));
 				reloadEntities();
@@ -61,6 +61,7 @@ function login(){
 		
 });
 	  }catch(e){
+	  console.log(e);
 		  showInfoD($.t('Wrong credentials'),$.t('The credentials that you use are invalid'),function(){$('.moldHide, .dialogAlert').hide();});
 				$('.loginBox input').eq(1).val("")
 	  }
