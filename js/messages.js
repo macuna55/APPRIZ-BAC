@@ -19,7 +19,7 @@ function current_inbox(){
 	$('.allMenu').css({"right" : "-80%"});
 	$('.navAppriz li').eq(0).trigger("tapend");
 	
-	checkWithOutEntity();
+	//checkWithOutEntity();
 	if(currentEntityID>0)
 	{
 	getAds();
@@ -271,7 +271,7 @@ function makeSwipe(id){
 		function callNewMSG(){
 			
 		
-			
+			console.log("ds");
 			$('.icon-menu').show();
 			$('.icon-back').show();
 	
@@ -453,6 +453,7 @@ function makeSwipe(id){
 				
 		//bring message for this client
 		function callMSGback(){
+		
 			$('.icon-menu').show();
 					$('.icon-back').show();
 			$("#deleteAllBtn").hide();
@@ -466,6 +467,7 @@ $('#categories').html("<div class='MsG'></div>");
 				//console.log(JSON.stringify(data));
 				
 				$.each(data,function(index, message){
+				
 					if($('#'+message['idMessage']).length > 0){ 
 						makeSwipe(message['idMessage']);
 						if(message['state'] == 3){
@@ -513,13 +515,14 @@ $('#categories').html("<div class='MsG'></div>");
 							LONG_MSG = $.t("This message contains rich content");
 						}
 						try{
+						console.log(JSON.stringify(data));
 						$('#categories .MsG').prepend( "<li class='Message "+( message['state'] < 3 ? "unread" : "" )+" typemsg"+message['type']+" entity"+message['idEntity']+"' id='"+message['idMessage']+"' bulb='"+message['bulb']+"' longMSG='"+btoa(message['longMessage'])+"' services='"+btoa(JSON.stringify(message['services']))+"' appends='"+btoa(JSON.stringify(message['appends']))+"' idEntity='"+message['idEntity']+"'><div class='moveContainer'><div class='details'><h3>"+LONG_MSG+"</h3></div><div class='centralLI'><div class='iconCat'>"+Icon+"</div><div class='infoBank'><h2>"+message['shortMessage']+"</h2><h6 class='dateBank'><span class='icon-primitive-dot "+dotState+"'></span><date>"+postDateS+"<date></h6></div><div class='magicalArrow'><i class='fa fa-angle-right'></i></div></div><div class='rightLI'><button class='deleteSwipe'>Delete</button></div ></div></li>");
 						
 						$.jStorage.set('msg_div', btoa($('#categories').html()));
 						}catch(e){
-						//	console.error(e);
+							console.error(e);
 						}
-						//console.log(JSON.stringify(data));
+						
 					}
 					}
 					
@@ -541,7 +544,7 @@ $('#categories').html("<div class='MsG'></div>");
 				
 				$("nav.categoryNav li span").addClass("active");
 				setTimeout(function(){oneTimeSendAjax = true;},500);
-				checkWithOutEntity();
+			//	checkWithOutEntity();
 		//	counterByMsg();$('.refreshing_list').hide(); 
 			});
 		}

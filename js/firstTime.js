@@ -30,7 +30,7 @@ $('#first-time .btnFull').tapend(function(){
 				if( patt.test($('#first-time input[type="tel"]').eq(0).val())){
 					if($("#first-time .weeksOption input:checked").length == 1){
 					var pass= HexWhirlpool($('#first-time input[type="password"]').eq(0).val());
-					$.post('http://'+IP+':8089/appriz/createNewUser_',{
+					$.post('http://'+IP+':8089/appriz/createNewUser',{
 							email 		: $('#first-time input[type="email"]').eq(0).val(),
 							password	: pass,
 							retention   : parseInt($("#first-time .weeksOption input:checked").val()),//parseInt($('.unikOptions .active').attr('weeks')),
@@ -85,8 +85,8 @@ function checkWithOutEntity(){
 			$("#info .newEntity").trigger("tapend");
 			$('.icon-menu').hide();
 			$('.out').css({"visibility" : "visible"});
-	$('#Suscri').show();*/
-	}
+	$('#Suscri').show();
+	}*/
 }
 
 $(".out").tapend(function(){

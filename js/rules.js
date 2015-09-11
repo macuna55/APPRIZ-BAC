@@ -33,9 +33,20 @@ function addRules(objs){
 					case "boolean":
 					var grbChk = "";
 					var chk;
+					var Uval = obj.fields[toChangeTag].value.split('');
+						console.log(Uval);
+					var z=0;
 					for(chk in obj.fields[toChangeTag].items)
-					{
-						var val = obj.fields[toChangeTag].items[chk];
+					{	
+						var val ="";
+						if(Uval)
+						{
+							val =Uval[z];
+							z++;
+						}else{
+							val = obj.fields[toChangeTag].items[chk];
+						}
+						console.log(val);
 						if(val == "1")
 						{
 							if(grbChk.length>0)
@@ -64,39 +75,52 @@ function addRules(objs){
 		for(field in obj["fields"]){
 			switch(obj["fields"][field].type){
 				case "integer":
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
+				toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "number":
-				toAppend = toAppend + "<li><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
+				toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><input type='tel' maxlength='15'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "string":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' maxlength='10'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><input type='text' maxlength='10'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 				break;
 				
 				case "cadence":
-					toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+SPickerString+"</select></li>";
+					toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><select class='SelectStyle'>"+SPickerString+"</select></li>";
 				break;
 				
 				case "date":
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].value+"'></li>";
+					toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><input type='date' maxlength='10'  placeholder='"+obj.fields[field].value+"'></li>";
 				break;
 				
 				case "time":					
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].value+"'></li>";
+					toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><input type='time' maxlength='12'  placeholder='"+obj.fields[field].value+"'></li>";
 				break;
 				
 				case "boolean":
-					toAppend = toAppend + "<div group="+field+">";
+					toAppend = toAppend + "<div group="+field+" id='rule_"+obj["fields"][field]["ParameterID"]+"'>";
 					var items = "";
+					var chck = obj["fields"][field].value.split('');
+					var it = 0;
 					for (item in obj["fields"][field].items){
-						if(obj.fields[field].items[item]=="1"){
-							toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
-						}
-						else
-						{						
-							toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+field+"'></i></li>";
+						if(chck){							
+							if(chck[it]=="1"){
+								toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
+							}
+							else
+							{						
+								toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+field+"'></i></li>";
+							}
+							it++;
+						}else{
+							if(obj.fields[field].items[item]=="1"){
+								toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
+							}
+							else
+							{						
+								toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-square-o aweCheck aweSquare' name='"+field+"'></i></li>";
+							}
 						}
 					}
 					toAppend = toAppend + "</div>";
@@ -112,12 +136,12 @@ function addRules(objs){
 							items += "<option value='"+ obj["fields"][field].items[item]+"'>"+item+"</option>";
 						}
 					}
-					toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle' >"+items+"</select></li>";
+					toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><select class='SelectStyle' >"+items+"</select></li>";
 					
 				break;
 				
 				default:
-					toAppend = toAppend + "<li><h4>"+field+"</h4><input type='text' field='trxNo' maxlength='100'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
+					toAppend = toAppend + "<li id='rule_"+obj["fields"][field]["ParameterID"]+"'><h4>"+field+"</h4><input type='text' field='trxNo' maxlength='100'  placeholder='"+obj.fields[field].value+"'> <span class='icon-pencil'></span></li>";
 			}
 				//if( == "time" ){toAppend = toAppend + "<li><h4>"+field+"</h4><select class='SelectStyle'>"+SPickerString+"</select></li>";} 
 			//	if(obj["fields"][field]. == "time" )
@@ -283,16 +307,24 @@ $( document ).on("tapend",".aweCheck",function(ev){
 			descChange = descChange.replace(valChange,"")			
 		}}
 	}		
-	$(this).parent().parent().parent().siblings("p").children(change).text(descChange);
-	/*
-	$('div[group]').each(function(element){
-    var howAre = "";
-    $('div[group='+$(this).attr("group")+'] input[type=checkbox]').each(function(element){
-           howAre += $(this).prop("checked") ? "1" : "0";
-    });
-    console.log(howAre);*/
+	$(this).parent().parent().parent().parent().siblings("p").children(change).text(descChange);
+	
+	var value = "";
+	
+	genCheckOptions($(this).parent().parent().attr("group"),$(this).parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).siblings('h4').text());
+			
 });
 
+function genCheckOptions(group,id,param){
+	$('div[group='+group+']').each(function(element){
+    var value = "";
+    $('div[group='+$(this).attr("group")+'] .aweCheck').each(function(element){
+           value += $(this).hasClass("aweSquare") ? "0" : "1";		
+    });
+    addRuleChange(id,param,value );
+	
+})
+}
 
 $( document ).on('tapend','.rule',function(ev){			
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
@@ -314,13 +346,13 @@ $(document).on('keyup','.rule input[type=tel]',function(){
 		
 		$(this).parent().parent().parent().parent().parent().find($(this).attr('field')).html($(this).val());
 		$(this).parent().parent().find('input[type=tel]').each(function(){
-			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).siblings('h4').text(),$(this).val() == null || $(this).val() == "" ? $(this).attr("placeholder")  : $(this).val() );
+			addRuleChange($(this).parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).siblings('h4').text(),$(this).val() == null || $(this).val() == "" ? $(this).attr("placeholder")  : $(this).val() );
 			var change = $(this).siblings('h4').text().toLowerCase();
 			$(this).parent().parent().parent().siblings("p").children(change).text($(this).val());
 		});
 		
 		$(this).parent().parent().find('.SelectStyle').each(function(){
-			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
+			addRuleChange($(this).parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
 		});
 		
 		$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked','true');
@@ -330,11 +362,11 @@ $(document).on('change','.SelectStyle',function(){
 		$(this).parent().parent().parent().parent().parent().parent().find('idTime').html($(this).find('option:selected').html());
 		$(this).css({"color" : "#1A73B6"});
 		$(this).parent().parent().find('input[type=tel]').each(function(){
-			addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).attr('field'),$(this).val() == null || $(this).val() == "" ?    $(this).attr("placeholder") : $(this).val());				
+			addRuleChange($(this).parent().attr('id').replace(/rule_(\S+)/,"$1"),$(this).attr('field'),$(this).val() == null || $(this).val() == "" ?    $(this).attr("placeholder") : $(this).val());				
 			var change = $(this).siblings('h4').text().toLowerCase();
 			$(this).parent().parent().parent().siblings("p").children(change).text($(this).val());
 		});
-		addRuleChange($(this).parent().parent().parent().parent().parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
+		addRuleChange($(this).parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
 			var change = $(this).siblings('h4').text().toLowerCase();
 			$(this).parent().parent().parent().siblings("p").children(change).text($(this).find('option:selected').text());
 		$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked','true');
@@ -347,26 +379,20 @@ $( document ).on("tapend",'input.toggle + label',function(e){
 		e.stopPropagation();
 		var rId = $(this).parent().parent().attr('id').replace(/rule_(\S+)/,"$1");
 		console.log(rId);
-		if($(this).prev().is(":checked")){
-			console.log('checked');
-			$('.dropdownBox').not($(this).parent().parent().find(".dropdownBox")).hide();
-			$(this).parent().parent().find(".dropdownBox").show();
-			$('.rule.active').not($(this).parent().parent()).removeClass('active');
-			$(this).parent().parent().addClass('active');
-			$(this).parent().parent().find('.dropdownBox input').each(function(){
-				console.log('table input');
-				addRuleChange(rId,$(this).attr('field'),$(this).val() == "" ? $(this).attr("placeholder") : $(this).val());
-				
-			});
-			$(this).parent().parent().find('option:selected').each(function(){
-				addRuleChange(rId,'idTime',$(this).val());
-			});
-
-		}else{
-			rulesChanges[rId] = {"idRule" : rId} // disable rule
-			$(this).parent().parent().find(".dropdownBox").hide();
-			$(this).parent().parent().removeClass('active');
-		}
+		
+		
+		$.post('http://'+IP+':8089/appriz/setRulesByCustomer',{"idSecretClient": idScretClient, "idRule":rId},function(data){
+			console.log(JSON.stringify(data));
+			if (data["status"]== 200){
+				SPickerString = timePicker(data["periods"]);
+			}
+		
+	},'json') .fail(function(e) {
+		showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),function(){back=["inbox","inbox"];$(".imglogo").trigger("tapend")});
+	}).done(function(){});
+	
+	return tmp_ruleChange;
+		
 	});
 	
 $( document ).on("tapend",".icon-pencil",function(){
