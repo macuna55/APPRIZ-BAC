@@ -19,7 +19,7 @@
 	pinPolicy = -1;
     //IP = '54.81.6.137'; //testing
    // IP = '54.83.46.171';
-    IP='10.60.0.92';
+    IP='10.60.0.61';
 	PIN = "0AWE";
 	back = [];
 	stateChangeLst = [];
