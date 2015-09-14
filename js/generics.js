@@ -49,11 +49,18 @@ function showAlert(title,text,yesFn,noFn){
 	$('#modal2Btn h2').html(title);
 	$('#modal2Btn p').html(text);
 	
+	$( document ).off( "click", "**" );
+	
 	$('#modal2Btn').show();
 	$( document ).on('click','.yesBtn',function(){
 		$('#modal2Btn').hide();
+		console.log("art-x45-145");
 		yesFn();
+		
 	});
+	
+	
+	
 	$( document ).on('click','.noBtn',function(){
 		$('#modal2Btn').hide();
 		noFn();

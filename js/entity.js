@@ -4,7 +4,7 @@
 var entityIDs=[];
 
 function reloadEntities(){
-	
+	/*
 	console.log("Metodo reloadEntities");
 			$.post('http://'+IP+':8089/appriz/getCustomerEntities',{"idSecretClient": idScretClient},function(data){
 				
@@ -25,7 +25,7 @@ function reloadEntities(){
 					 downloadContent("img_"+entity["entityID"]+".png",S3Bucket+FormatInteger(entity["entityID"],4)+'/Advertising/Logos/big_logo.png',entity["vImg"]);
 						frsTime = 1;
 					}
-				*/
+				*//*
 					entityIDs.push(entity["entityID"]);
 				
 				
@@ -48,7 +48,7 @@ function reloadEntities(){
 				
 			if($.jStorage.get('currentEntityID')==null){checkWithOutEntity();}
 			});
-			
+				*/
 		}
 		
 function loadEntityTemplate(frsTime){

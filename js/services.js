@@ -23,7 +23,8 @@ function getServices(productName){
 function requestService(serviceObj){
 	showAlert($.t("Confirm Request "),serviceObj["description"],function(){
 		$('.moldHide, .dialogAlert').hide();
-		$.post('http://'+IP+':8089/appriz/sendServiceRequest',$.extend({"idSecretClient": idScretClient},serviceObj),function(data){
+
+		$.post('http://'+IP+':8089/appriz/sendServiceRequest',{"idSecretClient": idScretClient,"code": serviceObj["code"]},function(data){
 			if (data["status"]== 200){
 				showInfoD($.t('Sucessfull!'),$.t('Your request was succesfully send'),function(){$('.moldHide, .dialogAlert').hide();});
 			}

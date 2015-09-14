@@ -201,7 +201,7 @@ function getRules(productName){
 		
 	},'json') .fail(function(e) {
 		//	alert("conexion error!");
-		//alert( JSON.stringify(e));
+		//	alert( JSON.stringify(e));
 	}).done(function(){$('.refreshing_list').hide(); });		
 }
 
@@ -215,6 +215,19 @@ function addRuleChange(idRule,field,value){
 		//lesChanges[idRule].fields[field] = parseInt(value);
 		
 		console.log(JSON.stringify(rulesChanges));
+}
+
+
+function addRuleStatusChange(idRule,value){
+	if (!(idRule in  rulesStatusChanges)){
+		rulesStatusChanges[idRule] = {"idRule" : idRule};
+	}
+	else
+	{
+		delete(rulesStatusChanges[idRule]);
+	}
+		
+	console.log(JSON.stringify(rulesStatusChanges));
 }
 		
 
@@ -245,14 +258,32 @@ function getValidTimePeriods(prd){
 
 function processRuleChange(){
 	var tmp_ruleChange = [];
+	var tmp_ruleStatusChange = [];
 	for ( ruleChange in rulesChanges){
 		tmp_ruleChange.push(rulesChanges[ruleChange]);
-	}
-	rulesChanges = {};
-	console.log(JSON.stringify(tmp_ruleChange));
+	}	
+	for ( ruleStatusChange in rulesStatusChanges){
+		tmp_ruleStatusChange.push(rulesStatusChanges[ruleStatusChange]);
+	}	
 	
-$.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretClient, "rules":tmp_ruleChange},function(data){
+	rulesChanges = {};
+	console.log(JSON.stringify(tmp_ruleChange));	
+	
+	$.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretClient, "rules":tmp_ruleChange},function(data){
 	console.log(JSON.stringify(data));
+			if (data["status"]== 200){
+				SPickerString = timePicker(data["periods"]);
+			}
+		
+	},'json') .fail(function(e) {
+		showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),function(){back=["inbox","inbox"];$(".imglogo").trigger("tapend")});
+	}).done(function(){});
+	
+	rulesStatusChanges = {};
+	console.log(JSON.stringify(tmp_ruleStatusChange));			
+		
+	$.post('http://'+IP+':8089/appriz/setRulesByCustomer',{"idSecretClient": idScretClient, "idRules":tmp_ruleStatusChange},function(data){
+			console.log(JSON.stringify(data));
 			if (data["status"]== 200){
 				SPickerString = timePicker(data["periods"]);
 			}
@@ -381,17 +412,9 @@ $( document ).on("tapend",'input.toggle + label',function(e){
 		console.log(rId);
 		
 		
-		$.post('http://'+IP+':8089/appriz/setRulesByCustomer',{"idSecretClient": idScretClient, "idRule":rId},function(data){
-			console.log(JSON.stringify(data));
-			if (data["status"]== 200){
-				SPickerString = timePicker(data["periods"]);
-			}
-		
-	},'json') .fail(function(e) {
-		showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),function(){back=["inbox","inbox"];$(".imglogo").trigger("tapend")});
-	}).done(function(){});
-	
-	return tmp_ruleChange;
+		addRuleStatusChange(rId);				
+
+	//return tmp_ruleChange;
 		
 	});
 	

@@ -90,11 +90,12 @@
 			$('header .icon-back').css("color", "#FFFFFF" );
 			$('header .icon-menu').css("color", "#FFFFFF" );
 		
-		if(!$.isEmptyObject(rulesChanges)){
+		if(!($.isEmptyObject(rulesChanges)) || !($.isEmptyObject(rulesStatusChanges))){
 				showAlert($.t("Rule Changed"), $.t("Do you want to save changes?") , function(){
 					processRuleChange();
 				},function(){
 					rulesChanges = {};
+					rulesStatusChanges = {};
 				});
 				
 			}
