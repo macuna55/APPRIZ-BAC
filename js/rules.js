@@ -32,14 +32,20 @@ function addRules(objs){
 					break;
 					case "boolean":
 					var grbChk = "";
-					var chk;
-					var Uval = obj.fields[toChangeTag].value.split('');
-						console.log(Uval);
+					var chk;				
+					var Uval = "";		
+					var UvalAux = obj.fields[toChangeTag];
+					//console.log(obj["ruleName"] +"+++++++"+ toChangeTag+"+++++++++"+UvalAux);
+					if(UvalAux.value!=null)
+					{
+						Uval = obj.fields[toChangeTag].value.split('');		
+					}
+					console.log(Uval);
 					var z=0;
 					for(chk in obj.fields[toChangeTag].items)
 					{	
 						var val ="";
-						if(Uval)
+						if(Uval !="")
 						{
 							val =Uval[z];
 							z++;
@@ -101,10 +107,18 @@ function addRules(objs){
 				case "boolean":
 					toAppend = toAppend + "<div group="+field+" id='rule_"+obj["fields"][field]["ParameterID"]+"'>";
 					var items = "";
-					var chck = obj["fields"][field].value.split('');
+					var chck = ""; 
+					
+					console.log(obj["ruleName"] +"+++++++"+ toChangeTag);
+					if(obj.fields[toChangeTag].value!=null)
+					{
+						chck = obj.fields[toChangeTag].value.split('');		
+					}
+					console.log(chck);
+					
 					var it = 0;
 					for (item in obj["fields"][field].items){
-						if(chck){							
+						if(chck!=""){							
 							if(chck[it]=="1"){
 								toAppend = toAppend + "<li><h4>"+item+"</h4><i class='fa fa-check-square-o aweCheck' name='"+field+"'></i></li>";
 							}
@@ -313,7 +327,7 @@ $( document ).on("tapend",".aweCheck",function(ev){
 	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
 	var change = $(this).attr("name").toLowerCase();
 	var valChange = $(this).siblings('h4').text();
-	var descChange = $(this).parent().parent().parent().siblings("p").children(change).text();
+	var descChange = $(this).parent().parent().parent().parent().siblings("p").children(change).text();
 	if($(this).hasClass("aweSquare"))
 	{
 		$(this).removeClass("aweSquare").removeClass("fa-square-o").addClass("fa-check-square-o");
