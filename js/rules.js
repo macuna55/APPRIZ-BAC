@@ -208,7 +208,7 @@ function getRules(productName){
 }*/
 function getRules(productName){
 	console.log(productName);
-		$.post('http://'+IP+':8089/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
+		$.post('http://'+IP+':'+PORT+'/appriz/getRulesByProduct',{"idSecretClient": idScretClient,"productName":productName,},function(data){
 		if (data["status"]== 200){
 				addRules(data["rules"]);
 			}
@@ -283,7 +283,7 @@ function processRuleChange(){
 	rulesChanges = {};
 	console.log(JSON.stringify(tmp_ruleChange));	
 	
-	$.post('http://'+IP+':8089/appriz/setRulesByProduct',{"idSecretClient": idScretClient, "rules":tmp_ruleChange},function(data){
+	$.post('http://'+IP+':'+PORT+'/appriz/setRulesByProduct',{"idSecretClient": idScretClient, "rules":tmp_ruleChange},function(data){
 	console.log(JSON.stringify(data));
 			if (data["status"]== 200){
 				SPickerString = timePicker(data["periods"]);
@@ -296,7 +296,7 @@ function processRuleChange(){
 	rulesStatusChanges = {};
 	console.log(JSON.stringify(tmp_ruleStatusChange));			
 		
-	$.post('http://'+IP+':8089/appriz/setRulesByCustomer',{"idSecretClient": idScretClient, "idRules":tmp_ruleStatusChange},function(data){
+	$.post('http://'+IP+':'+PORT+'/appriz/setRulesByCustomer',{"idSecretClient": idScretClient, "idRules":tmp_ruleStatusChange},function(data){
 			console.log(JSON.stringify(data));
 			if (data["status"]== 200){
 				SPickerString = timePicker(data["periods"]);

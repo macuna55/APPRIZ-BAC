@@ -1,6 +1,6 @@
 function getAds(){
 	
-	$.post('http://'+IP+':8089/appriz/getAdsByClient',{"idSecretClient" : idScretClient,"entityId" : parseInt(currentEntityID)},function(data){
+	$.post('http://'+IP+':'+PORT+'/appriz/getAdsByClient',{"idSecretClient" : idScretClient,"entityId" : parseInt(currentEntityID)},function(data){
 	
 		$("#ads").html('<img src="'+data["Content"]+'" alt=""/>');
 		console.dir(data);

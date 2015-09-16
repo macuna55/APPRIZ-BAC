@@ -19,7 +19,7 @@ function login(){
 	  
 	  try{
 	  var logAs = $('.loginBox input').eq(0).val().match(patFemail)[1];
-		$.post('http://'+IP+':8089/appriz/login',{
+		$.post('http://'+IP+':'+PORT+'/appriz/login',{
 			"email" : $('.loginBox input').eq(0).val(),
 			"password": whirPass,
 			"phone": typeof device !== 'undefined' ? device.model : "Browser",
@@ -108,7 +108,7 @@ function checkPreviusLogin(){
 	if($.jStorage.index().indexOf('msg') > -1){$('#categories').html(atob($.jStorage.get('msg')));}
 	setTimeout(function(){$('#Waiting p').show();},3000);
 	//currentEntityID  = ($.jStorage.index().indexOf('currentEntityID') > -1  ) ? $.jStorage.get('currentEntityID') : 0;
-	$.post('http://'+IP+':8089/appriz/getCurrentSession',{uuid:  typeof device !== 'undefined' ? device.uuid : "Browser" },function(data) {
+	$.post('http://'+IP+':'+PORT+'/appriz/getCurrentSession',{uuid:  typeof device !== 'undefined' ? device.uuid : "Browser" },function(data) {
 	if("idSecretClient" in data ){
 			//	navigator.splashscreen.hide();
 				if($.jStorage.index().indexOf('msg') > -1){$('#categories').html(atob($.jStorage.get('msg')));}
@@ -172,7 +172,7 @@ function checkPreviusLogin(){
 $( document ).on("tapend","button.log",function(){
 	console.log("Encontrando a button.log event click");
 	
-	$.post('http://'+IP+':8089/appriz/logout', {"logId" : logId}, function(data){
+	$.post('http://'+IP+':'+PORT+'/appriz/logout', {"logId" : logId}, function(data){
 		//console.log(data);
 		
 		$.jStorage.flush();
@@ -213,7 +213,7 @@ function resetPass(){
 	var inputText = $('#inputResetPass').eq(0).val();
 	var tempPassEncrypt= HexWhirlpool(tempPass);
 	
-	$.post('http://'+IP+':8089/appriz/setPassword_',{
+	$.post('http://'+IP+':'+PORT+'/appriz/setPassword_',{
 		email			:   inputText,
 		password   		:   tempPassEncrypt,
 		passMail		:	tempPass

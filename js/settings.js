@@ -3,7 +3,7 @@ var stringSett;
 function guardarCambios(){
 		var ret =  parseInt($('input:radio[name=checkboxG1]:checked').val());
 		if(ret == 1 || ret == 2 || ret == 3 || ret == 4){
-			$.post('http://'+IP+':8089/appriz/setAprzCustomerSettings',{
+			$.post('http://'+IP+':'+PORT+'/appriz/setAprzCustomerSettings',{
 				idSecretClient			:  idScretClient,
 				retention   			:  parseInt(ret),
 				pinPolicy   			:  $("#pinPolicy").prop('checked') ? 0 : 1,
@@ -55,7 +55,7 @@ $('#passwordChg .btnFull').tapend(function(){
 		if($('#passwordChg input[type="password"]').eq(0).val() != $('#passwordChg input[type="password"]').eq(1).val()){
 	showInfoD($.t('Wrong data'),$.t('Passwords do not match'),function(){$('.moldHide, .dialogAlert').hide();});} else{
 		var encryPass= HexWhirlpool($('#passwordChg input[type="password"]').eq(0).val());
-		$.post('http://'+IP+':8089/appriz/setAprzCustomerSettings',{
+		$.post('http://'+IP+':'+PORT+'/appriz/setAprzCustomerSettings',{
 		idSecretClient		:  idScretClient,
 		password   			: encryPass
 	}, function(data){
@@ -76,7 +76,7 @@ $('#passwordChg .btnFull').tapend(function(){
 $('#pinChg .btnFull').tapend(function(){
 	var patt = /^\d{4}$/;
 	if( patt.test($('#pinChg input[type="tel"]').eq(0).val())){
-			$.post('http://'+IP+':8089/appriz/setAprzCustomerSettings',{
+			$.post('http://'+IP+':'+PORT+'/appriz/setAprzCustomerSettings',{
 		idSecretClient			:  idScretClient,
 		pin   			: $('#pinChg input[type="tel"]').eq(0).val()
 	}, function(data){
