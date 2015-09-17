@@ -11,7 +11,7 @@ function addProducts(products,view){
 
 }
 function getProducts(view){
-	$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Products </p>')
+	$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Categories </p>')
 	$('#products .products ul').html("<div class='refreshing_list'><i class='fa fa-spinner fa-spin'></i> </div>");
 	if(pinPolicy==1){$('#pin').show();}
 	
@@ -26,7 +26,7 @@ function getProducts(view){
 		
 showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),function(){back=["inbox","inbox"];$(".imglogo").trigger("tapend")});
 
-	}).done(function(){$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Products </p>')});
+	}).done(function(){$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Categories </p>')});
 	
 		/*CAT = {
 				 "Sales Promotion": {
@@ -41,7 +41,7 @@ showInfoD($.t("Offline Mode"),$.t("This option is disabled in Offline Mode"),fun
 		}
 	
 		addProducts(CAT,view);*/
-		$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Products </p>');
+		$('#products p.title').html((view == 'rules' ? 'My Alerts' : 'Services')+'<i class="fa fa-angle-double-right"></i>Categories </p>');
 }
 
 
