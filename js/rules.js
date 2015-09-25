@@ -185,7 +185,7 @@ function addRules(objs){
 	
 	$('#rules_div').append("<div style='width: 100%; height: 150px;'></div>");
 	$(".refreshing_list").hide();
-	ruleScroll = new IScroll('#rules .products', {useTransition: false,   mouseWheel: false}); 
+	ruleScroll = new IScroll('#rules .products', { preventDefault: false, probeType: 3, mouseWheel: true }); 
 	
 }
 /*
