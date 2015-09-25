@@ -174,7 +174,7 @@ function addRules(objs){
 		//if("idTime" in obj ) {
 		   // $('#rule_'+obj["idRule"]+' select option[value="'+obj["idTime"]+'"]').prop('selected', true); $('idTime:last').html($('select:last option[value="'+obj["idTime"]+'"]').html());}
 	});
-	$('#rules .products').html("<div id='listProducts'><ul>"+toAppend+"</ul></div>");
+	$('#rules .products').html("<div id='rulewrap'><div id='listProducts' class='scroller'><ul>"+toAppend+"</ul></div></div>");
 	$('#rules .products select').each(function(){
 		var idTime = $(this).parent().parent().parent().parent().find('idTime').html();
 		$(this).find('option[value="'+idTime+'"]').prop('selected', true);
@@ -185,7 +185,7 @@ function addRules(objs){
 	
 	$('#rules_div').append("<div style='width: 100%; height: 150px;'></div>");
 	$(".refreshing_list").hide();
-	ruleScroll = new IScroll('#rules .products', {useTransition: false,   mouseWheel: false}); 
+//	ruleScroll = new IScroll('#rules .products'); 
 	
 }
 /*
@@ -216,7 +216,7 @@ function getRules(productName){
 	},'json') .fail(function(e) {
 		//	alert("conexion error!");
 		//	alert( JSON.stringify(e));
-	}).done(function(){$('.refreshing_list').hide(); });		
+	}).done(function(){$('.refreshing_list').hide(); ruleScroll = new IScroll('#rules #rulewrap', { preventDefault: false, probeType: 3, mouseWheel: true }); });		
 }
 
 
