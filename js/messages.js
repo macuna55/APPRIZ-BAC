@@ -328,7 +328,8 @@ function makeSwipe(id){
 					
 					}else{ 
 					 try{
-						var Icon = message['type'] == 1 ? '<span class="iscfont salesPromotion"></span>'  : message['type'] == 2 ? '<span class="iscfont clientServices"></span>' : message['type'] == 3 ? '<span class="iscfont complience"></span>' :  message['type'] == 4 ?  '<span class="icon-promotions"></span>' : '<span class="icon-services"></span>';
+						
+						var Icon = message['type'] == 1 ? '<span class="iscfont salesPromotion"></span>'  : message['type'] == 2 ? '<span class="iscfont clientServices"></span>' : message['type'] == 3 ? '<span class="iscfont complience"></span>' :  message['type'] == 4 ?  '<span class="icon-alerts path1"></span>' : '<span class="icon-services"></span>';
 						var dotState =  message['bulb'] == 1   ? 'dotDone' : message['bulb'] == 2   ? 'dotProgress' : message['bulb'] == 3   ? 'dotError' :  'dotNone';
 						
 						var postDate = new Date(message['postdate']);
@@ -502,8 +503,7 @@ $('#categories').html("<div class='MsG'></div>");
 						 
 					
 					}else{ 
-				
-						var Icon = message['type'] == 1 ? '<span class="iscfont salesPromotion"></span>'  : message['type'] == 2 ? '<span class="iscfont clientServices"></span>' : message['type'] == 3 ? '<span class="iscfont complience"></span>' :  message['type'] == 4 ?  '<span class="icon-promotions"></span>' : '<span class="icon-services"></span>';
+						var Icon = message['type'] == 1 ? '<span class="iscfont salesPromotion"></span>'  : message['type'] == 2 ? '<span class="iscfont clientServices"></span>' : message['type'] == 3 ? '<span class="iscfont complience"></span>' :  message['type'] == 4 ?  '<span class="icon-alerts path1"></span>' : '<span class="icon-services"></span>';
 						var dotState =  message['bulb'] == 1   ? 'dotDone' : message['bulb'] == 2   ? 'dotProgress' : message['bulb'] == 3   ? 'dotError' :  'dotNone';
 						
 						var postDate = new Date(message['postdate']);
