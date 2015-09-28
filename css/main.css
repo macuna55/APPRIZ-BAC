@@ -972,7 +972,7 @@ margin-top: 69px;
     width: 100px;
     display: inline-block;
     padding: 0 0 0 30px;
-	line-height: 3.5 !important;
+	/*line-height: 3.5 !important;*/
 }
 
 #categories li .icon-myAlerts, .icon-notifications, .icon-alerts, .icon-promotions, .icon-services {
@@ -2471,7 +2471,7 @@ img.bankLogo {
     max-width: calc(100% - 100px) !important;
 }
 .bankLogo img{
-	    max-height: 110px;
+	    max-height: 90px;
 }
 
 .menu-main {
