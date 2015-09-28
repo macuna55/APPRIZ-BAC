@@ -163,7 +163,7 @@ input.toggle:checked + label::before {
 }
 
 .bankLogo img{
-margin-top: -10px;
+margin-top: 0px;
 
 }
 
@@ -171,4 +171,8 @@ margin-top: -10px;
 
 -webkit-tap-highlight-color: rgba(0,0,0,0); 
 
+}
+
+.Message:not(.unread) .iconCat{
+	color: #58B;
 }

@@ -272,7 +272,8 @@ function getValidTimePeriods(prd){
 		idTime: 5,
 		unit: "Day(s)",
 	}]);
-		getRules(prd);
+	setTimeout(function(){ getRules(prd) }, 300); //avoid change first rule. NEED TO BE TESTED
+		
 }
 
 function processRuleChange(){

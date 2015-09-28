@@ -27,6 +27,8 @@ function getBase64Image(img) {
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
+
+
 		
 
 
@@ -37,7 +39,7 @@ function showInfoD(title,text,okFx){
 	
 	
 	$('#modal1Btn').show();
-	$( document ).on('click','.okBtn',function(){
+	$( document ).on('tapend','.okBtn',function(){
 		$('#modal1Btn').hide();
 		okFx();
 	});
@@ -48,12 +50,11 @@ function showInfoD(title,text,okFx){
 function showAlert(title,text,yesFn,noFn){
 	$('#modal2Btn h2').html(title);
 	$('#modal2Btn p').html(text);
-	
-	$( document ).off( "click", "**" );
-	
 	$('#modal2Btn').show();
-	$( document ).on('click','.yesBtn',function(){
+	$( document ).on('tapend','.yesBtn',function(){
 		$('#modal2Btn').hide();
+		$( document ).off('tapend','.yesBtn');
+		$( document ).off('tapend','.noBtn');
 		console.log("art-x45-145");
 		yesFn();
 		
@@ -61,8 +62,10 @@ function showAlert(title,text,yesFn,noFn){
 	
 	
 	
-	$( document ).on('click','.noBtn',function(){
+	$( document ).on('tapend','.noBtn',function(){
 		$('#modal2Btn').hide();
+		$( document ).off('tapend','.yesBtn');
+		$( document ).off('tapend','.noBtn');
 		noFn();
 	});
 }
@@ -70,3 +73,10 @@ function showAlert(title,text,yesFn,noFn){
 $.fn.hasAttr = function(name) {  
 	return this.attr(name) !== undefined;
 };
+
+
+function checkPress(ev){
+	var endX = ev.pageX || ev.originalEvent.changedTouches[0].pageX;
+	var endY = ev.pageY || ev.originalEvent.changedTouches[0].pageY;
+	return Math.abs(endX - startTap.X)  < 10 && Math.abs(endY - startTap.Y) < 10	
+}

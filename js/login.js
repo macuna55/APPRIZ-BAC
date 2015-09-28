@@ -11,7 +11,7 @@
 
 function login(){
 	  //event.preventDefault();
-	  var patFemail = /.*/;
+	   var patFemail = /(\S+)@/;
 	   var whirPass= HexWhirlpool($('.loginBox input').eq(1).val());
 	   
 	  //var whirPass= $('.loginBox input').eq(1).val();
@@ -38,6 +38,7 @@ function login(){
 				console.log("LogID: " +data["idSession"]);
 				console.log("LogID: " +logId);
 				$.jStorage.set('idSecretClient', data['idSecretClient']);
+				$.jStorage.set('pin', data['pin']);
 				$.jStorage.set('logAs', logAs);
 				$('.user div').html($.jStorage.get('logAs'));
 				reloadEntities();
