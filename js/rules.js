@@ -8,12 +8,15 @@ function timePicker(objs){
 function addRules(objs){
 	var toAppend = '';				
 	$.each(objs,function(index,obj){
+		console.dir(obj);
 		toAppend +=  "<li class='rule' id='rule_"+obj["idRule"]+"'><h3>"+obj["ruleName"]+"</h3>";
 		toAppend +=   "<div class='onoffswitch'><input type='checkbox' name='toggle_"+obj["idRule"]+"' id='toggle_"+obj["idRule"]+"' class='toggle' "+(obj["active"] ? "checked" : "")+"><label for='toggle_"+obj["idRule"]+"'></label></div>";
 		toAppend +=  "<div class='dropdownBox'>";
 		var toChange = obj["description"].match(/\<\[(.*?)\]\>/g);
+
 		if(toChange)
 		{ 
+			
 			var desc = obj["description"];
 			for(i=0;i<toChange.length;i++)
 			{
@@ -21,12 +24,14 @@ function addRules(objs){
 				switch(obj.fields[toChangeTag].type)
 				{
 					case "selector":
+					//console.log(obj.fields[toChangeTag].items);
 					for (it in obj.fields[toChangeTag].items)
 					{
 						var selVal = obj.fields[toChangeTag].items[it];
-						if(selVal == "1")
+						if(selVal == obj.fields[toChangeTag].value)
 						{
 							desc = desc.replace(toChange[i],"<"+toChangeTag+">"+it+"</"+toChangeTag+">");
+							
 						}
 					}	
 					break;
