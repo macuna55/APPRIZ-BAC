@@ -136,7 +136,7 @@ function showMessage(id){
 		});}
 		}
 		catch(e){$('div[view=trx_view]').hide();}
-		$('.appends').html('<div class="scroller">'+strAppends+"</div>");
+		$('.appends').html('<div class="scroller2">'+strAppends+"</div>");
 		
 	
 	//Calculate and fix the height of the option menu based on the number of options
@@ -170,6 +170,7 @@ function showMessage(id){
 	//Sync heights of appends
 		matchColumnsHeight();
 		appendsScroller =  new IScroll('.appends', { probeType: 3, mouseWheel: true }); 
+		appendsScroller.refresh();
 }
 
 $( document ).on('tapend','#showOptions',function(e){

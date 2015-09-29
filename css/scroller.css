@@ -9,3 +9,13 @@
 	width:100%;
 	min-height: 450px;
 }
+
+.scroller2{
+position: absolute;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	width:100%;
+}
