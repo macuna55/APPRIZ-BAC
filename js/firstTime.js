@@ -45,14 +45,26 @@ $('#first-time .btnFull').tapend(function(){
 								$.jStorage.set('idSecretClient', data['idSecretClient']);
 								idScretClient = data['idSecretClient'];
 								console.log(JSON.stringify(data));
-								showInfoD($.t('Appriz User Created'),$.t('Now you need to subscribe to an entity'),
+								showInfoD($.t('Appriz User Created'),$.t('The user was created successfully'),
 								
 								function(){
-									var patFemail = /(\S+)@/;
+									location.reload(); 
+									
+									/*var patFemail = /(\S+)@/;
 									logAs = $('#first-time input[type="email"]').eq(0).val().match(patFemail)[1];
 									$.jStorage.set('logAs', logAs);
 									$('.user div').html($.jStorage.get('logAs'));
 									checkWithOutEntity();
+									
+									$('.moldHide, .dialogAlert').hide();
+									$('#suscribe input').eq(0).val("");
+									$('#suscribe input').eq(1).val("");
+									$('#Suscri').hide();
+									$('.icon-menu').show();
+									$('.icon-back').show();
+									$('.out').hide();*/
+									
+									
 										
 								}
 								);

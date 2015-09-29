@@ -1,8 +1,12 @@
 function timePicker(objs){
 		timePickerString = '<fieldset class="ui-field-contain">';
-		$.each(objs,function(index,obj){
-			timePickerString = timePickerString + "<option value='"+obj["idTime"]+"'>"+obj["amount"]+" "+obj["unit"]+"</option>";
-		});
+		try{
+			$.each(objs,function(index,obj){
+				timePickerString = timePickerString + "<option value='"+obj["idTime"]+"'>"+obj["amount"]+" "+obj["unit"]+"</option>";
+			});
+		}catch(e){
+			
+		}
 		return timePickerString+"</fieldset>";
 	}
 function addRules(objs){
@@ -272,7 +276,7 @@ function getValidTimePeriods(prd){
 		idTime: 5,
 		unit: "Day(s)",
 	}]);
-	setTimeout(function(){ getRules(prd) }, 300); //avoid change first rule. NEED TO BE TESTED
+	setTimeout(function(){ getRules(prd) }, 100); //avoid change first rule. NEED TO BE TESTED
 		
 }
 
@@ -285,10 +289,10 @@ function processRuleChange(){
 	for ( ruleStatusChange in rulesStatusChanges){
 		tmp_ruleStatusChange.push(rulesStatusChanges[ruleStatusChange]);
 	}	
+	console.log("Este cambioa>  "+JSON.stringify(tmp_ruleStatusChange));	
 	
+	console.log("Este cambio>  "+JSON.stringify(tmp_ruleChange));	
 	rulesChanges = {};
-	console.log(JSON.stringify(tmp_ruleChange));	
-	
 	$.post('http://'+IP+':'+PORT+'/appriz/setRulesByProduct',{"idSecretClient": idScretClient, "rules":tmp_ruleChange},function(data){
 	console.log(JSON.stringify(data));
 			if (data["status"]== 200){
@@ -405,6 +409,11 @@ $(document).on('keyup','.rule input[type=tel]',function(){
 		$(this).parent().parent().find('.SelectStyle').each(function(){
 			addRuleChange($(this).parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
 		});
+		if(!$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked')){
+				var rId =  $(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').parent().parent().attr('id').replace(/rule_(\S+)/,"$1");
+				addRuleStatusChange(rId);	
+				
+			}
 		
 		$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked','true');
 });
@@ -420,6 +429,14 @@ $(document).on('change','.SelectStyle',function(){
 		addRuleChange($(this).parent().attr('id').replace(/rule_(\S+)/,"$1"),'idTime',$(this).find('option:selected').val());
 			var change = $(this).siblings('h4').text().toLowerCase();
 			$(this).parent().parent().parent().siblings("p").children(change).text($(this).find('option:selected').text());
+			
+			if(!$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked')){
+				
+				var rId =  $(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').parent().parent().attr('id').replace(/rule_(\S+)/,"$1");
+				
+				addRuleStatusChange(rId);	
+				
+			}
 		$(this).parent().parent().parent().parent().parent().find('input[type=checkbox]').attr('checked','true');
 		
 	});

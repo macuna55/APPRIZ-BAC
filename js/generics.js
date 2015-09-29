@@ -39,7 +39,10 @@ function showInfoD(title,text,okFx){
 	
 	
 	$('#modal1Btn').show();
-	$( document ).on('tapend','.okBtn',function(){
+	$( '.okBtn' ).tapend(function( event){
+		$( this ).off( event );
+	
+		//$(".bgModal").hide();
 		$('#modal1Btn').hide();
 		okFx();
 	});
@@ -51,21 +54,21 @@ function showAlert(title,text,yesFn,noFn){
 	$('#modal2Btn h2').html(title);
 	$('#modal2Btn p').html(text);
 	$('#modal2Btn').show();
-	$( document ).on('tapend','.yesBtn',function(){
+	$( '.yesBtn' ).tapend(function(event){
 		$('#modal2Btn').hide();
-		$( document ).off('tapend','.yesBtn');
-		$( document ).off('tapend','.noBtn');
+		$( '.yesBtn' ).off('tapend');
+		$( '.noBtn' ).off('tapend');
 		console.log("art-x45-145");
 		yesFn();
 		
 	});
 	
 	
-	
-	$( document ).on('tapend','.noBtn',function(){
+	$( '.noBtn' ).tapend(function(event){
 		$('#modal2Btn').hide();
-		$( document ).off('tapend','.yesBtn');
-		$( document ).off('tapend','.noBtn');
+		$( this ).off( event );
+		$( '.yesBtn' ).off('tapend');
+		$( '.noBtn' ).off('tapend');
 		noFn();
 	});
 }

@@ -73,8 +73,7 @@ function showMessage(id){
 	//Hide history  page
 	$(".historye").hide();
 	$(".historye").empty();
-	//Show Appends page
-	$(".appends").show();
+	
 	//Put default history button label
 	$("#showHistory").html($.t("History")) ;
 	//Begin a safe path if services doesnt exist 
@@ -99,37 +98,42 @@ function showMessage(id){
 	//Begin a safe path if appends doesnt exist 
 	try{
 		//convert appends attribute to original request format
-		var array_appends = JSON.parse(atob(msg.attr('appends')));
-		//Create a variable to handle li
-		var strAppends = "";
-		//go thru all appends and append to the li handle string
-		$.each(array_appends,function(key,value){
-			//Create the append's block
-			var tags 	= "<h4>ID</h4>";
-			var values 	= "<p>"+value["id"]+"</p>";
-			
-			$.each(value["fields"],function(key2,value2){
+		$(".appends").hide();
+		if(atob(msg.attr('appends')) != "undefined"){
 				
-				switch(value2["type"]){
-					case "float":
-						values += "<p>"+value2["value"]+"</p>";
-					break;
-					
-					case "date":
-						values += "<p>"+value2["value"]+"</p>";
-					break;
-					
-					default:
-						values += "<p>"+value2["value"]+"</p>";
-					break;
-				}
+			//Show Appends page
+			$(".appends").show();
+			var array_appends = JSON.parse(atob(msg.attr('appends')));
+			//Create a variable to handle li
+			var strAppends = "";
+			//go thru all appends and append to the li handle string
+			$.each(array_appends,function(key,value){
+				//Create the append's block
+				var tags 	= "<h4>ID</h4>";
+				var values 	= "<p>"+value["id"]+"</p>";
 				
-				tags 	+= "<h4>"+value2["tag"]+"</h4>";
-			});
+				$.each(value["fields"],function(key2,value2){
+					
+					switch(value2["type"]){
+						case "float":
+							values += "<p>"+value2["value"]+"</p>";
+						break;
+						
+						case "date":
+							values += "<p>"+value2["value"]+"</p>";
+						break;
+						
+						default:
+							values += "<p>"+value2["value"]+"</p>";
+						break;
+					}
+					
+					tags 	+= "<h4>"+value2["tag"]+"</h4>";
+				});
+				
+				strAppends = strAppends + '<div class="detailsList"><div class="row">'+tags+'</div><div class="row">'+values+'</div></div>';
 			
-			strAppends = strAppends + '<div class="detailsList"><div class="row">'+tags+'</div><div class="row">'+values+'</div></div>';
-			
-		});
+		});}
 		}
 		catch(e){$('div[view=trx_view]').hide();}
 		$('.appends').html('<div class="scroller">'+strAppends+"</div>");

@@ -50,6 +50,8 @@ function login(){
 				retention =  data["retention"];
 				//getValidTimePeriods();
 				//reloadEntities();
+				
+				console.log("console.d");
 			
 			}else{
 				showInfoD($.t('Wrong credentials'),$.t('The credentials that you use are invalid'),function(){$('.moldHide, .dialogAlert').hide();});
