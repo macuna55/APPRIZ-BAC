@@ -90,10 +90,12 @@ function showMessage(id){
 		$('.dropdownOption ul').html(management);
 		//Show the option button
 		$('#showOptions').show();	
+		$('.appends').css({bottom : "75px"});
 		
 	}catch(e){
 			 //If fails means that there are not any options, so hide the option btn.
 			 $('#showOptions').hide();
+			 $('.appends').css({bottom : "15px"});
 	}
 	//Begin a safe path if appends doesnt exist 
 	try{
