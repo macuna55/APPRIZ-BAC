@@ -3,8 +3,8 @@ function matchColumnsHeight(){
 	for(var i=0; i<$('.detailsList h4').length;i++){
 		var maxHe = Math.max($('.detailsList h4').eq(i).height(),$('.detailsList p').eq(i).height());
 		maxWi = Math.max(Math.max($('.detailsList h4').eq(i).textWidth(),maxWi));
-		$('.detailsList h4').eq(i).height(maxHe);
-		$('.detailsList p').eq(i).height(maxHe+6);
+		$('.detailsList h4').eq(i).height(maxHe-10);
+		$('.detailsList p').eq(i).height(maxHe-10+6);
 		 //$(this).height(200);
 	};
 	$('.detailsList .row').css({ width: (window.innerWidth - window.innerWidth*0.14 -maxWi)});
