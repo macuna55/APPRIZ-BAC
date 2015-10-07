@@ -332,6 +332,7 @@ $( document ).on("tapend","[page-content=rules]",function(ev){
 	}	
 });
 
+$( document ).on("tapend","#backInRules",backKeyDown);
 
 $( document ).on("tapend",".aweCheck",function(ev){
 	//var x = target;
