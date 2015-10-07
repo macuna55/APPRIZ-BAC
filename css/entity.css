@@ -176,3 +176,10 @@ margin-top: -5px;
 .Message:not(.unread) .iconCat{
 	color: #58B;
 }
+
+#backInRules{
+	text-align: center;
+    color: #1A6BA3;
+    font-size: 26px;
+    font-family: font3933;
+}
