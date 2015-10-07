@@ -1255,7 +1255,7 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
     border-bottom: 1px solid #e5e5e5;
     width: 100%;
     overflow: hidden;
-	padding: 5px;
+	padding-left: 5px;
 }
 
 .detailsList .row:first-child {
@@ -1266,7 +1266,7 @@ nav.categoryNav .icon-myAlerts.active .path2:before {
 .detailsList .row {
     float: left;
     width: 69%;
-    padding: 2%;
+    padding-left: 2%;
 }
 
 .detailsList .row h4{
