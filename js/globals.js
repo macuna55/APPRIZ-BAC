@@ -18,7 +18,7 @@
 	currentEntityID = 0;
 	logId = 0 ;
 	pinPolicy = -1;
-	IP = '54.237.36.135'; //release
+	IP = '54.83.46.171'; //release
     //IP='10.60.0.61'; //dev
     PORT='7004';//release
     //PORT='8079';//dev
