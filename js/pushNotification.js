@@ -183,13 +183,24 @@ function onNotificationWP8(e) {
     }
 }
 
-cordova.plugins.notification.badge.hasPermission(function (granted) {
-     console.log('Permission has been granted: ' + granted);
-});
+try{	
+	cordova.plugins.notification.badge.hasPermission(function (granted) {
+		 console.log('Permission has been granted: ' + granted);
+	});
+}
+catch(e){
+	
+}
 
-cordova.plugins.notification.badge.registerPermission(function (granted) {
+try{
+	 cordova.plugins.notification.badge.registerPermission(function (granted) {
      console.log('Permission has been granted: ' + granted);
-});
+	});
+}
+catch(e){
+	
+}
+
 
 function jsonErrorHandler(error) {
         console.log('<li style="color:red;">error:' + error.code + '</li>');

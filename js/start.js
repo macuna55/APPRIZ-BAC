@@ -3,7 +3,7 @@ function onDeviceReady(){
 	
 	try{
 		onDeviceReady_fm();
-		onDeviceReady_pn();
+		//onDeviceReady_pn();
 		document.addEventListener("backbutton", backKeyDown, true);
 	    document.addEventListener("menubutton", menuKeyDown, true);
 		document.addEventListener("resume", onResume, false);
