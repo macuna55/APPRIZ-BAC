@@ -14,7 +14,7 @@ function fix_messages(){
 	$("#categories .rightLI").css({"width" : (window.innerWidth +150)+"px"});
 	$("#categories .details").css({"width" : (window.innerWidth -20)+"px"});
     if (window.innerWidth > 325) {
-        $("#categories li .infoBank").css({"width": (window.innerWidth - 160) + "px"});
+        $("#categories li .infoBank").css({"width": ((window.innerWidth == 768) ? 580 : window.innerWidth   - 160) + "px"});
         $(".dateBank").css({"width": (window.innerWidth - 160) + "px"});
     }else{
         $("#categories li .infoBank").css({"width": "180px"});

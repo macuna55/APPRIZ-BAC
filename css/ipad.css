@@ -1,0 +1,21 @@
+@media (width: 768px){
+	#mainw{
+		 -webkit-transform: translate(89px,-55px);
+		transform: translate(89px,-55px);
+	}
+	#headLogoC .bankLogo{
+		    -webkit-transform: translate(152px,0px);
+			transform: translate(152px,0px);
+	}
+	
+	.detailsList{
+		 -webkit-transform: translate(0px,49px);
+		  transform: translate(0px,49px);
+	}
+	
+	#categories .unread .centralLI{
+		top: -16px !important; 
+	}
+	
+}
+
